@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Sauver {
 
 	
-	// Constructeur ou fonction créant un simple fichier txt
+	
 	public Sauver () {
 		
 	}
