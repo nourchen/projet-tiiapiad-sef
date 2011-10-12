@@ -6,6 +6,8 @@ package ihm;
  */
 public class FenetreGeometrique {
 
+	//A priori => utiliser XY Plot de JFreeChart?
+	
 	//Pour le moment on se contentera d'un graphique simple.
 	
 	/*Idées "si on a le temps":
