@@ -196,6 +196,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 		
 		if(arg0.getSource()==generer){
 			System.out.println("click sur generer");
+			FenetreOnglet fo = new FenetreOnglet();
 		}
 		
 		if(arg0.getSource()==charger){
