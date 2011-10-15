@@ -200,13 +200,8 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 			       fichierouvert = fc.getSelectedFile().getAbsolutePath();
 			       Charger ch = new Charger();
 			       ch.chargerfichier(fichierouvert);
-			       //Ligne de test a supprimer apres test de la lecture apres parser
-			       System.out.println("Chargement :");
-			       for (int i=0; i < ch.getMesSEF().size(); i++){
-			    	   System.out.println(""+ch.getMesSEF().get(i).getBorneInf());
-			    	   System.out.println(""+ch.getMesSEF().get(i).getBorneSup());
-			    	   System.out.println(""+ch.getMesSEF().get(i));
-			       }
+			       // recupere les points avec getmesSEF
+
 			     }
 			 
 		}

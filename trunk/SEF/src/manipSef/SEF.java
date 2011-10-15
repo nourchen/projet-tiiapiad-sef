@@ -76,6 +76,10 @@ public class SEF {
 			maxX=Math.min(maxX, p.getX());
 		}
 		inflexions.add(p);
+	}
+
+	public ArrayList<Point> getInflexions() {
+		return inflexions;
 	}	
 	
 	
