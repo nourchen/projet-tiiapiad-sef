@@ -61,7 +61,7 @@ public class SEF {
 	 * Il faudra penser à ordonner la liste (en fct des abscisses) à un moment donné 
 	 * => où? PB de modélisation, à voir plus tard!
 	 * 
-	 * Au pire (selon MJ Lesot) preciser dans les sec qu'une liste ordonnee est attendue
+	 * Au pire (selon MJ Lesot) preciser dans les spec qu'une liste ordonnee est attendue
 	 * Sinon, avantage des XYSeries=>il me semble qu'ils ordonnent automatiquement les points par les x...
 	 */
 	
