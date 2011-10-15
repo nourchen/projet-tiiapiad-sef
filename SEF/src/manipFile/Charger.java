@@ -13,8 +13,8 @@ import manipSef.SEF;
 
 public class Charger {
 
-	private static String test = "-inf,2011#-1.5,0;1.25,1;4.2,0.75;5,0";
-	private ArrayList<SEF> mesSEF;//A remplir au fur et a mesure de la lecture du fichier
+	//private static String test = "-inf,2011#-1.5,0;1.25,1;4.2,0.75;5,0";
+	private ArrayList<SEF> mesSEF = new ArrayList<SEF> ();//A remplir au fur et a mesure de la lecture du fichier
 	
 	public Charger() {}
 	
@@ -32,6 +32,7 @@ public class Charger {
 		// quand la méthode retourne la valeur null.
 		while ((line = buff.readLine()) != null) {
 		System.out.println(line);
+		parserLigne(line);
 		//faites ici votre traitement
 		}
 		} finally {
@@ -44,7 +45,7 @@ public class Charger {
 		}
 }
 	
-	public static SEF parserFichier(String f) {
+	public void parserLigne(String f) {
 		
 	int bornes = f.indexOf("#");
 	
@@ -93,13 +94,17 @@ public class Charger {
 		bsup = Double.parseDouble(bornesup);
 	}
 	
-	
-	
 	SEF essai = new SEF(binf,bsup, pts);
-	System.out.println("borne " +binf+ " borne sup" +bsup+ "pts :"+pts);
-	return essai;
+	mesSEF.add(essai);
 	}
 
+	public ArrayList<SEF> getMesSEF() {
+		return mesSEF;
+	}
+
+	public void setMesSEF(ArrayList<SEF> mesSEF) {
+		this.mesSEF = mesSEF;
+	}
 	
 /*	public static void main(String[] args) {
 		parserFichier(test);
