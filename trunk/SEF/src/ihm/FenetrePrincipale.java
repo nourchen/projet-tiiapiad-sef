@@ -170,7 +170,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 		sef_stocker.append("\nborne inf : "+borneinf);
 		sef_stocker.append("\nborne sup : "+borneSup);
 		sef_stocker.append("\npoint(s) :\n"+point);
-		sef_stocker.append("\n---------------------\n");
+		sef_stocker.append("\n==========\n");
 	}
 
 	@Override
