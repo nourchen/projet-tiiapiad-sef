@@ -19,6 +19,7 @@ public class SefManager {
 	
 	public SefManager(ArrayList<SEF> mS,double min, double max){
 		this.mesSef=mS;
+		//Double.
 		
 		
 	}
