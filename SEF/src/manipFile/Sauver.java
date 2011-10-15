@@ -18,7 +18,11 @@ public class Sauver {
 		System.out.println("test sauvegarde");
 		
 		DataOutputStream ecrit = new DataOutputStream(new FileOutputStream(chemin));
-		//ecrit.writeChars("test ecriture fichier :" +chemin);
+		//on supprime les retours a la ligne :
+		contenu = contenu.replace("\n", "");
+		// on supprime la "décoration" ( les = )
+		contenu = contenu.replace("=", "");
+		
 		ecrit.writeBytes(contenu);
 		ecrit.close();
 		System.out.println("test sauvegarde fini");
