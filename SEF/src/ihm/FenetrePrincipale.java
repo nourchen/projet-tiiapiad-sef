@@ -138,14 +138,6 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 		total.add(toutbornesup);
 		total.add(toutptsSEF);
 		
-		//contenu.add(menubar, fond.NORTH);
-		//contenu.add(total,fond.CENTER);
-		
-		//contenu.add(zonestock, fond.WEST);
-		//contenu.add(sef_stocker, fond.WEST);
-		//contenu.add(generer,fond.WEST);
-		//contenu.add(total);
-		
 		//contenu.add(menubar);
 		letout.add(zonestock);
 		Box.createVerticalGlue();
