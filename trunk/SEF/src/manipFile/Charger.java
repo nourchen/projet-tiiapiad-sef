@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import manipSef.Point;
 import manipSef.SEF;
 
 
@@ -43,10 +44,8 @@ public class Charger {
 		}
 }
 	
-	public static void parserFichier(String f) {
+	public static SEF parserFichier(String f) {
 		
-//	String test ="-inf,2011#-1.5,0;1.25,1;4.2,0.75;5,0";
-	
 	int bornes = f.indexOf("#");
 	
 	String recupbornes = f.substring(0, bornes);
@@ -67,33 +66,43 @@ public class Charger {
 	String delimiterPoint = ";";
 	
 	temp = ptsInflexion.split(delimiterPoint);
-	/* Boucle de test pour vérifier */
-
-	/*
-	for(int i =0; i < temp.length ; i++){
-	System.out.println(temp[i]);
-	}
 	
-	System.out.println("===== Passage en SEF ======");
-	
-	System.out.println("La virgule :"+temp[0].indexOf(","));
-	System.out.println("La virgule :"+temp[1].getClass());
-	*/
-	ArrayList<SEF> tempor = new ArrayList<SEF> ();
+	ArrayList<Point> pts = new ArrayList<Point>();
 	// la on peut reccuperer les bonnes valeurs : reste a les stocker proprement
 	for (int k = 0; k < temp.length ; k++){
 		int recup = temp[k].indexOf(",");
 		String valX = temp[k].substring(0, recup);
 		String valY = temp[k].substring(recup+1);
 		System.out.println("Valx  " +valX+ "  Val Y :" +valY);
+		pts.add(new Point (Double.parseDouble(valX) , 
+				Double.parseDouble(valY)));	
+	}
+	
+	double binf;
+	double bsup;
+	
+	if(borneinf.equals("-inf")){
+		binf = Double.MIN_VALUE;
+	} else {
+		binf = Double.parseDouble(borneinf);	
+	}
+	
+	if(bornesup.equals("inf")) {
+		bsup = Double.MAX_VALUE;
+	} else {
+		bsup = Double.parseDouble(bornesup);
 	}
 	
 	
+	
+	SEF essai = new SEF(binf,bsup, pts);
+	System.out.println("borne " +binf+ " borne sup" +bsup+ "pts :"+pts);
+	return essai;
 	}
 
 	
 /*	public static void main(String[] args) {
 		parserFichier(test);
-	}
-	*/
+	}*/
+	
 }
