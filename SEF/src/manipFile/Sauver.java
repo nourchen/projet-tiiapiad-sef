@@ -22,6 +22,18 @@ public class Sauver {
 		contenu = contenu.replace("\n", "");
 		// on supprime la "décoration" ( les = )
 		contenu = contenu.replace("=", "");
+		//on supprime le premier SEF :
+		contenu = contenu.replaceFirst("SEF :", "");
+		// on supprime les autres :
+		contenu = contenu.replace("SEF :", "\n");
+		// on supprime les "borne inf"
+		contenu = contenu.replace("borne inf : ", "");
+		// on supprime les "borne sup"
+		contenu = contenu.replace("borne sup : ", ",");
+		// on supprime les "point(s)"
+		contenu = contenu.replace("point(s) :", "#");
+		// on remplace les " " par des ","
+		contenu = contenu.replace(" ",",");
 		
 		ecrit.writeBytes(contenu);
 		ecrit.close();

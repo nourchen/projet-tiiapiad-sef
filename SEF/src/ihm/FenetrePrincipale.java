@@ -166,6 +166,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 
 	public void pointEntree(String borneinf, String borneSup, String point) {
 		// Bon y a moyen de tout mettre dans le meme append mais je prefere comme ca :
+		point = point.replaceAll("\n", ";\n");
 		sef_stocker.append("SEF :");
 		sef_stocker.append("\n==========");
 		sef_stocker.append("\nborne inf : "+borneinf);
