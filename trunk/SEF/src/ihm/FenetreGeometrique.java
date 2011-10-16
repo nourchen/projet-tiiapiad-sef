@@ -33,6 +33,8 @@ public class FenetreGeometrique extends ApplicationFrame {
 	 * =>Permettre à l'utilisateur de voir les coordonnées d'un point s'afficher lors du passage du curseur dessus
 	 * (quelque part dans la fenêtre, peu importe ou, à définir plus tard...)
 	 */
+	
+	private XYSeriesCollection sefsCollec;
 
 	/**
 	 * 
@@ -44,25 +46,15 @@ public class FenetreGeometrique extends ApplicationFrame {
 	 *
 	 * @param title  the frame title.
 	 */
-	public FenetreGeometrique(final String title) {
-
+	public FenetreGeometrique(final String title,XYSeriesCollection sefsCollec) {
 		super(title);//title=titre de la FENETRE!!
-		final XYSeries series = new XYSeries("Random Data");//Titre de la serie (s'affiche dans la legende)
-		series.add(1.0, 500.2);
-		series.add(5.0, 694.1);
-		series.add(4.0, 100.0);
-		series.add(12.5, 734.4);
-		series.add(17.3, 453.2);
-		series.add(21.2, 500.2);
-		series.add(21.9, null);
-		series.add(25.6, 734.4);
-		series.add(30.0, 453.2);
-		final XYSeriesCollection data = new XYSeriesCollection(series);
+		this.sefsCollec=sefsCollec;
+		
 		final JFreeChart chart = ChartFactory.createXYLineChart(
 				"BLA",//Le titre du graphique
 				"X", //titre des abscisses
 				"Y", //titre des ordonnees
-				data,//La collection de XYSeries a afficher
+				sefsCollec,//La collection de XYSeries a afficher
 				PlotOrientation.VERTICAL,
 				true,  //Show legend
 				true, // Tools Tips
