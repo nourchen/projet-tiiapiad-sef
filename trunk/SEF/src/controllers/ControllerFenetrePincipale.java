@@ -89,8 +89,8 @@ public class ControllerFenetrePincipale implements ActionListener {
 				System.out.println("Fichier a ecrire : " +
 			             fc.getSelectedFile().getAbsolutePath());
 				String chemin = fc.getSelectedFile().getAbsolutePath();
-				
-				String envoie = fp.getSef_entrer().getText();
+				//pas plutot sef_stocker ?
+				String envoie = fp.getSef_stocker().getText();
 				
 				Sauver sv = new Sauver();
 				try {
