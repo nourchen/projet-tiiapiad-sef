@@ -51,7 +51,7 @@ public class FenetreGeometrique extends ApplicationFrame {
 		this.sefsCollec=sefsCollec;
 		
 		final JFreeChart chart = ChartFactory.createXYLineChart(
-				"BLA",//Le titre du graphique
+				"Un sous ensemble flou",//Le titre du graphique
 				"X", //titre des abscisses
 				"Y", //titre des ordonnees
 				sefsCollec,//La collection de XYSeries a afficher
