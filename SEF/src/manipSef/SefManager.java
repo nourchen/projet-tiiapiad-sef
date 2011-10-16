@@ -25,7 +25,7 @@ public class SefManager {
 		this.mesSef=mS;
 		this.maxX=(int)Math.ceil(max);
 		this.minX=(int)Math.floor(min);		
-		nbValDiscretes=100;
+		nbValDiscretes=1000;
 	}
 	
 	private double getPasX(){
@@ -92,7 +92,11 @@ public class SefManager {
 				//System.out.println("J'ai traité le point "+indicePoint);
 				
 			}
+			for(int i=indiceXdiscret;i<nbValDiscretes;i++){
+				courbe.add(mesNvxX[i],0);
+			}
 			noSef++;
+			System.out.println("Il y a "+courbe.getItemCount()+" points dans ma liste de points de ma courbe");
 			myListOfSefs.addSeries(courbe);
 		}
 		return myListOfSefs;
