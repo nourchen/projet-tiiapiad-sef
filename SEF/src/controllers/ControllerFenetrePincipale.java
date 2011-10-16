@@ -18,12 +18,12 @@ import manipFile.Sauver;
 public class ControllerFenetrePincipale implements ActionListener {
 
 	private FenetrePrincipale fp;
-	private JFileChooser fc = new JFileChooser();
+	private JFileChooser fc;
 	
-	private JButton generer = null;
-	private JButton valider = null;
-	private JMenuItem charger = null;
-	private JMenuItem sauver = null;
+	private JButton generer;
+	private JButton valider;
+	private JMenuItem charger;
+	private JMenuItem sauver;
 	private String fichierouvert;
 	
 	public ControllerFenetrePincipale(FenetrePrincipale fp){
@@ -39,6 +39,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 		
 		sauver = fp.getSauver();
 		sauver.addActionListener(this);
+		fc = new JFileChooser();
 		
 	}
 
