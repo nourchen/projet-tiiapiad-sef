@@ -25,19 +25,37 @@ public class SefManager {
 		this.mesSef=mS;
 		this.maxX=(int)Math.ceil(max);
 		this.minX=(int)Math.floor(min);		
-		nbValDiscretes=10;
+		nbValDiscretes=100;
 	}
 	
 	private double getPasX(){
-		return (maxX -minX)/(nbValDiscretes-1);
+		//System.out.println(maxX-minX);
+		//System.out.println(nbValDiscretes - 1);
+		return (double)(maxX -minX)/(nbValDiscretes-1);
+	}
+	
+	private double[] xDiscretized(){
+		double[] liste = new double[nbValDiscretes];
+		double pas=getPasX();
+		double xToAdd=minX;
+		for(int i=0;i<nbValDiscretes;i++){
+			liste[i]=xToAdd;
+			xToAdd+=pas;
+			//System.out.println(liste [i]);
+		}
+		
+		return liste;
 	}
 	
 	public XYSeriesCollection createMySefCollection(){
 		XYSeriesCollection myListOfSefs=new XYSeriesCollection();
+		double[]mesNvxX = xDiscretized();
 		double pas=this.getPasX();
+		System.out.println(pas);
 		int noSef=1;
-		double a, b, xDroite, xGauche;
+		double a, b, xDroite, xGauche, xDiscret;
 		int indicePoint;
+		int indiceXdiscret=0;
 		System.out.println("J'ai "+mesSef.size()+" sous ensemble flou dans ma liste!\n");
 		for(SEF sef:mesSef){
 			//ATTENTION!! Je pars du principe que le sef est ordonné par x croissant!!
@@ -54,11 +72,24 @@ public class SefManager {
 				a=(pgauche.getY()-pdroit.getY())/(pgauche.getX()-xDroite);
 				b=pdroit.getY()-a*pdroit.getX();
 				do{
-					courbe.add(xGauche, xGauche*a +b);
-					xGauche+= pas;
+					xDiscret = mesNvxX[indiceXdiscret];
+					if((xDiscret<xGauche)||(xDiscret > xDroite)){
+						courbe.add(xDiscret,0);
+						System.out.println("Je traite le point "+indicePoint);
+						System.out.println("x: "+xDiscret+", y: 0\n");
+					}else{
+						courbe.add(xDiscret, xDiscret*a +b);
+
+						System.out.println("Je traite le point "+indicePoint);
+						System.out.println("x: "+xDiscret+", y: "+(xDiscret*a + b));
+					}
 					
-				}while(xGauche<xDroite);
-				System.out.println("J'ai traité le point "+indicePoint);
+					xDiscret+= pas;
+					indiceXdiscret++;
+				
+					
+				}while(xDiscret<xDroite);
+				//System.out.println("J'ai traité le point "+indicePoint);
 				
 			}
 			noSef++;
