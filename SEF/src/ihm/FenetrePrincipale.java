@@ -9,6 +9,8 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import controllers.ControllerFenetrePincipale;
+
 
 import manipFile.Charger;
 import manipFile.Filtre;
@@ -24,7 +26,7 @@ import manipFile.Sauver;
  */
 
 
-public class FenetrePrincipale extends JFrame implements ActionListener{
+public class FenetrePrincipale extends JFrame {
 
 	private JMenuBar menubar = new JMenuBar();
 	private JMenu fichier = new JMenu("Fichier");
@@ -57,10 +59,6 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 	
 	private Box letout = Box.createHorizontalBox();
 	private Box letoutmenubar = Box.createVerticalBox();
-	
-	private String fichierouvert;
-	
-	JFileChooser fc = new JFileChooser();
 	
 //	private BorderLayout fond = new BorderLayout();
 	
@@ -156,14 +154,14 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 		
 		
 		//ActionListener
-		valider.addActionListener(this);
-		generer.addActionListener(this);
-		charger.addActionListener(this);
-		sauver.addActionListener(this);
+//		valider.addActionListener(this);
+//		generer.addActionListener(this);
+//		charger.addActionListener(this);
+//		sauver.addActionListener(this);
+		ControllerFenetrePincipale cfp = new ControllerFenetrePincipale(this);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 	}
-
 	public void pointEntree(String borneinf, String borneSup, String point) {
 		// Bon y a moyen de tout mettre dans le meme append mais je prefere comme ca :
 		point = point.replaceAll("\n", ";\n");
@@ -174,68 +172,35 @@ public class FenetrePrincipale extends JFrame implements ActionListener{
 		sef_stocker.append("\npoint(s) :\n"+point);
 		sef_stocker.append("\n==========\n");
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-	
-		if(arg0.getSource()==valider){
-			System.out.println("click sur valider");
-			System.out.println(entreBorneInf.getText());
-			System.out.println(sef_entrer.getText());
-			pointEntree(entreBorneInf.getText(), entreBorneSup.getText(),sef_entrer.getText());
-			
-		}
-		
-		if(arg0.getSource()==generer){
-			System.out.println("click sur generer");
-			FenetreOnglet fo = new FenetreOnglet();
-		}
-		
-		if(arg0.getSource()==charger){
-			System.out.println("click sur charger");
-			fc.setFileFilter(new Filtre());
-			 int returnVal = fc.showOpenDialog(this);
-			    if(returnVal == JFileChooser.APPROVE_OPTION) {
-			    // Juste un affichage pour verifier
-			       System.out.println("Fichier a ouvrir : " +
-			             fc.getSelectedFile().getAbsolutePath());
-			       fichierouvert = fc.getSelectedFile().getAbsolutePath();
-			       Charger ch = new Charger();
-			       ch.chargerfichier(fichierouvert);
-			       // recupere les points avec getmesSEF
-
-			     }
-			 
-		}
-		
-		if(arg0.getSource()==sauver){
-			System.out.println("click sur sauvegarder");
-			fc.setFileFilter(new Filtre());
-			int returnVal = fc.showSaveDialog(this);
-			if(returnVal == JFileChooser.APPROVE_OPTION) {
-				System.out.println("Fichier a ecrire : " +
-			             fc.getSelectedFile().getName());
-				String nom = fc.getSelectedFile().getName();
-				System.out.println("Fichier a ecrire : " +
-			             fc.getSelectedFile().getAbsolutePath());
-				String chemin = fc.getSelectedFile().getAbsolutePath();
-				
-				String envoie = sef_stocker.getText();
-				
-				Sauver sv = new Sauver();
-				try {
-					sv.infoFichier(chemin,envoie);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}
-			
-		}
-		
+	public JMenuItem getCharger() {
+		return charger;
 	}
-	
+	public JMenuItem getSauver() {
+		return sauver;
+	}
+	public JButton getGenerer() {
+		return generer;
+	}
+	public JButton getValider() {
+		return valider;
+	}
+	public JTextArea getSef_entrer() {
+		return sef_entrer;
+	}
+	public JTextArea getSef_stocker() {
+		return sef_stocker;
+	}
+	public JTextField getEntreBorneInf() {
+		return entreBorneInf;
+	}
+	public JTextField getEntreBorneSup() {
+		return entreBorneSup;
+	}
+	public void setSef_entrer(JTextArea sefEntrer) {
+		sef_entrer = sefEntrer;
+	}
+
+		
 	
 	
 }
