@@ -4,6 +4,8 @@ import java.awt.Checkbox;
 import java.awt.Container;
 
 import javax.swing.Box;
+import javax.swing.ComboBoxEditor;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel; //peut etre besoin rapidement
@@ -17,62 +19,55 @@ public class FenetreOnglet extends JFrame{
 		new JLabel("Attention ! cochez plusieurs cases ouvrira " +
 				"plusieurs fenetres de dessins");
 	
-	// Onglet operation ( peut etre trouver un autre nom
-	private Checkbox complementaire = new Checkbox("Tracer Le Complementaire");
-	private Checkbox intersection = new Checkbox("Tracer L'intersection");
-	private Checkbox union = new Checkbox("Tracer L'Union");
-	private Box boxope = Box.createVerticalBox();
-	private Box boxh = Box.createHorizontalBox();
+	private Box boxComp = Box.createVerticalBox();
+	private Box boxInter = Box.createVerticalBox();
+	private Box boxUni = Box.createVerticalBox();
 	
-	//onglet Tnorme
-	private Checkbox tnZadeh = new Checkbox("T-Norme de Zadeh");
-	private Checkbox tnLuka = new Checkbox("T-Norme de Lukasuexicz");
-	private Checkbox tnProba = new Checkbox("T-Norme Probabiliste");
-	private Checkbox tnWeber = new Checkbox("T-Norme de Weber");
-	private Box boxtn = Box.createVerticalBox();
 	
-	//onglet T-conorme
-	private Checkbox tcnZadeh = new Checkbox("T-Conorme de Zadeh");
-	private Checkbox tcnLuka = new Checkbox("T-Conorme de Lukasuexicz");
-	private Checkbox tcnProba = new Checkbox("T-Conorme Probabiliste");
-	private Checkbox tcnWeber = new Checkbox("T-Conorme de Weber");
-	private Box boxtcn = Box.createVerticalBox();
+	private JComboBox sefComp = new JComboBox();
 	
+	//Intersection
+	private JComboBox sefChoixinter1 = new JComboBox();
+	private JComboBox sefChoixinter2 = new JComboBox();
+	private JComboBox choixTnorme = new JComboBox();
 
+	//Union
+	private JComboBox sefChoixUni1 = new JComboBox();
+	private JComboBox sefChoixUni2 = new JComboBox();
+	private JComboBox choixTconorme = new JComboBox();
+
+	
 	public FenetreOnglet(){
 		setTitle("Choisir les courbes a generer");
 		setSize(430,300);
 		
 		//Onglet COmplementaire :
 		// supprimer checkbox et remplacer par un combobox avec les sef
-		JPanel ongletOperation = new JPanel();
-	//	boxh.add(warning);
-	//	boxope.add(warning);
-		boxope.add(complementaire);
-		boxope.add(intersection);
-		boxope.add(union);
-		ongletOperation.add(boxh);
-		ongletOperation.add(boxope);
+		JPanel ongletComp = new JPanel();
+		//boxh.add(warning);
+		//boxope.add(warning);
+		boxComp.add(sefComp);
+		//ongletOperation.add(boxh);
+		ongletComp.add(boxComp);
 		
 		// onglet intersection :
 		// 3 combox 1 choix Tnorme 2 pour les sefs 
-		JPanel ongletTnorme = new JPanel();
+		JPanel ongletInter = new JPanel();
+		boxInter.add(choixTnorme);
+		boxInter.add(sefChoixinter1);
+		boxInter.add(sefChoixinter2);
 	//	boxtn.add(warning);
-		boxtn.add(tnZadeh);
-		boxtn.add(tnLuka);
-		boxtn.add(tnProba);
-		boxtn.add(tnWeber);
-		ongletTnorme.add(boxtn);
+		ongletInter.add(boxInter);
 		
 		// onglet union
 		// idem mais avec Tconorme
-		JPanel ongletTconorme = new JPanel();
+		JPanel ongletUni = new JPanel();
+		boxUni.add(choixTconorme);
+		boxUni.add(sefChoixUni1);
+		boxUni.add(sefChoixUni2);
+	//	
 	//	boxtcn.add(warning);
-		boxtcn.add(tcnZadeh);
-		boxtcn.add(tcnLuka);
-		boxtcn.add(tcnProba);
-		boxtcn.add(tcnWeber);
-		ongletTconorme.add(boxtcn);
+		ongletUni.add(boxUni);
 		
 		// Liste de fonctions à appliquer en combobox
 		// choix du sef
@@ -81,9 +76,9 @@ public class FenetreOnglet extends JFrame{
 		
 		Container contenu = getContentPane();
 		
-		onglets.addTab("Complementaire", ongletOperation);
-		onglets.addTab("Intersection", ongletTnorme);
-		onglets.addTab("Union", ongletTconorme);
+		onglets.addTab("Complementaire", ongletComp);
+		onglets.addTab("Intersection", ongletInter);
+		onglets.addTab("Union", ongletUni);
 		onglets.addTab("Extension", ongletFonction);
 		
 		contenu.add(onglets);
