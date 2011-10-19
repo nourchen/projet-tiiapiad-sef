@@ -7,7 +7,9 @@ import java.io.IOException;
 
 public class Sauver {
 
-	
+	// Avant de sauver : 
+	// 1)verif que c'est une fonction (pas de y avec deux abscisses) pas de y > 1
+	// 2)ordonner selon les x
 	
 	public Sauver () {
 		

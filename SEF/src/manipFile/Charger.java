@@ -9,7 +9,7 @@ import manipSef.Point;
 import manipSef.SEF;
 
 
-
+// lancer une exception sur parser
 
 public class Charger {
 
