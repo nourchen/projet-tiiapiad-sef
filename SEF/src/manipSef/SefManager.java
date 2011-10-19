@@ -25,7 +25,7 @@ public class SefManager {
 		this.mesSef=mS;
 		this.maxX=(int)Math.ceil(max);
 		this.minX=(int)Math.floor(min);		
-		nbValDiscretes=1000;
+		nbValDiscretes=2000;
 	}
 	
 	private double getPasX(){

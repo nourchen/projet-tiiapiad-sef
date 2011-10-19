@@ -53,6 +53,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 			System.out.println(fp.getEntreBorneSup().getText());
 			fp.pointEntree(fp.getEntreBorneInf().getText(), 
 					fp.getEntreBorneSup().getText(),fp.getSef_entrer().getText());
+			// cree un SEF avec nouveau parser
 			
 		}
 		
