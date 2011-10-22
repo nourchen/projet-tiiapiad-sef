@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import manipSef.Point;
 import manipSef.SEF;
 
@@ -19,6 +21,7 @@ public class Charger {
 	public Charger() {}
 
 	public void chargerfichier(String file) {
+		boolean ok = true;
 
 		try{
 			// Création du flux bufférisé sur un FileReader, immédiatement suivi par un
@@ -30,9 +33,9 @@ public class Charger {
 				String line;
 				// Lecture du fichier ligne par ligne. Cette boucle se termine
 				// quand la méthode retourne la valeur null.
-				while ((line = buff.readLine()) != null) {
+				while ((line = buff.readLine()) != null && ok) {
 					System.out.println(line);
-					parserLigne(line);
+					ok = parserLigne(line);
 					//faites ici votre traitement
 				}
 			} finally {
@@ -45,10 +48,11 @@ public class Charger {
 		}
 	}
 
-	public void parserLigne(String f) {
+	public boolean parserLigne(String f) throws IOException {
 
 		int bornes = f.indexOf("#");
-
+		
+		try {
 		String recupbornes = f.substring(0, bornes);
 		String ptsInflexion = f.substring(bornes+1);
 		System.out.println("Bornes :"+recupbornes+"  \t "+ptsInflexion);
@@ -96,6 +100,18 @@ public class Charger {
 
 		SEF essai = new SEF(binf,bsup, pts);
 		mesSEF.add(essai);
+		// on peut continuer a lire la ligne suivante si elle existe
+		return true;
+		} catch (Exception e){
+			// On vide les points valides (vu que le format est incorrect) le clear est peut etre
+			// violent a verifier
+			//TODO verifier le clear
+			mesSEF.clear();
+			// Affichage du message d'erreur
+			JOptionPane.showMessageDialog(null,"Erreur ! Format du fichier incorrect !","ERREUR",JOptionPane.ERROR_MESSAGE);
+			// On quitte la boucle si y a une erreur (on arrete la lecture)
+			return false;
+		}
 	}
 
 	public ArrayList<SEF> getMesSEF() {
