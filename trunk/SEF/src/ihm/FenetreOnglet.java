@@ -14,6 +14,14 @@ import javax.swing.JTabbedPane;
 // Pas fini, encore des bugs a traiter.
 public class FenetreOnglet extends JFrame{
 	
+	private static final String txtNorme = "Choisissez la Tnorme";
+	private static final String txtCNorme = "Choisissez la T-conorme";
+	
+	private static final String txtChoix0 = "Selectionnez le SEF";
+	private static final String txtChoix1 = "Selectionnez le SEF n°1";
+	private static final String txtChoix2 = "Selectionnez le SEF n°2";
+		
+	
 	private JTabbedPane onglets = new JTabbedPane();
 	private JLabel warning = 
 		new JLabel("Attention ! cochez plusieurs cases ouvrira " +
@@ -44,17 +52,30 @@ public class FenetreOnglet extends JFrame{
 		//Onglet COmplementaire :
 		// supprimer checkbox et remplacer par un combobox avec les sef
 		JPanel ongletComp = new JPanel();
-		//boxh.add(warning);
-		//boxope.add(warning);
+		JLabel choixSEFCompl = new JLabel(txtChoix0);
+		boxComp.add(choixSEFCompl);
 		boxComp.add(sefComp);
-		//ongletOperation.add(boxh);
 		ongletComp.add(boxComp);
 		
 		// onglet intersection :
 		// 3 combox 1 choix Tnorme 2 pour les sefs 
 		JPanel ongletInter = new JPanel();
+		JLabel choixLabelTnorme = new JLabel(txtNorme);
+		JLabel choixLabelTnormeSEF1 = new JLabel(txtChoix1);
+		JLabel choixLabelTnormeSEF2 = new JLabel(txtChoix2);
+		
+		choixTnorme.addItem("Zadeh");
+		choixTnorme.addItem("Lukasiewicz");
+		choixTnorme.addItem("probabiliste");
+		//choixTnorme.addItem("Weber");
+		
+		// Faut aussi remplir les combobox contenant les SEF
+		
+		boxInter.add(choixLabelTnorme);
 		boxInter.add(choixTnorme);
+		boxInter.add(choixLabelTnormeSEF1);
 		boxInter.add(sefChoixinter1);
+		boxInter.add(choixLabelTnormeSEF2);
 		boxInter.add(sefChoixinter2);
 	//	boxtn.add(warning);
 		ongletInter.add(boxInter);
@@ -62,8 +83,19 @@ public class FenetreOnglet extends JFrame{
 		// onglet union
 		// idem mais avec Tconorme
 		JPanel ongletUni = new JPanel();
+		JLabel choixLabelTconorme = new JLabel(txtCNorme);
+		JLabel choixLabelTconormeSEF1 = new JLabel(txtChoix1);
+		JLabel choixLabelTconormeSEF2 = new JLabel(txtChoix2);
+		
+		choixTconorme.addItem("Zadeh");
+		choixTconorme.addItem("Lukasiewicz");
+		choixTconorme.addItem("probabiliste");
+		
+		boxUni.add(choixLabelTconorme);
 		boxUni.add(choixTconorme);
+		boxUni.add(choixLabelTconormeSEF1);
 		boxUni.add(sefChoixUni1);
+		boxUni.add(choixLabelTconormeSEF2);
 		boxUni.add(sefChoixUni2);
 	//	
 	//	boxtcn.add(warning);
