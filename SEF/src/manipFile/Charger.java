@@ -5,9 +5,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.jfree.data.xy.XYSeries;
+
 import javax.swing.JOptionPane;
 
-import manipSef.Point;
+
 import manipSef.SEF;
 
 
@@ -72,15 +74,15 @@ public class Charger {
 
 		temp = ptsInflexion.split(delimiterPoint);
 
-		ArrayList<Point> pts = new ArrayList<Point>();
+		XYSeries pts = new XYSeries("quel nom tu veux lui donner ici?");
 		// la on peut reccuperer les bonnes valeurs : reste a les stocker proprement
 		for (int k = 0; k < temp.length ; k++){
 			int recup = temp[k].indexOf(",");
 			String valX = temp[k].substring(0, recup);
 			String valY = temp[k].substring(recup+1);
 			System.out.println("Valx  " +valX+ "  Val Y :" +valY);
-			pts.add(new Point (Double.parseDouble(valX) ,
-					Double.parseDouble(valY)));    
+			pts.add((Double.parseDouble(valX)) ,
+					Double.parseDouble(valY));    
 		}
 
 		double binf;

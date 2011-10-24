@@ -17,10 +17,6 @@ import org.jfree.ui.RefineryUtilities;
  */
 
 
-/**
- * A simple demo showing a dataset created using the {@link XYSeriesCollection} class.
- *
- */
 public class FenetreGeometrique extends ApplicationFrame {
 
 	//A priori => utiliser XY Plot de JFreeChart?
@@ -52,6 +48,7 @@ public class FenetreGeometrique extends ApplicationFrame {
 		
 		final JFreeChart chart = ChartFactory.createXYLineChart(
 				"Un sous ensemble flou",//Le titre du graphique
+				//TODO: il serait plus interessant de le passer en param du constructeur et non en dur => a voir plus tard
 				"X", //titre des abscisses
 				"Y", //titre des ordonnees
 				sefsCollec,//La collection de XYSeries a afficher
