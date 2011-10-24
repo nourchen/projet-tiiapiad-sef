@@ -1,8 +1,11 @@
-package manipSef;
+package tests;
 
 import ihm.FenetreGeometrique;
 
 
+
+import manipSef.SEF;
+import manipSef.SefComplement;
 
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
