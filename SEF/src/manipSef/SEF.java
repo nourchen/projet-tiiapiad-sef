@@ -1,7 +1,5 @@
 package manipSef;
 
-import java.util.ArrayList;
-
 import org.jfree.data.xy.XYSeries;
 
 
