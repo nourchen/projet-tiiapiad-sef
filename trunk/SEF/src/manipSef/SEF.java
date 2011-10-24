@@ -2,6 +2,8 @@ package manipSef;
 
 import java.util.ArrayList;
 
+import org.jfree.data.xy.XYSeries;
+
 
 /**
  * Classe permettant de modeliser un sous ensemble flou, défini comme une fonction linéaires par morceaux
@@ -21,7 +23,7 @@ public class SEF {
 	/**
 	 * liste des points d'inflexions de la fonction d'appartenance au sef (qui est linéaire par morceaux)
 	 */
-	private ArrayList<Point> inflexions;
+	private XYSeries inflexions;
 	
 	/*
 	 * a actualiser a la volee lors du remplissage des points dans le sef
@@ -30,7 +32,7 @@ public class SEF {
 	private double minX;
 	private double maxX;
 	
-	public SEF(double inf,double sup,ArrayList<Point> listePoints){
+	public SEF(double inf,double sup, XYSeries listePoints){
 		borneInf = inf;
 		borneSup = sup;
 		inflexions=listePoints;
@@ -58,27 +60,23 @@ public class SEF {
 	}
 
 	/*
-	 * Il faudra penser à ordonner la liste (en fct des abscisses) à un moment donné 
-	 * => où? PB de modélisation, à voir plus tard!
-	 * 
-	 * Au pire (selon MJ Lesot) preciser dans les spec qu'une liste ordonnee est attendue
-	 * Sinon, avantage des XYSeries=>il me semble qu'ils ordonnent automatiquement les points par les x...
+	 * avantage des XYSeries=>il me semble qu'ils ordonnent automatiquement les points par les x...
 	 */
 	
-	public void ajouterPointsInflexions(Point p){
+	public void ajouterPointsInflexions(double x, double y){
 		//Modification des min et max a la volee
 		if(inflexions.isEmpty()){
 			
-			this.minX=p.getX();
-			this.maxX=p.getX();
+			this.minX=x;
+			this.maxX=x;
 		}else{
-			minX=Math.min(minX, p.getX());
-			maxX=Math.min(maxX, p.getX());
+			minX=Math.min(minX, x);
+			maxX=Math.min(maxX, x);
 		}
-		inflexions.add(p);
+		inflexions.add(x,y);
 	}
 
-	public ArrayList<Point> getInflexions() {
+	public XYSeries getInflexions() {
 		return inflexions;
 	}	
 	

@@ -2,6 +2,7 @@ package manipSef;
 
 import java.util.ArrayList;
 
+import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -25,7 +26,7 @@ public class SefManager {
 		this.mesSef=mS;
 		this.maxX=(int)Math.ceil(max);
 		this.minX=(int)Math.floor(min);		
-		nbValDiscretes=2000;
+		nbValDiscretes=10000;
 	}
 	
 	private double getPasX(){
@@ -46,42 +47,55 @@ public class SefManager {
 		
 		return liste;
 	}
-	
+	/**
+	 * Methode permettant la creation de la collection (genre de liste)
+	 * de mes sefs normalises selon l'intervalle des x discretises
+	 * @return
+	 */
 	public XYSeriesCollection createMySefCollection(){
+		/*
+		 * Fix Bug => Dans les cas ou la liste des sous ensembles flous
+		 * en contient plusieurs, il y a un souci avec la discretisation...
+		 * BUG FIXED!!!
+		 */
+		
+		//Creation d'un nouvel objet collection, vide, que l'on va remplir de XYSeries...
 		XYSeriesCollection myListOfSefs=new XYSeriesCollection();
+		//Tableau representant la liste des abscisses discretisees
 		double[]mesNvxX = xDiscretized();
 		double pas=this.getPasX();
-		System.out.println(pas);
+		//System.out.println(pas);
 		int noSef=1;
 		double a, b, xDroite, xGauche, xDiscret;
 		int indicePoint;
-		int indiceXdiscret=0;
-		System.out.println("J'ai "+mesSef.size()+" sous ensemble flou dans ma liste!\n");
+		int indiceXdiscret;
+		//System.out.println("J'ai "+mesSef.size()+" sous ensemble flou dans ma liste!\n");
 		for(SEF sef:mesSef){
 			//ATTENTION!! Je pars du principe que le sef est ordonné par x croissant!!
 			final XYSeries courbe = new XYSeries("Sous ensemble flou "+noSef);
+			indiceXdiscret=0;
 			
-			for(indicePoint =0;indicePoint<sef.getInflexions().size()-1;indicePoint++){
+			for(indicePoint =0;indicePoint<sef.getInflexions().getItemCount()-1;indicePoint++){
 				//Je recupere les deux points consecutifs qui caracterisent la portion de droite
-				Point pgauche=sef.getInflexions().get(indicePoint);
-				Point pdroit=sef.getInflexions().get(indicePoint+1);
-				xGauche=pgauche.getX();
-				xDroite=pdroit.getX();//me servira pour savoir si je suis encore dans la portion de droite consideree
+				XYDataItem pgauche=sef.getInflexions().getDataItem(indicePoint);
+				XYDataItem pdroit=sef.getInflexions().getDataItem(indicePoint+1);
+				xGauche=pgauche.getXValue();
+				xDroite=pdroit.getXValue();//me servira pour savoir si je suis encore dans la portion de droite consideree
 				
 				//Je stocke les coefficients caracteristiques de l'equation de droite
-				a=(pgauche.getY()-pdroit.getY())/(pgauche.getX()-xDroite);
-				b=pdroit.getY()-a*pdroit.getX();
+				a=(pgauche.getYValue()-pdroit.getYValue())/(pgauche.getXValue()-xDroite);
+				b=pdroit.getYValue()-a*pdroit.getXValue();
 				do{
 					xDiscret = mesNvxX[indiceXdiscret];
 					if((xDiscret<xGauche)||(xDiscret > xDroite)){
 						courbe.add(xDiscret,0);
-						System.out.println("Je traite le point "+indicePoint);
-						System.out.println("x: "+xDiscret+", y: 0\n");
+						//System.out.println("Je traite le point "+indicePoint);
+						//System.out.println("x: "+xDiscret+", y: 0\n");
 					}else{
 						courbe.add(xDiscret, xDiscret*a +b);
 
-						System.out.println("Je traite le point "+indicePoint);
-						System.out.println("x: "+xDiscret+", y: "+(xDiscret*a + b));
+						//System.out.println("Je traite le point "+indicePoint);
+						//System.out.println("x: "+xDiscret+", y: "+(xDiscret*a + b));
 					}
 					
 					xDiscret+= pas;
@@ -96,7 +110,7 @@ public class SefManager {
 				courbe.add(mesNvxX[i],0);
 			}
 			noSef++;
-			System.out.println("Il y a "+courbe.getItemCount()+" points dans ma liste de points de ma courbe");
+			//System.out.println("Il y a "+courbe.getItemCount()+" points dans ma liste de points de ma courbe");
 			myListOfSefs.addSeries(courbe);
 		}
 		return myListOfSefs;
