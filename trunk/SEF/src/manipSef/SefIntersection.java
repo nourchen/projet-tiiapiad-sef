@@ -152,18 +152,6 @@ public final class SefIntersection {
 				toNormalize2.add(xmaxRef2, lastPoint2.getYValue() );
 			}
 		}
-		/*
-		System.out.println("Liste des points dans le sef \""+toNormalize2.getKey()+"\": \n");
-		for (int i = 0; i < toNormalize2.getItemCount(); i++) {
-			System.out.println("x: "+toNormalize2.getDataItem(i).getXValue()+", ");
-			System.out.println("y: "+toNormalize2.getDataItem(i).getYValue()+".\n");
-		}
-		System.out.println("Liste des points dans le sef \""+toNormalize1.getKey()+"\": \n");
-		for (int i = 0; i < toNormalize1.getItemCount(); i++) {
-			System.out.println("x: "+toNormalize1.getDataItem(i).getXValue()+", ");
-			System.out.println("y: "+toNormalize1.getDataItem(i).getYValue()+".\n");
-		}
-		 */
 
 		//Balayons maintenant les deux sefs en ajoutant a chacun les points manquants
 		int i1,i2;
@@ -178,7 +166,6 @@ public final class SefIntersection {
 		a2=(ptG2.getYValue()-ptD2.getYValue())/(ptG2.getXValue()-ptD2.getXValue());
 		b2=ptD2.getYValue()-a2*ptD2.getXValue();
 
-		//for(i1=1;i1<toNormalize1.getItemCount()-1;i1++){
 		while (i1< toNormalize1.getItemCount()-1){
 			a1=(ptG1.getYValue()-ptD1.getYValue())/(ptG1.getXValue()-ptD1.getXValue());
 			b1=ptD1.getYValue()-a1*ptD1.getXValue();
@@ -186,16 +173,17 @@ public final class SefIntersection {
 			while(ptD2.getXValue() < ptD1.getXValue()){
 				toNormalize1.add(ptD2.getXValue(), ptD2.getXValue()* a1 + b1);
 				i2++;
+				i1++;
 				ptG2=ptD2;
 				ptD2=toNormalize2.getDataItem(i2);
 				a2=(ptG2.getYValue()-ptD2.getYValue())/(ptG2.getXValue()-ptD2.getXValue());
 				b2=ptD2.getYValue()-a2*ptD2.getXValue();
 			}//xD2 > = xD1
-				toNormalize2.add(ptD1.getXValue(), ptD1.getXValue()* a2 + b2);	
+			toNormalize2.add(ptD1.getXValue(), ptD1.getXValue()* a2 + b2);
 			i1++;
+			i2++;
 			ptG1=ptD1;
 			ptD1=toNormalize1.getDataItem(i1);
-
 		}
 	}
 
