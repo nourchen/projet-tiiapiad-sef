@@ -171,7 +171,9 @@ public final class SefIntersection {
 			b1=ptD1.getYValue()-a1*ptD1.getXValue();
 
 			while(ptD2.getXValue() < ptD1.getXValue()){
+
 				toNormalize1.add(ptD2.getXValue(), ptD2.getXValue()* a1 + b1);
+
 				i2++;
 				i1++;
 				ptG2=ptD2;
@@ -181,12 +183,25 @@ public final class SefIntersection {
 			}//xD2 > = xD1
 			if(i1 < toNormalize1.getItemCount()-1 && ptD1.getXValue()!=ptD2.getXValue()){
 				toNormalize2.add(ptD1.getXValue(), ptD1.getXValue()* a2 + b2);
+				i1++;
+				i2++;
+				ptG1=ptD1;
+				if(i1<(toNormalize1.getItemCount())){
+					ptD1=toNormalize1.getDataItem(i1);	
+				}
 			}
-			i1++;
-			i2++;
-			ptG1=ptD1;
-			if(i1<(toNormalize1.getItemCount())){
-				ptD1=toNormalize1.getDataItem(i1);	
+			
+			if(ptD1.getXValue()==ptD2.getXValue()){
+				i1++;
+				i2++;
+				ptG1=ptD1;
+				if(i1<(toNormalize1.getItemCount())){
+					ptD1=toNormalize1.getDataItem(i1);	
+				}
+				ptG2=ptD2;
+				if(i1<(toNormalize2.getItemCount())){
+					ptD2=toNormalize2.getDataItem(i2);
+				}
 			}
 
 		}
