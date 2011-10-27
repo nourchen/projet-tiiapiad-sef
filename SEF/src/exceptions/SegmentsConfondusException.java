@@ -1,6 +1,6 @@
 package exceptions;
 
-public class DroitesConfonduesException extends Exception{
+public class SegmentsConfondusException extends Exception{
 
 	/**
 	 * 

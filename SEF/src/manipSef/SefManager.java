@@ -89,13 +89,10 @@ public class SefManager {
 					xDiscret = mesNvxX[indiceXdiscret];
 					if((xDiscret<xGauche)||(xDiscret > xDroite)){
 						courbe.add(xDiscret,0);
-						//System.out.println("Je traite le point "+indicePoint);
-						//System.out.println("x: "+xDiscret+", y: 0\n");
+						
 					}else{
 						courbe.add(xDiscret, xDiscret*a +b);
 
-						//System.out.println("Je traite le point "+indicePoint);
-						//System.out.println("x: "+xDiscret+", y: "+(xDiscret*a + b));
 					}
 					
 					xDiscret+= pas;
@@ -103,14 +100,12 @@ public class SefManager {
 				
 					
 				}while(xDiscret<xDroite);
-				//System.out.println("J'ai traité le point "+indicePoint);
 				
 			}
 			for(int i=indiceXdiscret;i<nbValDiscretes;i++){
 				courbe.add(mesNvxX[i],0);
 			}
 			noSef++;
-			//System.out.println("Il y a "+courbe.getItemCount()+" points dans ma liste de points de ma courbe");
 			myListOfSefs.addSeries(courbe);
 		}
 		return myListOfSefs;
