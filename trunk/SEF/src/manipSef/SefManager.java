@@ -83,7 +83,7 @@ public class SefManager {
 				xDroite=pdroit.getXValue();//me servira pour savoir si je suis encore dans la portion de droite consideree
 				
 				//Je stocke les coefficients caracteristiques de l'equation de droite
-				a=(pgauche.getYValue()-pdroit.getYValue())/(pgauche.getXValue()-xDroite);
+				a=(pgauche.getYValue()-pdroit.getYValue())/(xGauche-xDroite);
 				b=pdroit.getYValue()-a*pdroit.getXValue();
 				do{
 					xDiscret = mesNvxX[indiceXdiscret];
