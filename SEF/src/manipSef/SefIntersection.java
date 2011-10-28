@@ -8,6 +8,14 @@ import exceptions.NormalizationException;
 import exceptions.SegmentAboveException;
 import exceptions.SegmentsConfondusException;
 
+/**
+ * Classe permettant d'effectuer l'opération ensembliste d'intersection 
+ * entre deux sous ensembles flous
+ * En utilisant l'une des trois T-normes laissés au choix de l'utilisateur:
+ * Norme de Zadeh, LUKASIEWICZ, ou probabiliste
+ * @author Sylvia Vieira
+ *
+ */
 public final class SefIntersection {
 
 	public SefIntersection(){
@@ -55,6 +63,11 @@ public final class SefIntersection {
 			
 			try {
 				segmentIntersection(a1, b1, a2, b2, ptGauche1.getXValue(), ptDroit2.getXValue());
+				
+				/*
+				 * Si on arrive ici, aucune exception n'a été générée
+				 * Donc
+				 */
 			} catch (SegmentsConfondusException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -68,11 +81,6 @@ public final class SefIntersection {
 		
 		
 		
-
-
-
-		
-
 
 		//ATTENTION à modifier!! TODO
 		SEF inter = null;// new SEF(double borneInf, double borneSup, interPts);

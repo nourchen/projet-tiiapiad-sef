@@ -2,6 +2,12 @@ package manipSef;
 
 import org.jfree.data.xy.XYSeries;
 
+/**
+ * Classe permettant d'effectuer l'opération ensembliste du complémentaire
+ * sur un sous ensemble flou donné
+ * @author Sylvia Vieira
+ *
+ */
 public final class SefComplement {
 
 		

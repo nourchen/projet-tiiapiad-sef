@@ -7,6 +7,13 @@ import org.jfree.data.xy.XYSeries;
 
 import exceptions.NormalizationException;
 
+/**
+ * Classe permettant de tester à loisir la fonction de normalisation de deux sefs
+ * La normalisation étant le prérequis, dans notre modèle, de toute opération
+ * ensembliste impliquant deux sefs
+ * @author Sylvia Vieira
+ *
+ */
 public class TestNormalize {
 
 	public static void main(String[] args) {
@@ -75,8 +82,8 @@ public class TestNormalize {
 		}
 		
 		/*
-		 * Essai de la copie d'une liste XYSeries, fonctionne bien
-		 * sera utile plus tard!
+		 * Essai de la copie d'une liste XYSeries, celle ci a l'air de fonctionner bien
+		 *  ====>sera utile plus tard!!!!
 		 */
 		XYSeries listePts5 ;
 		try {
@@ -90,8 +97,10 @@ public class TestNormalize {
 			sef5.printInflexions();
 			sef1.printInflexions();
 		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
+			//  Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Il y a eu un souci dans la copie de la liste de points du sef "
+								+sef1.getInflexions().getKey());
 		}
 		
 	}
