@@ -1,10 +1,10 @@
 package manipSef;
 
-import java.util.ArrayList;
 
 import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
 
+import exceptions.NormalizationException;
 import exceptions.SegmentAboveException;
 import exceptions.SegmentsConfondusException;
 
@@ -30,8 +30,14 @@ public final class SefIntersection {
 		XYSeries ptsSef1,ptsSef2;
 		ptsSef1 = sef1.getInflexions();
 		ptsSef2 = sef2.getInflexions();
-		//normalizeSerie(ptsSef1,ptsSef2.getMinX(),ptsSef2.getMaxX(),sef1.getBorneInf(),sef1.getBorneSup());
-		//normalizeSerie(ptsSef2,ptsSef1.getMinX(),ptsSef1.getMaxX(),sef2.getBorneInf(),sef2.getBorneSup());
+		try {
+			normalizeSerie(ptsSef1, sef1.getBorneInf(), sef1.getBorneSup(),
+					ptsSef2,sef2.getBorneInf(), sef2.getBorneSup());
+		} catch (NormalizationException e1) {
+			// Auto-generated catch block
+			e1.printStackTrace();
+			System.out.println(e1.getErrorMsg());		
+		}
 
 		XYSeries interPts=new XYSeries("Intersection de "+ptsSef1.getDescription()+" et: "+ptsSef2.getDescription());
 		int indiceParcoursSef1;
@@ -47,42 +53,19 @@ public final class SefIntersection {
 		a2=(ptGauche2.getYValue()-ptDroit2.getYValue())/(ptGauche2.getXValue()-ptDroit2.getXValue());
 		b2=ptDroit2.getYValue()-a2*ptDroit2.getXValue();
 
-		ArrayList<CouplePointSef> candidats = new ArrayList<CouplePointSef>();
-		candidats.add(new CouplePointSef(ptGauche1, 1));
-		candidats.add(new CouplePointSef(ptDroit1, 1));
-		candidats.add(new CouplePointSef(ptGauche2, 2));
-		candidats.add(new CouplePointSef(ptGauche2, 2));
-		while (!candidats.isEmpty()){
 
+
+		try {
+			segmentIntersection(a1, b1, a2, b2, ptGauche1.getXValue(), ptDroit2.getXValue());
+		} catch (SegmentsConfondusException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SegmentAboveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		for(indiceParcoursSef1=1 ; indiceParcoursSef1 < ptsSef1.getItemCount() - 1; indiceParcoursSef1++){
-			//xInf=Math.min(arg0, arg1)
-			if (ptDroit1.getXValue() < ptDroit2.getXValue()){
-				try {
-					segmentIntersection(a1, b1, a2, b2, ptGauche1.getXValue(), ptDroit1.getXValue());
-				} catch (SegmentsConfondusException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SegmentAboveException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}else{
-				try {
-					segmentIntersection(a1, b1, a2, b2, ptGauche1.getXValue(), ptDroit2.getXValue());
-				} catch (SegmentsConfondusException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SegmentAboveException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
 
 
-			//Penser à incrémenter indiceParcoursSef2 au bon moment!!
-		}
 
 		//ATTENTION à modifier!! TODO
 		SEF inter = null;// new SEF(double borneInf, double borneSup, interPts);
@@ -111,7 +94,9 @@ public final class SefIntersection {
 	 * @param inf
 	 * @param sup
 	 */
-	public static void normalizeSerie(XYSeries toNormalize1,double inf1,double sup1, XYSeries toNormalize2,double inf,double sup){
+	public static void normalizeSerie(XYSeries toNormalize1,double inf1,double sup1, 
+			XYSeries toNormalize2,double inf,double sup) throws NormalizationException{
+
 		double xminRef,xmaxRef,xminRef2,xmaxRef2;
 		xminRef=toNormalize2.getMinX();
 		xmaxRef=toNormalize2.getMaxX();
@@ -190,7 +175,7 @@ public final class SefIntersection {
 					ptD1=toNormalize1.getDataItem(i1);	
 				}
 			}
-			
+
 			if(ptD1.getXValue()==ptD2.getXValue()){
 				i1++;
 				i2++;
@@ -204,6 +189,10 @@ public final class SefIntersection {
 				}
 			}
 
+		}
+		if(toNormalize1.getItemCount() != toNormalize2.getItemCount()){
+			throw new NormalizationException(
+					"La normalisation a échoué, les deux listes ne font pas la meme taille!\n");
 		}
 	}
 
