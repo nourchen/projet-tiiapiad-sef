@@ -40,31 +40,38 @@ public final class SefIntersection {
 		}
 
 		XYSeries interPts=new XYSeries("Intersection de "+ptsSef1.getDescription()+" et: "+ptsSef2.getDescription());
-		int indiceParcoursSef1;
-		int indiceParcoursSef2=0;
 		XYDataItem ptGauche1, ptDroit1, ptGauche2, ptDroit2;
 		double a1,b1,a2,b2, xInf,xSup;
-		ptGauche1 = ptsSef1.getDataItem(0);
-		ptDroit1 = ptsSef1.getDataItem(1);
-		ptGauche2 = ptsSef2.getDataItem(indiceParcoursSef2);
-		ptDroit2 = ptsSef2.getDataItem(indiceParcoursSef2+1);
-		a1=(ptGauche1.getYValue()-ptDroit1.getYValue())/(ptGauche1.getXValue()-ptDroit1.getXValue());
-		b1=ptDroit1.getYValue()-a1*ptDroit1.getXValue();
-		a2=(ptGauche2.getYValue()-ptDroit2.getYValue())/(ptGauche2.getXValue()-ptDroit2.getXValue());
-		b2=ptDroit2.getYValue()-a2*ptDroit2.getXValue();
+		
+		for(int i=0;i<ptsSef1.getItemCount() - 1;i++){
+			ptGauche1 = ptsSef1.getDataItem(i);
+			ptDroit1 = ptsSef1.getDataItem(i+1);
+			ptGauche2 = ptsSef2.getDataItem(i);
+			ptDroit2 = ptsSef2.getDataItem(i+1);
+			a1=(ptGauche1.getYValue()-ptDroit1.getYValue())/(ptGauche1.getXValue()-ptDroit1.getXValue());
+			b1=ptDroit1.getYValue()-a1*ptDroit1.getXValue();
+			a2=(ptGauche2.getYValue()-ptDroit2.getYValue())/(ptGauche2.getXValue()-ptDroit2.getXValue());
+			b2=ptDroit2.getYValue()-a2*ptDroit2.getXValue();
+			
+			try {
+				segmentIntersection(a1, b1, a2, b2, ptGauche1.getXValue(), ptDroit2.getXValue());
+			} catch (SegmentsConfondusException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SegmentAboveException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-
-
-		try {
-			segmentIntersection(a1, b1, a2, b2, ptGauche1.getXValue(), ptDroit2.getXValue());
-		} catch (SegmentsConfondusException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SegmentAboveException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
+		
+		
+		
 
+
+
+		
 
 
 		//ATTENTION à modifier!! TODO
