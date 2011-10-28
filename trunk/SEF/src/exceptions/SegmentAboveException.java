@@ -1,5 +1,12 @@
 package exceptions;
 
+/**
+ * Classe exception permettant de renvoyer une information différente
+ * du type de retour attendu pour la fonction segmentIntersection
+ * 
+ * @author Sylvia Vieira
+ *
+ */
 public class SegmentAboveException extends Exception{
 
 	/**

@@ -1,5 +1,12 @@
 package exceptions;
 
+/**
+ * Classe exception permettant de gérer les cas 
+ * où la normalisation ne s'est pas déroulée correctement
+ * 
+ * @author Sylvia Vieira
+ *
+ */
 public class NormalizationException extends Exception {
 
 	/**
