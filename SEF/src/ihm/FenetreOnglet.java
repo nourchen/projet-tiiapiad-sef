@@ -16,10 +16,12 @@ public class FenetreOnglet extends JFrame{
 	
 	private static final String txtNorme = "Choisissez la Tnorme";
 	private static final String txtCNorme = "Choisissez la T-conorme";
+	private static final String txtFonction = "Choisissez la fonction";
 	
 	private static final String txtChoix0 = "Selectionnez le SEF";
 	private static final String txtChoix1 = "Selectionnez le SEF n°1";
 	private static final String txtChoix2 = "Selectionnez le SEF n°2";
+	
 		
 	
 	private JTabbedPane onglets = new JTabbedPane();
@@ -30,6 +32,7 @@ public class FenetreOnglet extends JFrame{
 	private Box boxComp = Box.createVerticalBox();
 	private Box boxInter = Box.createVerticalBox();
 	private Box boxUni = Box.createVerticalBox();
+	private Box boxFonc = Box.createVerticalBox();
 	
 	
 	private JComboBox sefComp = new JComboBox();
@@ -43,6 +46,10 @@ public class FenetreOnglet extends JFrame{
 	private JComboBox sefChoixUni1 = new JComboBox();
 	private JComboBox sefChoixUni2 = new JComboBox();
 	private JComboBox choixTconorme = new JComboBox();
+	
+	//Extention
+	private JComboBox choixFontion = new JComboBox();
+	private JComboBox ChoixFoncSef = new JComboBox();
 
 	
 	public FenetreOnglet(){
@@ -105,6 +112,15 @@ public class FenetreOnglet extends JFrame{
 		// choix du sef
 		// 2 combobox donc
 		JPanel ongletFonction = new JPanel();
+		JLabel choixLabelFonction = new JLabel(txtFonction);
+		JLabel choixLabelSef = new JLabel(txtChoix0);
+		boxFonc.add(choixLabelFonction);
+		boxFonc.add(choixFontion);
+		boxFonc.add(choixLabelSef);
+		boxFonc.add(ChoixFoncSef);
+		
+		ongletFonction.add(boxFonc);
+
 		
 		Container contenu = getContentPane();
 		
