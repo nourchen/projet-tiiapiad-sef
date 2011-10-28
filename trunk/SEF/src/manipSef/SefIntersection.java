@@ -49,7 +49,7 @@ public final class SefIntersection {
 
 		XYSeries interPts=new XYSeries("Intersection de "+ptsSef1.getDescription()+" et: "+ptsSef2.getDescription());
 		XYDataItem ptGauche1, ptDroit1, ptGauche2, ptDroit2;
-		double a1,b1,a2,b2, xInf,xSup;
+		double a1,b1,a2,b2;
 		
 		for(int i=0;i<ptsSef1.getItemCount() - 1;i++){
 			ptGauche1 = ptsSef1.getDataItem(i);
@@ -107,11 +107,9 @@ public final class SefIntersection {
 			
 		}
 		
-		
-		
-
-		//ATTENTION à modifier!! TODO
-		SEF inter = null;// new SEF(double borneInf, double borneSup, interPts);
+	
+		SEF inter = new SEF(Math.max(sef1.getBorneInf(), sef2.getBorneInf()),
+							Math.min(sef1.getBorneSup(), sef2.getBorneSup()), interPts);
 		return inter;
 	}
 
