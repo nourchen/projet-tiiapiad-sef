@@ -44,8 +44,8 @@ public class TestNormalize {
 
 		//sef1.printInflexions();
 		//sef2.printInflexions();
-		sef3.printInflexions();
-		sef4.printInflexions();
+//		sef3.printInflexions();
+//		sef4.printInflexions();
 		System.out.println("Apres avoir fait la normalisation: \n");
 
 		//		SefIntersection.normalizeSerie(sef1.getInflexions(),sef1.getBorneInf(),sef1.getBorneSup(),
@@ -70,9 +70,30 @@ public class TestNormalize {
 		//sef1.printInflexions();
 		//sef2.printInflexions();
 		finally{
-			sef3.printInflexions();
-			sef4.printInflexions();
+			//sef3.printInflexions();
+			//sef4.printInflexions();
 		}
+		
+		/*
+		 * Essai de la copie d'une liste XYSeries, fonctionne bien
+		 * sera utile plus tard!
+		 */
+		XYSeries listePts5 ;
+		try {
+			listePts5 = sef1.getInflexions().createCopy(0,sef1.getInflexions().getItemCount()-1);
+			listePts5.setKey("sef5");
+			SEF sef5 = new SEF(sef1.getBorneInf(), sef1.getBorneSup(), listePts5);
+			sef5.printInflexions();
+			sef1.printInflexions();
+			sef5.getInflexions().add(10, 20);
+
+			sef5.printInflexions();
+			sef1.printInflexions();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }
