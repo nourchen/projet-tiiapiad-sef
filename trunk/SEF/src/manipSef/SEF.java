@@ -5,6 +5,8 @@ import org.jfree.data.xy.XYSeries;
 
 /**
  * Classe permettant de modeliser un sous ensemble flou, défini comme une fonction linéaires par morceaux
+ * Le sous ensemble flou est donc caractérisé par des bornes inferieures et superieures
+ * ainsi que par une liste de points d'inflexions.
  * @author Sylvia Vieira
  *
  */
