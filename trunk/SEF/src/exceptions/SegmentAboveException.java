@@ -17,14 +17,8 @@ public class SegmentAboveException extends Exception{
 	 * 1 si la premiere droite est au dessus de l'autre
 	 * 0 si c'est linverse
 	 */
-	private boolean firstAbove;
 	
-	public SegmentAboveException(boolean above){
-		firstAbove=above;
+	public SegmentAboveException(){
 	}
 	
-	public boolean getFirstAbove (){
-		return firstAbove;
-	}
-
 }

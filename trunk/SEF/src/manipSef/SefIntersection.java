@@ -7,6 +7,7 @@ import org.jfree.data.xy.XYSeries;
 import exceptions.NormalizationException;
 import exceptions.SegmentAboveException;
 import exceptions.SegmentsConfondusException;
+import exceptions.UnknownNormeException;
 
 /**
  * Classe permettant d'effectuer l'opération ensembliste d'intersection 
@@ -21,17 +22,16 @@ public final class SefIntersection {
 	public SefIntersection(){
 	}
 
-	public static SEF getIntersection(SEF sef1, SEF sef2,Norme tnorme){
+	public static SEF getIntersection(SEF sef1, SEF sef2,Norme tnorme) throws UnknownNormeException{
 		SEF inter;
 		switch (tnorme)
 		{
-		case LUKASIEWICZ: inter = getIntersectionLuka(sef1, sef2);
-		case PROBA: inter = getIntersectionProba(sef1, sef2);
-		case ZADEH: inter = getIntersectionZadeh(sef1, sef2);
-		default: inter =null;
+		case LUKASIEWICZ: inter = getIntersectionLuka(sef1, sef2); return inter;
+		case PROBA: inter = getIntersectionProba(sef1, sef2); return inter;
+		case ZADEH: inter = getIntersectionZadeh(sef1, sef2); return inter;
+		default: throw new UnknownNormeException();
 
 		}
-		return inter;
 	}
 
 	private static SEF getIntersectionZadeh(SEF sef1, SEF sef2){
@@ -62,18 +62,46 @@ public final class SefIntersection {
 			b2=ptDroit2.getYValue()-a2*ptDroit2.getXValue();
 			
 			try {
-				segmentIntersection(a1, b1, a2, b2, ptGauche1.getXValue(), ptDroit2.getXValue());
+				XYDataItem ptCommun;
+				ptCommun=segmentIntersection(a1, b1, a2, b2, ptGauche1.getXValue(), ptDroit2.getXValue());
 				
 				/*
 				 * Si on arrive ici, aucune exception n'a été générée
-				 * Donc
+				 * Donc il y a bien une intersection dans l'intervalle considéré
+				 * Il faut donc:
+				 * => Ajouter le point gauche dont le y est le plus petit
+				 * => Ajouter le point d'intersection
 				 */
+				if(ptGauche1.getYValue() < ptGauche2.getYValue()){
+					/* le point gauche 1 est sous le point gauche 2,
+					 *  il faut donc ajouter le pointGauche 1 au sef intersection
+					 */
+					interPts.add(ptGauche1);					
+				}else{ // On ajoute sinon le point gauche 2!
+					interPts.add(ptGauche2);
+				}
+				//On ajoute le point d'intersection
+				interPts.add(ptCommun);
+				
+				
 			} catch (SegmentsConfondusException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				
+				/* Dans le cas ou les segments sont confondus, on ajoute
+				 * à l'intersection indifféremment le point Gauche du sef 1 ou du sef 2
+				 */
+				interPts.add(ptGauche1);
 			} catch (SegmentAboveException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+//				e.printStackTrace();
+				
+				/* Ici on est dans le cas ou l'un de deux segments est au dessus de l'autre
+				 * On ajoute donc le point Gauche qui est sous l'autre
+				 */
+				if(ptGauche1.getYValue() < ptGauche2.getYValue()){
+					interPts.add(ptGauche1);
+				}else{
+					interPts.add(ptGauche2);
+				}
 			}
 
 			
@@ -222,10 +250,10 @@ public final class SefIntersection {
 		y2gauche=a2*inf +b2;
 		y2droit=a2*sup +b2;
 		if (y1gauche > y2gauche && y1droit > y2droit){
-			throw new SegmentAboveException(true);
+			throw new SegmentAboveException();
 		}
 		if (y1gauche < y2gauche && y1droit < y2droit){
-			throw new SegmentAboveException(false);
+			throw new SegmentAboveException();
 		}
 		double xCommun = (b1 - b2) / (a1 - a2);
 		XYDataItem ptCommun=new XYDataItem(xCommun, a1 * xCommun + b1);
