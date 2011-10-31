@@ -5,7 +5,9 @@ import ihm.FenetrePrincipale;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -29,6 +31,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 	private JMenuItem charger;
 	private JMenuItem sauver;
 	private String fichierouvert;
+	private ArrayList<SEF> mesSEF;
 	
 	public ControllerFenetrePincipale(FenetrePrincipale fp){
 		this.fp = fp;
@@ -45,6 +48,8 @@ public class ControllerFenetrePincipale implements ActionListener {
 		sauver.addActionListener(this);
 		fc = new JFileChooser();
 		
+		mesSEF = new ArrayList<SEF> ();
+		
 	}
 
 	
@@ -58,12 +63,42 @@ public class ControllerFenetrePincipale implements ActionListener {
 			fp.pointEntree(fp.getEntreBorneInf().getText(), 
 					fp.getEntreBorneSup().getText(),fp.getSef_entrer().getText());
 			// cree un SEF avec nouveau parser
+			//////////////////////////////////
+			
+			BufferedReader br = new BufferedReader(new StringReader(fp.getSef_entrer().getText()));
+			try {
+				
+				//String line2 = br.readLine();
+				//System.out.println("Recupe de la ligne :"+line2);
+				double binf = Double.parseDouble(fp.getEntreBorneInf().getText());
+				double bsup = Double.parseDouble(fp.getEntreBorneSup().getText());
+				//ça ça fait reste a recup' les points
+				SEF temp = new SEF(binf,bsup,new XYSeries("SEF"+mesSEF.size()+1));
+				
+				String line;
+				while((line = br.readLine()) != null) {
+				String[] tempo = line.split(" ");
+			//	System.out.println("Recupe de la ligne :"+line);
+			//	System.out.println("Recupe de la ligne :"+tempo[0]);
+			//	System.out.println("Recupe de la ligne :"+tempo[1]);
+				temp.getInflexions().add(Double.parseDouble(tempo[0]),Double.parseDouble(tempo[1]));
+				
+				}
+				
+				
+				mesSEF.add(temp);
+								
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 		}
 		
 		if(arg0.getSource()==generer){
 			System.out.println("click sur generer");
-			ArrayList<SEF> mesSEF = new ArrayList<SEF> ();
+			
 			//test de remplissage de combobox
 			SEF sef1 = new SEF(-30, 60, new XYSeries("sef1"));
 			sef1.getInflexions().add(-1.5,0);
@@ -77,8 +112,8 @@ public class ControllerFenetrePincipale implements ActionListener {
 			sef2.getInflexions().add(4.2,0.75);			
 			
 			//SEF essai = new SEF(binf,bsup, pts);
-			mesSEF.add(sef1);
-			mesSEF.add(sef2);
+		//	mesSEF.add(sef1);
+		//	mesSEF.add(sef2);
 			
 			FenetreOnglet fo = new FenetreOnglet(mesSEF);
 		}
