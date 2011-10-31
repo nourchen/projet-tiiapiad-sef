@@ -51,11 +51,6 @@ public class ControllerFenetreOnglet implements ActionListener {
 			int index = fo.getSefComp().getSelectedIndex();
 			// pour test rapide OK 
 			//mais pourquoi la fermeture de la XY ferme tout ?
-			SEF sef1 = new SEF(-30, 60, new XYSeries("sef1"));
-			sef1.getInflexions().add(-1.5,0);
-			sef1.getInflexions().add(1.25,1);
-			sef1.getInflexions().add(4.2,0.75);
-			sef1.getInflexions().add(5,0);
 			
 			SEF test = fo.getMesSEF().get(index);
 		//	fo.getDonnees().setText("Borne inf"+test.getBorneInf()+" borne sup"+test.getBorneSup());
@@ -85,11 +80,20 @@ public class ControllerFenetreOnglet implements ActionListener {
 		
 		//Gere la gestion si modif de la JCombobox
 		if(arg0.getSource()==sefComp){
+			fo.getJta().setText("");
 			//System.out.println("Quand ?");
 			int index = fo.getSefComp().getSelectedIndex();
 			SEF test = fo.getMesSEF().get(index);
-			fo.getDonneesBorneinf().setText(""+test.getBorneInf());//+" borne sup"+test.getBorneSup()+"  "+test.getInflexions());
-			fo.getDonneesBorneSup().setText(""+test.getBorneSup());
+			fo.getJta().append("Borne inf : "+test.getBorneInf()+"\n");//+" borne sup"+test.getBorneSup()+"  "+test.getInflexions());
+			fo.getJta().append("Borne sup : "+test.getBorneSup()+"\n");
+			fo.getJta().append("\nListe des points :\n");
+			test.getInflexions().getItemCount();
+			test.getInflexions().getDataItem(index);
+			for (int i = 0; i < test.getInflexions().getItemCount(); i++) {
+				fo.getJta().append("x: "+test.getInflexions().getDataItem(i).getXValue()+", ");
+				fo.getJta().append("y: "+test.getInflexions().getDataItem(i).getYValue()+".\n");
+			}
+			
 		}
 	}
 	

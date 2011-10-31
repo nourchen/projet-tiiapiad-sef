@@ -70,9 +70,15 @@ public class ControllerFenetrePincipale implements ActionListener {
 			sef1.getInflexions().add(1.25,1);
 			sef1.getInflexions().add(4.2,0.75);
 			sef1.getInflexions().add(5,0);
+			
+			SEF sef2 = new SEF(-40, 70, new XYSeries("sef2"));
+			sef2.getInflexions().add(-1.5,0);
+			sef2.getInflexions().add(1.25,1);
+			sef2.getInflexions().add(4.2,0.75);			
+			
 			//SEF essai = new SEF(binf,bsup, pts);
 			mesSEF.add(sef1);
-			mesSEF.add(sef1);
+			mesSEF.add(sef2);
 			
 			FenetreOnglet fo = new FenetreOnglet(mesSEF);
 		}
