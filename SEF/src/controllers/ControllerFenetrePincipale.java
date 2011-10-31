@@ -6,14 +6,18 @@ import ihm.FenetrePrincipale;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 
+import org.jfree.data.xy.XYSeries;
+
 import manipFile.Charger;
 import manipFile.Filtre;
 import manipFile.Sauver;
+import manipSef.SEF;
 
 public class ControllerFenetrePincipale implements ActionListener {
 
@@ -59,7 +63,18 @@ public class ControllerFenetrePincipale implements ActionListener {
 		
 		if(arg0.getSource()==generer){
 			System.out.println("click sur generer");
-			FenetreOnglet fo = new FenetreOnglet();
+			ArrayList<SEF> mesSEF = new ArrayList<SEF> ();
+			//test de remplissage de combobox
+			SEF sef1 = new SEF(-30, 60, new XYSeries("sef1"));
+			sef1.getInflexions().add(-1.5,0);
+			sef1.getInflexions().add(1.25,1);
+			sef1.getInflexions().add(4.2,0.75);
+			sef1.getInflexions().add(5,0);
+			//SEF essai = new SEF(binf,bsup, pts);
+			mesSEF.add(sef1);
+			mesSEF.add(sef1);
+			
+			FenetreOnglet fo = new FenetreOnglet(mesSEF);
 		}
 		
 		if(arg0.getSource()==charger){

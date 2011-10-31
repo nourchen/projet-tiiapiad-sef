@@ -149,15 +149,9 @@ public class FenetrePrincipale extends JFrame {
 		setResizable(false);
 		setVisible(true);
 		
-		
 		sef_stocker.setEditable(false);
 		
-		
 		//ActionListener
-//		valider.addActionListener(this);
-//		generer.addActionListener(this);
-//		charger.addActionListener(this);
-//		sauver.addActionListener(this);
 		ControllerFenetrePincipale cfp = new ControllerFenetrePincipale(this);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
