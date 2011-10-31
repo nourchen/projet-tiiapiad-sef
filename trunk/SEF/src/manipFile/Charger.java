@@ -18,6 +18,7 @@ import manipSef.SEF;
 public class Charger {
 
 	//private static String test = "-inf,2011#-1.5,0;1.25,1;4.2,0.75;5,0";
+	//TODO verifier le remplissage
 	private ArrayList<SEF> mesSEF = new ArrayList<SEF> ();//A remplir au fur et a mesure de la lecture du fichier
 
 	public Charger() {}

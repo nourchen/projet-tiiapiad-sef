@@ -2,14 +2,24 @@ package ihm;
 
 import java.awt.Checkbox;
 import java.awt.Container;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.ComboBoxEditor;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel; //peut etre besoin rapidement
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import manipSef.SEF;
+
+import controllers.ControllerFenetreOnglet;
+
+
 
 // Pas fini, encore des bugs a traiter.
 public class FenetreOnglet extends JFrame{
@@ -22,14 +32,17 @@ public class FenetreOnglet extends JFrame{
 	private static final String txtChoix1 = "Selectionnez le SEF n°1";
 	private static final String txtChoix2 = "Selectionnez le SEF n°2";
 	
-		
+	private static final String tracer = "Tracer";
+	private static final String borneInf = "Borne inf";	
+	private static final String borneSup = "Borne Sup";
 	
 	private JTabbedPane onglets = new JTabbedPane();
 	private JLabel warning = 
 		new JLabel("Attention ! cochez plusieurs cases ouvrira " +
 				"plusieurs fenetres de dessins");
 	
-	private Box boxComp = Box.createVerticalBox();
+	private Box boxCompGauche = Box.createVerticalBox();
+	private Box boxCompDroite = Box.createVerticalBox();
 	private Box boxInter = Box.createVerticalBox();
 	private Box boxUni = Box.createVerticalBox();
 	private Box boxFonc = Box.createVerticalBox();
@@ -50,19 +63,66 @@ public class FenetreOnglet extends JFrame{
 	//Extention
 	private JComboBox choixFontion = new JComboBox();
 	private JComboBox ChoixFoncSef = new JComboBox();
-
 	
-	public FenetreOnglet(){
+	//Bouton pour valider la trace (je vais metre un bouton par panel laissant ainsi le choix)
+	private JButton TraceComp = new JButton(tracer);
+	private JButton TraceInter = new JButton(tracer);
+	private JButton TraceUni = new JButton(tracer);
+	private JButton TraceExt = new JButton(tracer);
+
+	// l'ArrayList 
+	private ArrayList<SEF> mesSEF;
+	
+	// gestion de l'affichage sur Complémentaire
+	private JTextField donneesBorneInf; // = new JTextField();
+	private JTextField donneesBorneSup;
+	
+	
+	public FenetreOnglet(ArrayList<SEF> mesSEF){
 		setTitle("Choisir les courbes a generer");
 		setSize(430,300);
+		this.mesSEF = mesSEF;
+		
+		donneesBorneInf = new JTextField();
+		donneesBorneInf.setEditable(false);
+		donneesBorneSup = new JTextField();
+		donneesBorneSup.setEditable(false);
 		
 		//Onglet COmplementaire :
 		// supprimer checkbox et remplacer par un combobox avec les sef
 		JPanel ongletComp = new JPanel();
 		JLabel choixSEFCompl = new JLabel(txtChoix0);
-		boxComp.add(choixSEFCompl);
-		boxComp.add(sefComp);
-		ongletComp.add(boxComp);
+		
+		//Autre JLabel
+		JLabel labelborneInf = new JLabel(borneInf);
+		JLabel lableborneSup = new JLabel(borneSup);
+		
+		boxCompGauche.add(choixSEFCompl);
+		boxCompDroite.add(labelborneInf);
+		
+		for (int i = 0; i < mesSEF.size(); i++){
+			sefComp.addItem("SEF "+(i+1));
+		}
+		
+		boxCompGauche.add(sefComp);
+		
+		Box total = Box.createHorizontalBox();
+		
+	//	boxInfobornes.add(labelborneInf);
+	//	boxInfobornes.add(donneesBorneInf);
+	//	boxInfobornes.add(donneesBorneSup);
+		
+		boxCompDroite.add(donneesBorneInf);
+		boxCompDroite.add(donneesBorneSup);
+		
+	//	boxComp.add(boxInfobornes);
+		
+		boxCompGauche.add(TraceComp);
+	//	ongletComp.add(boxComp);
+	//	ongletComp.add(boxInfobornes);
+		total.add(boxCompGauche);
+		total.add(boxCompDroite);
+		ongletComp.add(total);
 		
 		// onglet intersection :
 		// 3 combox 1 choix Tnorme 2 pour les sefs 
@@ -84,6 +144,7 @@ public class FenetreOnglet extends JFrame{
 		boxInter.add(sefChoixinter1);
 		boxInter.add(choixLabelTnormeSEF2);
 		boxInter.add(sefChoixinter2);
+		boxInter.add(TraceInter);
 	//	boxtn.add(warning);
 		ongletInter.add(boxInter);
 		
@@ -104,6 +165,7 @@ public class FenetreOnglet extends JFrame{
 		boxUni.add(sefChoixUni1);
 		boxUni.add(choixLabelTconormeSEF2);
 		boxUni.add(sefChoixUni2);
+		boxUni.add(TraceUni);
 	//	
 	//	boxtcn.add(warning);
 		ongletUni.add(boxUni);
@@ -118,6 +180,7 @@ public class FenetreOnglet extends JFrame{
 		boxFonc.add(choixFontion);
 		boxFonc.add(choixLabelSef);
 		boxFonc.add(ChoixFoncSef);
+		boxFonc.add(TraceExt);
 		
 		ongletFonction.add(boxFonc);
 
@@ -133,5 +196,70 @@ public class FenetreOnglet extends JFrame{
 		setResizable(false);
 		setVisible(true);
 		
+		ControllerFenetreOnglet cfo = new ControllerFenetreOnglet(this);
+		
 	}
+
+
+	public JButton getTraceComp() {
+		return TraceComp;
+	}
+
+
+	public JButton getTraceInter() {
+		return TraceInter;
+	}
+
+
+	public JButton getTraceUni() {
+		return TraceUni;
+	}
+
+
+	public JButton getTraceExt() {
+		return TraceExt;
+	}
+
+
+	public JComboBox getSefComp() {
+		return sefComp;
+	}
+
+
+	public JComboBox getSefChoixinter1() {
+		return sefChoixinter1;
+	}
+
+
+	public JComboBox getSefChoixinter2() {
+		return sefChoixinter2;
+	}
+
+
+	public JComboBox getSefChoixUni1() {
+		return sefChoixUni1;
+	}
+
+
+	public JComboBox getSefChoixUni2() {
+		return sefChoixUni2;
+	}
+
+
+	public ArrayList<SEF> getMesSEF() {
+		return mesSEF;
+	}
+
+
+	public JTextField getDonneesBorneinf() {
+		return donneesBorneInf;
+	}
+
+
+	public JTextField getDonneesBorneSup() {
+		return donneesBorneSup;
+	}
+	
+	
+	
 }
