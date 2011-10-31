@@ -1,10 +1,15 @@
 package ihm;
 
+import java.awt.BorderLayout;
 import java.awt.Checkbox;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ComboBoxEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,6 +19,8 @@ import javax.swing.JPanel; //peut etre besoin rapidement
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 import manipSef.SEF;
 
@@ -77,10 +84,14 @@ public class FenetreOnglet extends JFrame{
 	private JTextField donneesBorneInf; // = new JTextField();
 	private JTextField donneesBorneSup;
 	
+	//un textArea
+	private JTextArea jta;
+	
 	
 	public FenetreOnglet(ArrayList<SEF> mesSEF){
+		super();
 		setTitle("Choisir les courbes a generer");
-		setSize(430,300);
+		setSize(430,500);
 		this.mesSEF = mesSEF;
 		
 		donneesBorneInf = new JTextField();
@@ -89,8 +100,39 @@ public class FenetreOnglet extends JFrame{
 		donneesBorneSup.setEditable(false);
 		
 		//Onglet COmplementaire :
-		// supprimer checkbox et remplacer par un combobox avec les sef
+		//Utilisation d'un layout
 		JPanel ongletComp = new JPanel();
+		//ongletComp.setBorder(paneEdge);
+		
+		Border paneEdge = BorderFactory.createEmptyBorder(0,10,10,10);
+		ongletComp.setBorder(paneEdge);
+		
+		ongletComp.setLayout(new BoxLayout(ongletComp,
+                BoxLayout.Y_AXIS));
+		
+		//TitledBorder titled;
+		//titled = BorderFactory.createTitledBorder("title");
+	  //  addCompForTitledBorder(titled,"default titled border",ongletComp);
+		
+	//	ongletComp.add(titled);
+		
+		JPanel titledBorders = new JPanel();
+	    titledBorders.setBorder(paneEdge);
+	    titledBorders.setLayout(new BoxLayout(titledBorders, BoxLayout.Y_AXIS));
+	    TitledBorder title;
+	    TitledBorder title2;
+	    
+	   
+		
+	   /*
+	    addCompForTitledBorder(title,
+                "titled line border"
+                    + " (centered, default pos.)",
+                TitledBorder.LEFT,
+                TitledBorder.DEFAULT_POSITION,
+                titledBorders);
+		*/
+		
 		JLabel choixSEFCompl = new JLabel(txtChoix0);
 		
 		//Autre JLabel
@@ -102,27 +144,46 @@ public class FenetreOnglet extends JFrame{
 		
 		for (int i = 0; i < mesSEF.size(); i++){
 			sefComp.addItem("SEF "+(i+1));
+			
+			sefChoixinter1.addItem("SEF "+(i+1));
+			sefChoixinter2.addItem("SEF "+(i+1));
+			
+			sefChoixUni1.addItem("SEF "+(i+1));
+			sefChoixUni2.addItem("SEF "+(i+1));
+			
+			ChoixFoncSef.addItem("SEF "+(i+1));
 		}
 		
-		boxCompGauche.add(sefComp);
+		jta = new JTextArea();
+		jta.setEditable(false);
 		
-		Box total = Box.createHorizontalBox();
+		 title = BorderFactory.createTitledBorder("Selectionner le SEF");
+		    addCompForBorderCombobox(title, sefComp, titledBorders);
+		 title2 = BorderFactory.createTitledBorder("information");
+		 	addCompForBorderTextArea(title2, jta, titledBorders);
+		// 	addCompForBorderTextArea(title2, jta, titledBorders);
+		 	titledBorders.add(TraceComp);
+		//boxCompGauche.add(sefComp);
+		
+	//	Box total = Box.createHorizontalBox();
 		
 	//	boxInfobornes.add(labelborneInf);
 	//	boxInfobornes.add(donneesBorneInf);
 	//	boxInfobornes.add(donneesBorneSup);
 		
-		boxCompDroite.add(donneesBorneInf);
-		boxCompDroite.add(donneesBorneSup);
+	//	boxCompDroite.add(donneesBorneInf);
+	//	boxCompDroite.add(donneesBorneSup);
 		
 	//	boxComp.add(boxInfobornes);
 		
-		boxCompGauche.add(TraceComp);
+	//	boxCompGauche.add(TraceComp);
 	//	ongletComp.add(boxComp);
 	//	ongletComp.add(boxInfobornes);
-		total.add(boxCompGauche);
-		total.add(boxCompDroite);
-		ongletComp.add(total);
+	//	total.add(title);
+	//	total.add(boxCompDroite);
+		//contenu2.add(total,fond.EAST);
+	//	ongletComp.add(total);
+	
 		
 		// onglet intersection :
 		// 3 combox 1 choix Tnorme 2 pour les sefs 
@@ -187,7 +248,7 @@ public class FenetreOnglet extends JFrame{
 		
 		Container contenu = getContentPane();
 		
-		onglets.addTab("Complementaire", ongletComp);
+		onglets.addTab("Complementaire", titledBorders);
 		onglets.addTab("Intersection", ongletInter);
 		onglets.addTab("Union", ongletUni);
 		onglets.addTab("Extension", ongletFonction);
@@ -200,6 +261,59 @@ public class FenetreOnglet extends JFrame{
 		
 	}
 
+	// 2 fonctions pour un JLabel
+	public void addCompForTitledBorder(TitledBorder border,String description,
+            int justification,int position,Container container) {
+				border.setTitleJustification(justification);
+				border.setTitlePosition(position);
+				addCompForBorder(border, description,container);
+	}
+
+	public void addCompForBorder(Border border,String description,Container container) {
+		JPanel comp = new JPanel(new GridLayout(1, 1), false);
+		JLabel label = new JLabel(description, JLabel.CENTER);
+		comp.add(label);
+		comp.setBorder(border);
+		container.add(Box.createRigidArea(new Dimension(0, 10)));
+		container.add(comp);
+		}
+	
+	//2 Fonctions pour un JCombobox
+	public void addCompForTitledBorderCombobox(TitledBorder border,JComboBox jcb,
+            int justification,int position,Container container) {
+				border.setTitleJustification(justification);
+				border.setTitlePosition(position);
+				addCompForBorderCombobox(border, jcb,container);
+	}
+
+	public void addCompForBorderCombobox(Border border,JComboBox jcb,Container container) {
+		JPanel comp = new JPanel();//(new GridLayout(1, 1), false);
+	//	JLabel label = new JLabel(description, JLabel.CENTER);
+		Box temp = Box.createVerticalBox();
+		temp.add(jcb);
+	//	jcb.setSize(10, 200);
+		comp.add(temp);
+		comp.setBorder(border);
+	//	container.add(Box.createRigidArea(new Dimension(0, 10)));
+		container.add(comp);
+		}
+	
+	public void addCompForTitledBorderTextArea(TitledBorder border,JTextArea jta,
+            int justification,int position,Container container) {
+				border.setTitleJustification(justification);
+				border.setTitlePosition(position);
+				addCompForBorderTextArea(border, jta,container);
+	}
+
+	public void addCompForBorderTextArea(Border border,JTextArea jta,Container container) {
+		JPanel comp = new JPanel(new GridLayout(1, 1), false);
+	//	JLabel label = new JLabel(description, JLabel.CENTER);
+	//	jta.setSize(10, 200);
+		comp.add(jta);
+		comp.setBorder(border);
+	//	container.add(Box.createRigidArea(new Dimension(0, 10)));
+		container.add(comp);
+		}
 
 	public JButton getTraceComp() {
 		return TraceComp;
@@ -258,6 +372,14 @@ public class FenetreOnglet extends JFrame{
 
 	public JTextField getDonneesBorneSup() {
 		return donneesBorneSup;
+	}
+
+	public JTextArea getJta() {
+		return jta;
+	}
+
+	public void setJta(JTextArea jta) {
+		this.jta = jta;
 	}
 	
 	
