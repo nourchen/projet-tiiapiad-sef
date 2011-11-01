@@ -38,16 +38,21 @@ public final class SefIntersection {
 		XYSeries ptsSef1,ptsSef2;
 		ptsSef1 = sef1.getInflexions();
 		ptsSef2 = sef2.getInflexions();
+		sef1.printInflexions();
+		sef2.printInflexions();
 		try {
 			normalizeSerie(ptsSef1, sef1.getBorneInf(), sef1.getBorneSup(),
 					ptsSef2,sef2.getBorneInf(), sef2.getBorneSup());
+			sef1.printInflexions();
+			sef2.printInflexions();
 		} catch (NormalizationException e1) {
 			// Auto-generated catch block
 			e1.printStackTrace();
 			System.out.println(e1.getErrorMsg());		
 		}
-
-		XYSeries interPts=new XYSeries("Intersection de "+ptsSef1.getDescription()+" et: "+ptsSef2.getDescription());
+		//Arrivé ici les deux sef sont bien normalisés comme il faut, donc le pb se situe plus bas...
+		
+		XYSeries interPts=new XYSeries("Intersection de "+ptsSef1.getKey()+" et: "+ptsSef2.getKey());
 		XYDataItem ptGauche1, ptDroit1, ptGauche2, ptDroit2;
 		double a1,b1,a2,b2;
 
@@ -56,6 +61,7 @@ public final class SefIntersection {
 			ptDroit1 = ptsSef1.getDataItem(i+1);
 			ptGauche2 = ptsSef2.getDataItem(i);
 			ptDroit2 = ptsSef2.getDataItem(i+1);
+			//ATTENTION, ne gère pas les cas ou il y a des doublons de x dans les listes!!
 			a1=(ptGauche1.getYValue()-ptDroit1.getYValue())/(ptGauche1.getXValue()-ptDroit1.getXValue());
 			b1=ptDroit1.getYValue()-a1*ptDroit1.getXValue();
 			a2=(ptGauche2.getYValue()-ptDroit2.getYValue())/(ptGauche2.getXValue()-ptDroit2.getXValue());
