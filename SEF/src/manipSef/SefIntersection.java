@@ -50,7 +50,7 @@ public final class SefIntersection {
 		XYSeries interPts=new XYSeries("Intersection de "+ptsSef1.getDescription()+" et: "+ptsSef2.getDescription());
 		XYDataItem ptGauche1, ptDroit1, ptGauche2, ptDroit2;
 		double a1,b1,a2,b2;
-		
+
 		for(int i=0;i<ptsSef1.getItemCount() - 1;i++){
 			ptGauche1 = ptsSef1.getDataItem(i);
 			ptDroit1 = ptsSef1.getDataItem(i+1);
@@ -60,11 +60,11 @@ public final class SefIntersection {
 			b1=ptDroit1.getYValue()-a1*ptDroit1.getXValue();
 			a2=(ptGauche2.getYValue()-ptDroit2.getYValue())/(ptGauche2.getXValue()-ptDroit2.getXValue());
 			b2=ptDroit2.getYValue()-a2*ptDroit2.getXValue();
-			
+
 			try {
 				XYDataItem ptCommun;
 				ptCommun=segmentIntersection(a1, b1, a2, b2, ptGauche1.getXValue(), ptDroit2.getXValue());
-				
+
 				/*
 				 * Si on arrive ici, aucune exception n'a été générée
 				 * Donc il y a bien une intersection dans l'intervalle considéré
@@ -82,18 +82,18 @@ public final class SefIntersection {
 				}
 				//On ajoute le point d'intersection
 				interPts.add(ptCommun);
-				
-				
+
+
 			} catch (SegmentsConfondusException e) {
 				//e.printStackTrace();
-				
+
 				/* Dans le cas ou les segments sont confondus, on ajoute
 				 * à l'intersection indifféremment le point Gauche du sef 1 ou du sef 2
 				 */
 				interPts.add(ptGauche1);
 			} catch (SegmentAboveException e) {
-//				e.printStackTrace();
-				
+				//				e.printStackTrace();
+
 				/* Ici on est dans le cas ou l'un de deux segments est au dessus de l'autre
 				 * On ajoute donc le point Gauche qui est sous l'autre
 				 */
@@ -104,12 +104,12 @@ public final class SefIntersection {
 				}
 			}
 
-			
+
 		}
-		
-	
+
+
 		SEF inter = new SEF(Math.max(sef1.getBorneInf(), sef2.getBorneInf()),
-							Math.min(sef1.getBorneSup(), sef2.getBorneSup()), interPts);
+				Math.min(sef1.getBorneSup(), sef2.getBorneSup()), interPts);
 		return inter;
 	}
 
@@ -135,8 +135,8 @@ public final class SefIntersection {
 	 * @param inf
 	 * @param sup
 	 */
-	public static void normalizeSerie(XYSeries toNormalize1,double inf1,double sup1, 
-			XYSeries toNormalize2,double inf,double sup) throws NormalizationException{
+	public static void normalizeSerie(XYSeries toNormalize1,double inf,double sup, 
+			XYSeries toNormalize2,double inf1,double sup1) throws NormalizationException{
 
 		double xminRef,xmaxRef,xminRef2,xmaxRef2;
 		xminRef=toNormalize2.getMinX();
@@ -197,9 +197,11 @@ public final class SefIntersection {
 			b1=ptD1.getYValue()-a1*ptD1.getXValue();
 
 			while(ptD2.getXValue() < ptD1.getXValue()){
-
-				toNormalize1.add(ptD2.getXValue(), ptD2.getXValue()* a1 + b1);
-
+				if(ptD2.getXValue() <= sup){
+					toNormalize1.add(ptD2.getXValue(), ptD2.getXValue()* a1 + b1);
+				}else{
+					toNormalize1.add(ptD2.getXValue(), 0);
+				}
 				i2++;
 				i1++;
 				ptG2=ptD2;
@@ -208,7 +210,11 @@ public final class SefIntersection {
 				b2=ptD2.getYValue()-a2*ptD2.getXValue();
 			}//xD2 > = xD1
 			if(i1 < toNormalize1.getItemCount()-1 && ptD1.getXValue()!=ptD2.getXValue()){
-				toNormalize2.add(ptD1.getXValue(), ptD1.getXValue()* a2 + b2);
+				if(ptD1.getXValue() <= sup1){
+					toNormalize2.add(ptD1.getXValue(), ptD1.getXValue()* a2 + b2);
+				}else{
+					toNormalize2.add(ptD1.getXValue(), 0);
+				}
 				i1++;
 				i2++;
 				ptG1=ptD1;
