@@ -5,13 +5,13 @@ import ihm.FenetreGeometrique;
 import java.util.ArrayList;
 
 import manipSef.SEF;
-import manipSef.SefManager;
+import manipSef.SefDiscretizer;
 
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.RefineryUtilities;
 
-public class TestSefManager {
+public class TestSefDiscretizer {
 
 	/**
 	 * @param args
@@ -38,7 +38,7 @@ public class TestSefManager {
 		//System.out.println("Et la!");
 		listeDeSefs.add(sef);
 		listeDeSefs.add(sef2);
-		SefManager sefM = new SefManager(listeDeSefs, -5,15);
+		SefDiscretizer sefM = new SefDiscretizer(listeDeSefs, -5,15);
 		//System.out.println("Coucou je suis ENCORE la!");
 		XYSeriesCollection mesSefs = sefM.createMySefCollection();
 		FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
