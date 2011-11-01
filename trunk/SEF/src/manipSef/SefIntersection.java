@@ -51,7 +51,7 @@ public final class SefIntersection {
 			System.out.println(e1.getErrorMsg());		
 		}
 		//Arrivé ici les deux sef sont bien normalisés comme il faut, donc le pb se situe plus bas...
-		
+
 		XYSeries interPts=new XYSeries("Intersection de "+ptsSef1.getKey()+" et: "+ptsSef2.getKey());
 		XYDataItem ptGauche1, ptDroit1, ptGauche2, ptDroit2;
 		double a1,b1,a2,b2;
@@ -66,10 +66,14 @@ public final class SefIntersection {
 			b1=ptDroit1.getYValue()-a1*ptDroit1.getXValue();
 			a2=(ptGauche2.getYValue()-ptDroit2.getYValue())/(ptGauche2.getXValue()-ptDroit2.getXValue());
 			b2=ptDroit2.getYValue()-a2*ptDroit2.getXValue();
-
+			//			System.out.println("a1: "+ a1 + " b1 : "+b1);
+			//			System.out.println("a2: "+ a2 + " b2 : "+b2);
 			try {
 				XYDataItem ptCommun;
-				ptCommun=segmentIntersection(a1, b1, a2, b2, ptGauche1.getXValue(), ptDroit2.getXValue());
+				double inf,sup;
+				inf=ptGauche1.getXValue();
+				sup= ptDroit2.getXValue();
+				ptCommun=segmentIntersection(a1, b1, a2, b2, inf, sup);
 
 				/*
 				 * Si on arrive ici, aucune exception n'a été générée
@@ -87,7 +91,23 @@ public final class SefIntersection {
 					interPts.add(ptGauche2);
 				}
 				//On ajoute le point d'intersection
-				interPts.add(ptCommun);
+				//uniquement si celui ci n'est pas déjà une des extrémités d'un segment
+				if(ptCommun.getXValue() != inf && ptCommun.getXValue()!=sup ){
+					interPts.add(ptCommun);
+				}
+				
+				//On ajoute le point droit si l'on arrive en bout de liste
+				if (i == ptsSef1.getItemCount() - 2) {
+					if(ptDroit1.getYValue() < ptDroit2.getYValue()){
+						/* le point droit 1 est sous le point droit 2,
+						 *  il faut donc ajouter le pointDroit 1 au sef intersection
+						 */
+						interPts.add(ptDroit1);					
+					}else{ // On ajoute sinon le point droit 2!
+						interPts.add(ptDroit2);
+					}
+				}
+				
 
 
 			} catch (SegmentsConfondusException e) {
@@ -202,6 +222,7 @@ public final class SefIntersection {
 			a1=(ptG1.getYValue()-ptD1.getYValue())/(ptG1.getXValue()-ptD1.getXValue());
 			b1=ptD1.getYValue()-a1*ptD1.getXValue();
 
+
 			while(ptD2.getXValue() < ptD1.getXValue()){
 				if(ptD2.getXValue() <= sup){
 					toNormalize1.add(ptD2.getXValue(), ptD2.getXValue()* a1 + b1);
@@ -214,6 +235,7 @@ public final class SefIntersection {
 				ptD2=toNormalize2.getDataItem(i2);
 				a2=(ptG2.getYValue()-ptD2.getYValue())/(ptG2.getXValue()-ptD2.getXValue());
 				b2=ptD2.getYValue()-a2*ptD2.getXValue();
+
 			}//xD2 > = xD1
 			if(i1 < toNormalize1.getItemCount()-1 && ptD1.getXValue()!=ptD2.getXValue()){
 				if(ptD1.getXValue() <= sup1){
@@ -249,7 +271,7 @@ public final class SefIntersection {
 		}
 	}
 
-	private static XYDataItem segmentIntersection(double a1,double b1, double a2, double b2,double inf, double sup)
+	public static XYDataItem segmentIntersection(double a1,double b1, double a2, double b2,double inf, double sup)
 			throws SegmentsConfondusException,SegmentAboveException{
 		if (a1==a2 && b1 ==b2){
 			throw new SegmentsConfondusException();
@@ -265,7 +287,7 @@ public final class SefIntersection {
 		if (y1gauche < y2gauche && y1droit < y2droit){
 			throw new SegmentAboveException();
 		}
-		double xCommun = (b1 - b2) / (a1 - a2);
+		double xCommun = (b2 - b1) / (a1 - a2);
 		XYDataItem ptCommun=new XYDataItem(xCommun, a1 * xCommun + b1);
 
 		return ptCommun;
