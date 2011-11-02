@@ -1,12 +1,15 @@
 package tests;
 
-import manipSef.Norme;
 import manipSef.SEF;
-import manipSef.SefIntersection;
+import manipSef.SefManager;
 
 import org.jfree.data.xy.XYSeries;
 
+import tools.Norme;
+import tools.OperationEnsembliste;
+
 import exceptions.UnknownNormeException;
+import exceptions.UnknownOperationException;
 
 /**
  * Classe permettant de tester l'intersection entre deux sous ensembles flous
@@ -14,7 +17,7 @@ import exceptions.UnknownNormeException;
  * @author Sylvia Vieira
  *
  */
-public class TestSefIntersectionZadeh {
+public class TestSefZadehOperation {
 
 	/**
 	 * @param args
@@ -24,8 +27,8 @@ public class TestSefIntersectionZadeh {
 		
 		SEF sef1 = new SEF(-30, 60, new XYSeries("sef1"));
 		SEF sef2 = new SEF(-30, 60, new XYSeries("sef2"));
-		SEF sef3 = new SEF(-30, 60, new XYSeries("sef3"));
-		SEF sef4 = new SEF(-30, 60, new XYSeries("sef4"));
+//		SEF sef3 = new SEF(-30, 60, new XYSeries("sef3"));
+//		SEF sef4 = new SEF(-30, 60, new XYSeries("sef4"));
 		SEF interSef;
 
 		sef1.getInflexions().add(-1.5,0);
@@ -38,11 +41,14 @@ public class TestSefIntersectionZadeh {
 		sef2.getInflexions().add(1, 0);
 		
 		try {
-			interSef = SefIntersection.getIntersection(sef1, sef2, Norme.ZADEH);
+			interSef = SefManager.getResultOperation(sef1, sef2, Norme.ZADEH,OperationEnsembliste.UNION);
 			interSef.printInflexions();
 		} catch (UnknownNormeException e) {
-			// TODO Auto-generated catch block
+			//  Auto-generated catch block
 			System.out.println("La norme n'est pas connue!");
+		} catch (UnknownOperationException e) {
+			//  Auto-generated catch block
+			System.out.println("L'opération n'est pas connue!");
 		}
 		
 		
