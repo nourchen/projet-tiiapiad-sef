@@ -1,8 +1,10 @@
 package tests;
 
-import manipSef.SefIntersection;
+
 
 import org.jfree.data.xy.XYDataItem;
+
+import tools.MathSef;
 
 import exceptions.SegmentAboveException;
 import exceptions.SegmentsConfondusException;
@@ -22,7 +24,7 @@ public class TestSegmentIntersection {
 		inf= -1.5;
 		sup= 0;
 		 try {
-			pointInter = SefIntersection.segmentIntersection(a1,b1,a2, b2, inf,  sup);
+			pointInter = MathSef.segmentIntersection(a1,b1,a2, b2, inf,  sup);
 			System.out.println("X: "+pointInter.getXValue()+",Y: "+pointInter.getYValue());
 		} catch (SegmentsConfondusException e) {
 			//e.printStackTrace();

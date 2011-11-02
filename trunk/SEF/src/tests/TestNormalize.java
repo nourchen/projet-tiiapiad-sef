@@ -1,7 +1,7 @@
 package tests;
 
 import manipSef.SEF;
-import manipSef.SefIntersection;
+import manipSef.SefDiscretizer;
 
 import org.jfree.data.xy.XYSeries;
 
@@ -86,7 +86,7 @@ public class TestNormalize {
 		sef3.printInflexions();
 		sef4.printInflexions();
 		try {
-			SefIntersection.normalizeSerie(sef3.getInflexions(),sef3.getBorneInf(),sef3.getBorneSup(),
+			SefDiscretizer.normalizeSerie(sef3.getInflexions(),sef3.getBorneInf(),sef3.getBorneSup(),
 					sef4.getInflexions(),sef4.getBorneInf(),sef4.getBorneSup());
 			sef3.printInflexions();
 			sef4.printInflexions();
