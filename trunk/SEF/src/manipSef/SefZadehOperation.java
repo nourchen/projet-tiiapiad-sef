@@ -30,14 +30,14 @@ public class SefZadehOperation {
 			e1.printStackTrace();
 			System.out.println(e1.getErrorMsg());		
 		}
-		//Arrivé ici les deux sef sont bien normalisés comme il faut, donc le pb se situe plus bas...
+
 		XYSeries resultPts;
 		switch (operation) {
 		case INTERSECTION:
-			resultPts=new XYSeries("Intersection de "+ptsSef1.getKey()+" et: "+ptsSef2.getKey());
+			resultPts=new XYSeries("Intersection Zadeh de "+ptsSef1.getKey()+" et: "+ptsSef2.getKey());
 			break;
 		case UNION:
-			resultPts=new XYSeries("Union de "+ptsSef1.getKey()+" et: "+ptsSef2.getKey()); 
+			resultPts=new XYSeries("Union Zadeh de "+ptsSef1.getKey()+" et: "+ptsSef2.getKey()); 
 			break;
 		default:
 			throw new UnknownOperationException();
@@ -169,9 +169,21 @@ public class SefZadehOperation {
 
 		}
 
-
-		SEF result = new SEF(Math.max(sef1.getBorneInf(), sef2.getBorneInf()),
-				Math.min(sef1.getBorneSup(), sef2.getBorneSup()), resultPts);
+		double resultInf, resultSup;
+		SEF result;
+		switch (operation) {
+		case INTERSECTION: //les bornes doivent etre les plus restreintes
+			resultInf = Math.max(sef1.getBorneInf(), sef2.getBorneInf());
+			resultSup = Math.min(sef1.getBorneSup(), sef2.getBorneSup());
+			break;
+		case UNION: // bornes les plus larges
+			resultInf = Math.min(sef1.getBorneInf(), sef2.getBorneInf());
+			resultSup = Math.max(sef1.getBorneSup(), sef2.getBorneSup());
+			break;
+		default:
+			throw new UnknownOperationException();
+		}
+		result = new SEF(resultInf, resultSup, resultPts);
 		return result;
 	}
 
