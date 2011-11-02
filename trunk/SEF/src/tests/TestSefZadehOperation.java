@@ -41,7 +41,7 @@ public class TestSefZadehOperation {
 		sef2.getInflexions().add(1, 0);
 		
 		try {
-			interSef = SefManager.getResultOperation(sef1, sef2, Norme.ZADEH,OperationEnsembliste.UNION);
+			interSef = SefManager.getResultOperation(sef1, sef2, Norme.ZADEH,OperationEnsembliste.INTERSECTION);
 			interSef.printInflexions();
 		} catch (UnknownNormeException e) {
 			//  Auto-generated catch block
