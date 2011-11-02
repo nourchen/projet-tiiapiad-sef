@@ -101,36 +101,6 @@ public class SefZadehOperation {
 				if(ptCommun.getXValue() != inf && ptCommun.getXValue()!=sup ){
 					resultPts.add(ptCommun);
 				}
-
-				//On ajoute le point droit si l'on arrive en bout de liste
-				if (i == ptsSef1.getItemCount() - 2) {
-					if(ptDroit1.getYValue() < ptDroit2.getYValue()){
-						/* le point droit 1 est sous le point droit 2,
-						 *  il faut donc ajouter le pointDroit 1 au sef intersection
-						 *  OU  le pointDroit 2 au sef union
-						 */
-						switch (operation) {
-						case INTERSECTION:
-							resultPts.add(ptDroit1);	
-							break;
-						case UNION:resultPts.add(ptDroit2); break;
-						default:
-							throw new UnknownOperationException();
-						}
-					}else{ // On ajoute sinon l'autre point (selon union ou intersection
-						switch (operation) {
-						case INTERSECTION:
-							resultPts.add(ptDroit2);	
-							break;
-						case UNION:resultPts.add(ptDroit1); break;
-						default:
-							throw new UnknownOperationException();
-						}
-					}
-				}
-
-
-
 			} catch (SegmentsConfondusException e) {
 				//e.printStackTrace();
 
@@ -165,7 +135,32 @@ public class SefZadehOperation {
 					}
 				}
 			}
-
+			//On ajoute le point droit si l'on arrive en bout de liste
+			if (i == ptsSef1.getItemCount() - 2) {
+				if(ptDroit1.getYValue() < ptDroit2.getYValue()){
+					/* le point droit 1 est sous le point droit 2,
+					 *  il faut donc ajouter le pointDroit 1 au sef intersection
+					 *  OU  le pointDroit 2 au sef union
+					 */
+					switch (operation) {
+					case INTERSECTION:
+						resultPts.add(ptDroit1);	
+						break;
+					case UNION:resultPts.add(ptDroit2); break;
+					default:
+						throw new UnknownOperationException();
+					}
+				}else{ // On ajoute sinon l'autre point (selon union ou intersection
+					switch (operation) {
+					case INTERSECTION:
+						resultPts.add(ptDroit2);	
+						break;
+					case UNION:resultPts.add(ptDroit1); break;
+					default:
+						throw new UnknownOperationException();
+					}
+				}
+			}
 
 		}
 

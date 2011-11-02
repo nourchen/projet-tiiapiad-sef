@@ -79,7 +79,7 @@ public class SefLukaOperation {
 			b1=ptDroit1.getYValue()-a1*ptDroit1.getXValue();
 			a2=(ptGauche2.getYValue()-ptDroit2.getYValue())/(ptGauche2.getXValue()-ptDroit2.getXValue());
 			b2=ptDroit2.getYValue()-a2*ptDroit2.getXValue();
-
+			System.out.println("La valeur de l'itérateur i d'incide de parcours des points: "+i);
 			aCompose = a1 + a2;
 			bCompose = b1 + b2 ;
 			switch (operation) {
@@ -94,10 +94,6 @@ public class SefLukaOperation {
 			//Creation des nouveaux points gauches et droit
 			//En fait ceux de la fonction composée
 			ptGaucheCompose = new XYDataItem(ptGauche1.getXValue(), aCompose*ptGauche1.getXValue()+bCompose);
-
-
-			//			System.out.println("a1: "+ a1 + " b1 : "+b1);
-			//			System.out.println("a2: "+ a2 + " b2 : "+b2);
 			try {
 				XYDataItem ptCommun;
 				double inf,sup;
@@ -116,32 +112,26 @@ public class SefLukaOperation {
 
 
 				/*
-				 * Si on arrive ici, aucune exception n'a été générée
-				 * Donc il y a bien une intersection dans l'intervalle considéré
-				 * Il faut donc:
-				 * => Ajouter le point gauche dont le y est le plus petit
-				 * => Ajouter le point d'intersection
+				 * Si on arrive ici, aucune exception n'a été générée(intersection dans l'intervalle considéré)
+				 * Il faut => Ajouter le point gauche dont le y est le plus petit
+				 * 		   => Ajouter le point d'intersection
 				 */
 
 				switch (operation) {
 				case INTERSECTION:
 					if(ptGaucheCompose.getYValue() < 0){
 						/* le point gaucheCompose est sous la droite y=0,
-						 *  il faut donc ajouter le point (xCourant,0) au sef intersection
-						 */
-
+						 *  il faut donc ajouter le point (xCourant,0) au sef intersection*/
 						resultPts.add(ptGaucheCompose.getXValue(), 0);
 
 					}else{//sinon on ajoute le pointCompose
 						resultPts.add(ptGaucheCompose);
 					}
-
 					break;
 				case UNION:
 					if(ptGaucheCompose.getYValue() < 1){
 						/* le point gaucheCompose est sous la droite y=1,
-						 *  il faut donc ajouter le pointCompose au sef intersection
-						 */
+						 *  il faut donc ajouter le pointCompose au sef intersection*/
 						resultPts.add(ptGaucheCompose);
 					}else{//sinon on ajoute le point (xCourant,1)
 						resultPts.add(ptGaucheCompose.getXValue(), 1);
@@ -156,43 +146,6 @@ public class SefLukaOperation {
 				if(ptCommun.getXValue() != inf && ptCommun.getXValue()!=sup ){
 					resultPts.add(ptCommun);
 				}
-
-				//On ajoute le point droit si l'on arrive en bout de liste
-
-				if (i == ptsSef1.getItemCount() - 2) {
-					ptDroitCompose = new XYDataItem(ptDroit1.getXValue(), aCompose*ptDroit1.getXValue()+bCompose);
-					System.out.println("coucou");
-					switch (operation) {
-					case INTERSECTION:
-						if(ptDroitCompose.getYValue() < 0){
-							/* le point gaucheCompose est sous la droite y=0,
-							 *  il faut donc ajouter le point (xCourant,0) au sef intersection
-							 */
-
-							resultPts.add(ptDroitCompose.getXValue(), 0);
-
-						}else{//sinon on ajoute le pointCompose
-							resultPts.add(ptDroitCompose);
-						}
-
-						break;
-					case UNION:
-						if(ptDroitCompose.getYValue() < 1){
-							/* le point gaucheCompose est sous la droite y=1,
-							 *  il faut donc ajouter le pointCompose au sef intersection
-							 */
-							resultPts.add(ptDroitCompose);
-						}else{//sinon on ajoute le point (xCourant,1)
-							resultPts.add(ptDroitCompose.getXValue(), 1);
-						}
-						break;
-					default:
-						throw new UnknownOperationException();
-					}
-
-				}
-
-
 
 			} catch (SegmentsConfondusException e) {
 				//e.printStackTrace();
@@ -213,21 +166,16 @@ public class SefLukaOperation {
 				case INTERSECTION:
 					if(ptGaucheCompose.getYValue() < 0){
 						/* le point gaucheCompose est sous la droite y=0,
-						 *  il faut donc ajouter le point (xCourant,0) au sef intersection
-						 */
-
+						 *  il faut donc ajouter le point (xCourant,0) au sef intersection*/
 						resultPts.add(ptGaucheCompose.getXValue(), 0);
-
 					}else{//sinon on ajoute le pointCompose
 						resultPts.add(ptGaucheCompose);
 					}
-
 					break;
 				case UNION:
 					if(ptGaucheCompose.getYValue() < 1){
 						/* le point gaucheCompose est sous la droite y=1,
-						 *  il faut donc ajouter le pointCompose au sef intersection
-						 */
+						 *  il faut donc ajouter le pointCompose au sef intersection*/
 						resultPts.add(ptGaucheCompose);
 					}else{//sinon on ajoute le point (xCourant,1)
 						resultPts.add(ptGaucheCompose.getXValue(), 1);
@@ -238,9 +186,36 @@ public class SefLukaOperation {
 				}
 			}
 
+			//On ajoute le point droit si l'on arrive en bout de liste
 
+			if (i == (ptsSef1.getItemCount() - 2)) {
+				ptDroitCompose = new XYDataItem(ptDroit1.getXValue(), aCompose*ptDroit1.getXValue()+bCompose);
+				System.out.println("coucou");
+				switch (operation) {
+				case INTERSECTION:
+					if(ptDroitCompose.getYValue() < 0){
+						/* le point gaucheCompose est sous la droite y=0,
+						 *  il faut donc ajouter le point (xCourant,0) au sef intersection*/
+						resultPts.add(ptDroitCompose.getXValue(), 0);
+					}else{//sinon on ajoute le pointCompose
+						resultPts.add(ptDroitCompose);
+					}
+					break;
+				case UNION:
+					if(ptDroitCompose.getYValue() < 1){
+						/* le point gaucheCompose est sous la droite y=1,
+						 *  il faut donc ajouter le pointCompose au sef intersection*/
+						resultPts.add(ptDroitCompose);
+					}else{//sinon on ajoute le point (xCourant,1)
+						resultPts.add(ptDroitCompose.getXValue(), 1);
+					}
+					break;
+				default:
+					throw new UnknownOperationException();
+				}
+			}
 		}
-
+		
 		/*
 		 * Les bornes sont les plus restreintes pour l'intersection
 		 * et les plus larges pour l'union
