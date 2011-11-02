@@ -79,7 +79,7 @@ public class SefLukaOperation {
 			b1=ptDroit1.getYValue()-a1*ptDroit1.getXValue();
 			a2=(ptGauche2.getYValue()-ptDroit2.getYValue())/(ptGauche2.getXValue()-ptDroit2.getXValue());
 			b2=ptDroit2.getYValue()-a2*ptDroit2.getXValue();
-			System.out.println("La valeur de l'itérateur i d'incide de parcours des points: "+i);
+			//System.out.println("La valeur de l'itérateur i d'incide de parcours des points: "+i);
 			aCompose = a1 + a2;
 			bCompose = b1 + b2 ;
 			switch (operation) {
