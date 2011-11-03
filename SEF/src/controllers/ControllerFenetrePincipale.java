@@ -28,11 +28,16 @@ public class ControllerFenetrePincipale implements ActionListener {
 	
 	private JButton generer;
 	private JButton valider;
+	private JButton ajouterpts;
 	private JMenuItem charger;
 	private JMenuItem sauver;
 	private String fichierouvert;
 	
 	private ArrayList<SEF> mesSEF;
+	
+	
+	//besoin de ce compteur pour la gestion des points
+	private int cpt;
 	
 	public ControllerFenetrePincipale(FenetrePrincipale fp){
 		this.fp = fp;
@@ -45,12 +50,16 @@ public class ControllerFenetrePincipale implements ActionListener {
 		charger = fp.getCharger();
 		charger.addActionListener(this);
 		
+		ajouterpts = fp.getAjouterpts();
+		ajouterpts.addActionListener(this);
+		
 		sauver = fp.getSauver();
 		sauver.addActionListener(this);
 		fc = new JFileChooser();
 		
 		mesSEF = new ArrayList<SEF> ();
 		
+		cpt = 0;
 	}
 
 	public ArrayList<SEF> getMesSEF() {
@@ -161,8 +170,19 @@ public class ControllerFenetrePincipale implements ActionListener {
 					e.printStackTrace();
 				}
 				
-			}
+			}	
 			
+			
+		}
+		
+		if (arg0.getSource()==ajouterpts){
+			System.out.println("ajouter pts");			
+			if (cpt == 0){
+			cpt++;//doit trouver autre chose
+			fp.getSef_entrer().append(""+fp.getTfX().getText()+ " "+fp.getTfY().getText());
+			} else {
+			fp.getSef_entrer().append("\n"+fp.getTfX().getText()+ " "+fp.getTfY().getText());		
+			}
 		}
 		
 	

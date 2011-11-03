@@ -72,7 +72,8 @@ public class Charger {
 		String bornesup = recupbornes.substring(separation+1);
 		System.out.println("Borne inf :"+borneinf);
 		System.out.println("Borne sup :"+bornesup+"\n");
-
+		
+		
 		System.out.println("Nb points détectés :");
 
 		String[] temp;
