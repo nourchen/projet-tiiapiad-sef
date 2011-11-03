@@ -381,6 +381,14 @@ public class FenetreOnglet extends JFrame{
 	public void setJta(JTextArea jta) {
 		this.jta = jta;
 	}
+
+	public JComboBox getChoixTnorme() {
+		return choixTnorme;
+	}
+
+	public JComboBox getChoixTconorme() {
+		return choixTconorme;
+	}
 	
 	
 	

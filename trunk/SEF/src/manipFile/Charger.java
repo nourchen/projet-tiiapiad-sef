@@ -1,5 +1,8 @@
 package manipFile;
 
+import ihm.FenetrePrincipale;
+import controllers.ControllerFenetrePincipale;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,10 +21,14 @@ import manipSef.SEF;
 public class Charger {
 
 	//private static String test = "-inf,2011#-1.5,0;1.25,1;4.2,0.75;5,0";
-	//TODO verifier le remplissage
-	private ArrayList<SEF> mesSEF = new ArrayList<SEF> ();//A remplir au fur et a mesure de la lecture du fichier
-
-	public Charger() {}
+	//TODO verifier le remplissage FenetrePrincipale fp
+	private ArrayList<SEF> mesSEF;// = new ArrayList<SEF> ();//A remplir au fur et a mesure de la lecture du fichier
+	private ControllerFenetrePincipale cfp;
+	
+	public Charger(ArrayList<SEF> mesSEF,ControllerFenetrePincipale cfp) {
+		this.cfp = cfp;
+		this.mesSEF = cfp.getMesSEF();
+	}
 
 	public void chargerfichier(String file) {
 		boolean ok = true;
@@ -109,7 +116,7 @@ public class Charger {
 			// On vide les points valides (vu que le format est incorrect) le clear est peut etre
 			// violent a verifier
 			//TODO verifier le clear
-			mesSEF.clear();
+		//	mesSEF.clear();
 			// Affichage du message d'erreur
 			JOptionPane.showMessageDialog(null,"Erreur ! Format du fichier incorrect !","ERREUR",JOptionPane.ERROR_MESSAGE);
 			// On quitte la boucle si y a une erreur (on arrete la lecture)
