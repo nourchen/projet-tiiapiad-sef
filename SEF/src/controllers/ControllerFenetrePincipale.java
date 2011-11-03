@@ -31,6 +31,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 	private JMenuItem charger;
 	private JMenuItem sauver;
 	private String fichierouvert;
+	
 	private ArrayList<SEF> mesSEF;
 	
 	public ControllerFenetrePincipale(FenetrePrincipale fp){
@@ -52,7 +53,10 @@ public class ControllerFenetrePincipale implements ActionListener {
 		
 	}
 
-	
+	public ArrayList<SEF> getMesSEF() {
+		return mesSEF;
+	}
+
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -73,7 +77,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 				double binf = Double.parseDouble(fp.getEntreBorneInf().getText());
 				double bsup = Double.parseDouble(fp.getEntreBorneSup().getText());
 				//ça ça fait reste a recup' les points
-				SEF temp = new SEF(binf,bsup,new XYSeries("SEF"+mesSEF.size()+1));
+				SEF temp = new SEF(binf,bsup,new XYSeries("SEF"+(mesSEF.size()+1)));
 				
 				String line;
 				while((line = br.readLine()) != null) {
@@ -85,10 +89,10 @@ public class ControllerFenetrePincipale implements ActionListener {
 				
 				}
 				
-				
 				mesSEF.add(temp);
 								
 			} catch (IOException e) {
+				System.out.println("kaboom");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -127,7 +131,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 			       System.out.println("Fichier a ouvrir : " +
 			             fc.getSelectedFile().getAbsolutePath());
 			       fichierouvert = fc.getSelectedFile().getAbsolutePath();
-			       Charger ch = new Charger();
+			       Charger ch = new Charger(mesSEF,this);
 			       ch.chargerfichier(fichierouvert);
 			       // recupere les points avec getmesSEF
 
