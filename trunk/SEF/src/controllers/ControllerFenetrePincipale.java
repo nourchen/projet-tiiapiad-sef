@@ -107,6 +107,14 @@ public class ControllerFenetrePincipale implements ActionListener {
 				fp.getEntreBorneInf().setText("");
 				fp.getEntreBorneSup().setText("");
 				cpt = 0;
+				
+				fp.getGenerer().setEnabled(true);
+				fp.getGenerer().repaint();
+				
+				//déactivation du bouton
+				fp.getValider().setEnabled(false);
+				fp.getValider().repaint();
+				
 			} catch (IOException e) {
 				System.out.println("kaboom");
 				// TODO Auto-generated catch block
@@ -152,6 +160,10 @@ public class ControllerFenetrePincipale implements ActionListener {
 			       // recupere les points avec getmesSEF
 
 			     }
+			    if(mesSEF!=null){
+					fp.getGenerer().setEnabled(true);
+					fp.getGenerer().repaint();
+			    }
 			 
 		}
 		
@@ -183,18 +195,38 @@ public class ControllerFenetrePincipale implements ActionListener {
 		}
 		
 		if (arg0.getSource()==ajouterpts){
-			System.out.println("ajouter pts");			
-			if (cpt == 0){
-			cpt++;//doit trouver autre chose
-			fp.getSef_entrer().append(""+fp.getTfX().getText()+ " "+fp.getTfY().getText());
-			} else {
-			fp.getSef_entrer().append("\n"+fp.getTfX().getText()+ " "+fp.getTfY().getText());		
+			System.out.println(" "+!verifieChampEntrer());
+			if (!verifieChampEntrer()){
+				double tfy = Double.parseDouble(fp.getTfY().getText());
+				if (tfy <= 1){
+				System.out.println("ajouter pts");			
+				if (cpt == 0){
+					cpt++;//doit trouver autre chose
+					fp.getSef_entrer().append(""+fp.getTfX().getText()+ " "+fp.getTfY().getText());
+				} else {
+					fp.getSef_entrer().append("\n"+fp.getTfX().getText()+ " "+fp.getTfY().getText());		
+				}
+				fp.getValider().setEnabled(true);
+				fp.getValider().repaint();
+				}
+			}else {
+				
 			}
 		}
 		
 	
 		
 	}
+	
+	public boolean verifieChampEntrer(){
+		return ( 
+				   (fp.getEntreBorneInf().getText().equals("")) 
+				|| (fp.getEntreBorneSup().getText().equals("")) 
+				|| (fp.getTfX().getText().equals("")) 
+				|| (fp.getTfY().getText().equals(""))
+				);
+	}
+	
 	
 }
 
