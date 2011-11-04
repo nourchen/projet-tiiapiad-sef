@@ -100,7 +100,13 @@ public class ControllerFenetrePincipale implements ActionListener {
 				}
 				
 				mesSEF.add(temp);
-								
+				//reinitialise les champs
+				fp.getSef_entrer().setText("");
+				fp.getTfX().setText("");
+				fp.getTfY().setText("");
+				fp.getEntreBorneInf().setText("");
+				fp.getEntreBorneSup().setText("");
+				cpt = 0;
 			} catch (IOException e) {
 				System.out.println("kaboom");
 				// TODO Auto-generated catch block
