@@ -1,5 +1,7 @@
 package ihm;
 
+import javax.swing.JFrame;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -14,7 +16,7 @@ import org.jfree.ui.ApplicationFrame;
  *
  */
 
-public class FenetreGeometrique extends ApplicationFrame {
+public class FenetreGeometrique extends JFrame {
 
 	//A priori => utiliser XY Plot de JFreeChart?
 
