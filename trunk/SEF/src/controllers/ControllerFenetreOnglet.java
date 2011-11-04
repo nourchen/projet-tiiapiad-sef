@@ -138,21 +138,21 @@ public class ControllerFenetreOnglet implements ActionListener {
 		
 		//Gere la gestion si modif de la JCombobox
 		if(arg0.getSource()==sefComp){
-			fo.getJta().setText("");
+			//fo.getJta().setText("");
 			//System.out.println("Quand ?");
 			int index = fo.getSefComp().getSelectedIndex();
 			SEF test = fo.getMesSEF().get(index);
-			fo.getJta().append("Borne inf : "+test.getBorneInf()+"\n");//+" borne sup"+test.getBorneSup()+"  "+test.getInflexions());
-			fo.getJta().append("Borne sup : "+test.getBorneSup()+"\n");
-			fo.getJta().append("\nListe des points :\n");
+			//fo.getJta().append("Borne inf : "+test.getBorneInf()+"\n");//+" borne sup"+test.getBorneSup()+"  "+test.getInflexions());
+			//fo.getJta().append("Borne sup : "+test.getBorneSup()+"\n");
+			//fo.getJta().append("\nListe des points :\n");
 			test.getInflexions().getItemCount();
 			//test.getInflexions().getDataItem(index);
 			
-			for (int i = 0; i < test.getInflexions().getItemCount(); i++) {
+		/*	for (int i = 0; i < test.getInflexions().getItemCount(); i++) {
 				fo.getJta().append("x: "+test.getInflexions().getDataItem(i).getXValue()+", ");
 				fo.getJta().append("y: "+test.getInflexions().getDataItem(i).getYValue()+".\n");
 			}
-			
+			*/
 		}
 	}
 	

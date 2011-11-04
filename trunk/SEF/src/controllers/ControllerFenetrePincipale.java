@@ -69,6 +69,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		if(arg0.getSource()==valider){
 			System.out.println("click sur valider");
 			System.out.println(fp.getEntreBorneInf().getText());
