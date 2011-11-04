@@ -72,10 +72,13 @@ public class FenetrePrincipale extends JFrame {
         jLabel6 = new JLabel();
         tfY = new JTextField();
         ajouterpts = new JButton();
-      //  menubar = new JMenuBar();
-      //  fichier = new JMenu();
-      //  charger = new JMenuItem();
-      //  sauvegarder = new javax.swing.JMenuItem();
+        
+        if(sef_stocker.getText().equals("")) {
+        	generer.setEnabled(false);
+        }
+        
+        valider.setEnabled(false);
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
