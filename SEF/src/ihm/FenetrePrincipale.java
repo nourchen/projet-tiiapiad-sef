@@ -62,23 +62,19 @@ public class FenetrePrincipale extends JFrame {
 		
         jScrollPane2 = new JScrollPane();
         jScrollPane1 = new JScrollPane();
-        sef_stocker = new JTextArea();
-        generer = new JButton();
         jLabel1 = new JLabel();
         jLabel2 = new JLabel();
         jLabel3 = new JLabel();
         jLabel4 = new JLabel();
         jScrollPane3 = new JScrollPane();
-        sef_entrer = new JTextArea();
-        valider = new JButton();
         jLabel5 = new JLabel();
         tfX = new JTextField();
         jLabel6 = new JLabel();
         tfY = new JTextField();
         ajouterpts = new JButton();
-        menubar = new JMenuBar();
-        fichier = new JMenu();
-        charger = new JMenuItem();
+      //  menubar = new JMenuBar();
+      //  fichier = new JMenu();
+      //  charger = new JMenuItem();
       //  sauvegarder = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
