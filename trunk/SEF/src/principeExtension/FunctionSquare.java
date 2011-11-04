@@ -14,9 +14,13 @@ public class FunctionSquare implements IMapping {
 	public ArrayList<Double> reverse(double x) {
 		ArrayList<Double> antecedents = new ArrayList<Double>();
 		if (x >= 0){
-			antecedents.add(Math.sqrt(x));			
+			antecedents.add(Math.sqrt(x));
+			antecedents.add(- Math.sqrt(x));
 		}
 		return antecedents;
 	}
 
+	public String toString(){
+		return "x²";
+	}
 }
