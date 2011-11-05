@@ -136,12 +136,12 @@ public class ControllerFenetreOnglet implements ActionListener {
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
 			
 			//Zadeh
-			int recup = fo.getChoixTnorme().getSelectedIndex();
-			Norme norme[] = Norme.values();
+			int recupuni = fo.getChoixTconorme().getSelectedIndex();
+			Norme normeuni[] = Norme.values();
 				SEF iinterSef;
 				try {
-					iinterSef = SefManager.getResultOperation(sefi1, sefi2, norme[recup],OperationEnsembliste.UNION);
-					iinterSef.printInflexions();
+					iinterSef = SefManager.getResultOperation(sefi1, sefi2, normeuni[recupuni],OperationEnsembliste.UNION);
+					//iinterSef.printInflexions();
 					mesSefs.addSeries(iinterSef.getInflexions());
 					FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
 					//La string passée en param du constructeur est le titre de la fenetre
