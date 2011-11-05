@@ -87,7 +87,7 @@ public class FenetreOnglet extends JFrame{
 	//un textArea
 	private JTextArea jta;
 	/////////////////////////////////////////////////////////////
-    private javax.swing.JComboBox choixFontion;
+    private javax.swing.JComboBox choixFontion = new JComboBox ();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -154,6 +154,10 @@ public class FenetreOnglet extends JFrame{
 		choixTconorme.addItem("Lukasiewicz");
 		choixTconorme.addItem("probabiliste");
 		
+		choixFontion.addItem("Square");
+		choixFontion.addItem("Cos");
+		
+		
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -195,7 +199,7 @@ public class FenetreOnglet extends JFrame{
      //   choixTconorme = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        choixFontion = new javax.swing.JComboBox();
+    //    choixFontion = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
 
     //    ChoixFoncSef = new javax.swing.JComboBox();

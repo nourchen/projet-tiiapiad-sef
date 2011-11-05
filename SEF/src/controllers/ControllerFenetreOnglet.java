@@ -19,6 +19,10 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.RefineryUtilities;
 
+import principeExtension.Extension;
+import principeExtension.FunctionChoice;
+
+import exceptions.UnknownFunctionException;
 import exceptions.UnknownNormeException;
 import exceptions.UnknownOperationException;
 
@@ -211,6 +215,8 @@ public class ControllerFenetreOnglet implements ActionListener {
 				double borneSupEntree = Double.parseDouble(fo.getJtaExtsup().getText());
 				int indexchoisi = fo.getChoixFoncSef().getSelectedIndex();
 				
+				SEF sefExt = fo.getMesSEF().get(indexchoisi);
+				
 				double borneInfSEF = fo.getMesSEF().get(indexchoisi).getBorneInf();
 				double pluspetitX = fo.getMesSEF().get(indexchoisi).getInflexions().getMinX();
 				
@@ -219,7 +225,52 @@ public class ControllerFenetreOnglet implements ActionListener {
 				
 				if( (borneInfEntree >= borneInfSEF) && (borneInfEntree <= pluspetitX) 
 						&& (borneSupEntree >= plusgrandX) && (borneSupEntree <= borneSupSEF)){
-					System.out.println("Ext");	
+					System.out.println("Ext");
+					
+					XYSeriesCollection mesSefs= new XYSeriesCollection();
+					if(fo.getChoixFontion().getSelectedIndex() == 0){
+						System.out.println("Square");
+						try {
+							Extension ext = new Extension(sefExt,borneInfEntree,borneSupEntree,FunctionChoice.SQUARE);
+							SEF toto = ext.getExtendedSef();
+							mesSefs.addSeries(toto.getInflexions());
+							FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
+							//La string passée en param du constructeur est le titre de la fenetre
+							frame.pack();//? Que fait cette commande?
+							RefineryUtilities.centerFrameOnScreen(frame);
+							frame.setVisible(true);
+						} catch (UnknownFunctionException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					
+					if(fo.getChoixFontion().getSelectedIndex() == 1){
+						System.out.println("Cos");
+						
+					//	XYSeriesCollection mesSefs= new XYSeriesCollection();
+						if(fo.getChoixFontion().getSelectedIndex() == 0){
+							System.out.println("Square");
+							try {
+								Extension ext = new Extension(sefExt,borneInfEntree,borneSupEntree,FunctionChoice.COS);
+								SEF toto = ext.getExtendedSef();
+								mesSefs.addSeries(toto.getInflexions());
+								FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
+								//La string passée en param du constructeur est le titre de la fenetre
+								frame.pack();//? Que fait cette commande?
+								RefineryUtilities.centerFrameOnScreen(frame);
+								frame.setVisible(true);
+							} catch (UnknownFunctionException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+						
+						
+						
+					}
+					
+					
 				}
 			}
 		}
