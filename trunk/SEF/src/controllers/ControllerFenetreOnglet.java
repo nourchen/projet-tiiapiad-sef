@@ -235,6 +235,7 @@ public class ControllerFenetreOnglet implements ActionListener {
 			//System.out.println("Quand ?");
 			int index = fo.getSefComp().getSelectedIndex();
 			SEF test = fo.getMesSEF().get(index);
+			fo.getJtaComp().append(""+ test.getInflexions().getKey()+"\n");
 			fo.getJtaComp().append("Borne inf : "+test.getBorneInf()+"\n");//+" borne sup"+test.getBorneSup()+"  "+test.getInflexions());
 			fo.getJtaComp().append("Borne sup : "+test.getBorneSup()+"\n");
 			fo.getJtaComp().append("\nListe des points :\n");
@@ -253,6 +254,7 @@ public class ControllerFenetreOnglet implements ActionListener {
 			System.out.println("Quand ?");
 			int index = fo.getSefChoixinter1().getSelectedIndex();
 			SEF test = fo.getMesSEF().get(index);
+			fo.getJtaInter1().append(""+ test.getInflexions().getKey()+"\n");
 			fo.getJtaInter1().append("Borne inf : "+test.getBorneInf()+"\n");//+" borne sup"+test.getBorneSup()+"  "+test.getInflexions());
 			fo.getJtaInter1().append("Borne sup : "+test.getBorneSup()+"\n");
 			fo.getJtaInter1().append("\nListe des points :\n");
@@ -271,6 +273,7 @@ public class ControllerFenetreOnglet implements ActionListener {
 			System.out.println("Quand ?");
 			int index = fo.getSefChoixinter2().getSelectedIndex();
 			SEF test = fo.getMesSEF().get(index);
+			fo.getJtaInter2().append(""+ test.getInflexions().getKey()+"\n");
 			fo.getJtaInter2().append("Borne inf : "+test.getBorneInf()+"\n");//+" borne sup"+test.getBorneSup()+"  "+test.getInflexions());
 			fo.getJtaInter2().append("Borne sup : "+test.getBorneSup()+"\n");
 			fo.getJtaInter2().append("\nListe des points :\n");
@@ -289,6 +292,7 @@ public class ControllerFenetreOnglet implements ActionListener {
 			System.out.println("Quand ?");
 			int index = fo.getSefChoixUni1().getSelectedIndex();
 			SEF test = fo.getMesSEF().get(index);
+			fo.getJtaUni1().append(""+ test.getInflexions().getKey()+"\n");
 			fo.getJtaUni1().append("Borne inf : "+test.getBorneInf()+"\n");//+" borne sup"+test.getBorneSup()+"  "+test.getInflexions());
 			fo.getJtaUni1().append("Borne sup : "+test.getBorneSup()+"\n");
 			fo.getJtaUni1().append("\nListe des points :\n");
@@ -307,6 +311,7 @@ public class ControllerFenetreOnglet implements ActionListener {
 			System.out.println("Quand ?");
 			int index = fo.getSefChoixUni2().getSelectedIndex();
 			SEF test = fo.getMesSEF().get(index);
+			fo.getJtaUni2().append(""+ test.getInflexions().getKey()+"\n");
 			fo.getJtaUni2().append("Borne inf : "+test.getBorneInf()+"\n");//+" borne sup"+test.getBorneSup()+"  "+test.getInflexions());
 			fo.getJtaUni2().append("Borne sup : "+test.getBorneSup()+"\n");
 			fo.getJtaUni2().append("\nListe des points :\n");
@@ -325,6 +330,7 @@ public class ControllerFenetreOnglet implements ActionListener {
 			System.out.println("Quand ?");
 			int index = fo.getChoixFoncSef().getSelectedIndex();
 			SEF test = fo.getMesSEF().get(index);
+			fo.getJtaExt().append(""+ test.getInflexions().getKey()+"\n");
 			fo.getJtaExt().append("Borne inf : "+test.getBorneInf()+"\n");//+" borne sup"+test.getBorneSup()+"  "+test.getInflexions());
 			fo.getJtaExt().append("Borne sup : "+test.getBorneSup()+"\n");
 			fo.getJtaExt().append("\nListe des points :\n");
@@ -342,13 +348,14 @@ public class ControllerFenetreOnglet implements ActionListener {
 	}
 	
 	public void rajouter(SEF sef){
-		int index = fo.getMesSEF().size();
-		fo.getSefChoixinter1().addItem("SEF "+index);
-		fo.getSefChoixinter2().addItem("SEF "+index);
-		fo.getSefChoixUni1().addItem("SEF "+index);
-		fo.getSefChoixUni2().addItem("SEF "+index);
-		fo.getSefComp().addItem("SEF "+index);
-		fo.getChoixFoncSef().addItem("SEF "+index);
+		fo.getSefChoixinter1().addItem(sef.getInflexions().getKey());
+		fo.getSefChoixinter2().addItem(sef.getInflexions().getKey());
+		fo.getSefChoixUni1().addItem(sef.getInflexions().getKey());
+		fo.getSefChoixUni2().addItem(sef.getInflexions().getKey());
+		fo.getSefComp().addItem(sef.getInflexions().getKey());
+		fo.getChoixFoncSef().addItem(sef.getInflexions().getKey());
+		//fo.getTotal()
+		//fo.getjListAffSEF().add
 	}
 	
 	

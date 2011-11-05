@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel; //peut etre besoin rapidement
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -97,6 +98,11 @@ public class FenetreOnglet extends JFrame{
     private JTextArea jtaUni1;
     private JTextArea jtaUni2;
     private JTextField jtfExtinf;
+    private javax.swing.JButton tracerAffSAF;
+    private JScrollPane jScrollPane7;
+    private JList jListAffSEF;
+    private JPanel jPanel6 = new JPanel();;
+    private String[] total;
 
 	
 	public FenetreOnglet(ArrayList<SEF> mesSEF){
@@ -106,17 +112,20 @@ public class FenetreOnglet extends JFrame{
 		setVisible(true);
 		// remplissage des combobox:
 		for (int i = 0; i < mesSEF.size(); i++){
-			sefComp.addItem("SEF "+(i+1));
+			sefComp.addItem(mesSEF.get(i).getInflexions().getKey());
 			
-			sefChoixinter1.addItem("SEF "+(i+1));
-			sefChoixinter2.addItem("SEF "+(i+1));
+			sefChoixinter1.addItem(mesSEF.get(i).getInflexions().getKey());
+			sefChoixinter2.addItem(mesSEF.get(i).getInflexions().getKey());
 			
-			sefChoixUni1.addItem("SEF "+(i+1));
-			sefChoixUni2.addItem("SEF "+(i+1));
+			sefChoixUni1.addItem(mesSEF.get(i).getInflexions().getKey());
+			sefChoixUni2.addItem(mesSEF.get(i).getInflexions().getKey());
 			
-			ChoixFoncSef.addItem("SEF "+(i+1));
+			ChoixFoncSef.addItem(mesSEF.get(i).getInflexions().getKey());
 		}
-	
+		total = recupNom(mesSEF);
+		jListAffSEF = new JList(total);
+		
+		
 	/*	choixTnorme.addItem("Zadeh");
 		choixTnorme.addItem("Lukasiewicz");
 		choixTnorme.addItem("probabiliste");
@@ -195,9 +204,14 @@ public class FenetreOnglet extends JFrame{
        JLabel jLabel17 = new JLabel();
        JLabel jLabel18 = new JLabel();
        JLabel jLabel19 = new JLabel();
+       tracerAffSAF = new javax.swing.JButton();
+       jScrollPane7 = new javax.swing.JScrollPane();
+      // jListAffSEF = new javax.swing.JList();
+       
    //     ChoixFoncSef = new javax.swing.JComboBox();
    //     traceExt = new javax.swing.JButton();		
 		// code pour la fenetre
+
 
        jLabel1.setText("Selectionner le SEF ");
 
@@ -346,8 +360,8 @@ public class FenetreOnglet extends JFrame{
 
        traceUni.setText("Tracer");
 
-
        jLabel7.setText("SEF numero 1 :");
+
 
 
        jLabel8.setText("information :");
@@ -467,6 +481,7 @@ public class FenetreOnglet extends JFrame{
 
        traceExt.setText("Tracer");
 
+
        jtaExt.setColumns(20);
        jtaExt.setEditable(false);
        jtaExt.setRows(5);
@@ -488,25 +503,12 @@ public class FenetreOnglet extends JFrame{
                .addGap(40, 40, 40)
                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                    .addGroup(jPanel4Layout.createSequentialGroup()
-                       .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addGap(18, 18, 18)
-                       .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                           .addComponent(ChoixFoncSef, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                           .addComponent(choixFontion, javax.swing.GroupLayout.Alignment.LEADING, 0, 110, Short.MAX_VALUE)
-                           .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                               .addGap(6, 6, 6)
-                               .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                               .addContainerGap())))
-                   .addGroup(jPanel4Layout.createSequentialGroup()
                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                        .addContainerGap())
                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                       .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                           .addComponent(jLabel11)
-                           .addGroup(jPanel4Layout.createSequentialGroup()
-                               .addGap(10, 10, 10)
-                               .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                       .addGap(10, 10, 10)
+                       .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                       .addGap(115, 115, 115)
                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                            .addComponent(traceExt, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                            .addGroup(jPanel4Layout.createSequentialGroup()
@@ -517,7 +519,21 @@ public class FenetreOnglet extends JFrame{
                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                    .addComponent(jtfExtinf, javax.swing.GroupLayout.Alignment.TRAILING)
                                    .addComponent(jtaExtsup, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))))
-                       .addGap(49, 49, 49))))
+                       .addGap(49, 49, 49))
+                   .addGroup(jPanel4Layout.createSequentialGroup()
+                       .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                           .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                           .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                       .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addGroup(jPanel4Layout.createSequentialGroup()
+                               .addGap(24, 24, 24)
+                               .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                           .addGroup(jPanel4Layout.createSequentialGroup()
+                               .addGap(18, 18, 18)
+                               .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                   .addComponent(choixFontion, 0, 311, Short.MAX_VALUE)
+                                   .addComponent(ChoixFoncSef, 0, 311, Short.MAX_VALUE))))
+                       .addContainerGap())))
        );
        jPanel4Layout.setVerticalGroup(
            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -525,11 +541,11 @@ public class FenetreOnglet extends JFrame{
                .addGap(42, 42, 42)
                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                   .addComponent(choixFontion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                   .addComponent(ChoixFoncSef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGap(33, 33, 33)
                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                   .addComponent(ChoixFoncSef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                   .addComponent(choixFontion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGap(27, 27, 27)
                .addComponent(jLabel15)
                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -551,6 +567,36 @@ public class FenetreOnglet extends JFrame{
        );
 
        jTabbedPane1.addTab("Extension", jPanel4);
+
+       tracerAffSAF.setText("Tracer");
+
+       jScrollPane7.setViewportView(jListAffSEF);
+
+       javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+       jPanel6.setLayout(jPanel6Layout);
+       jPanel6Layout.setHorizontalGroup(
+           jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+           .addGroup(jPanel6Layout.createSequentialGroup()
+               .addContainerGap(228, Short.MAX_VALUE)
+               .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                   .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                       .addComponent(tracerAffSAF)
+                       .addGap(254, 254, 254))
+                   .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                       .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                       .addGap(227, 227, 227))))
+       );
+       jPanel6Layout.setVerticalGroup(
+           jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+           .addGroup(jPanel6Layout.createSequentialGroup()
+               .addGap(33, 33, 33)
+               .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addGap(36, 36, 36)
+               .addComponent(tracerAffSAF)
+               .addContainerGap(56, Short.MAX_VALUE))
+       );
+
+       jTabbedPane1.addTab("Affichage SEF", jPanel6);
 
        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
        getContentPane().setLayout(layout);
@@ -695,5 +741,30 @@ public class FenetreOnglet extends JFrame{
 	}
 	
 	
+	
+	public JList getjListAffSEF() {
+		return jListAffSEF;
+	}
+
+	
+
+	public String[] getTotal() {
+		return total;
+	}
+
+	
+	public javax.swing.JButton getTracerAffSAF() {
+		return tracerAffSAF;
+	}
+
+
+	public String[] recupNom(ArrayList<SEF> mesSEF){
+		String[] res = new String[mesSEF.size()];
+		for(int i =0; i<mesSEF.size();i++){
+			res[i]= (String)mesSEF.get(i).getInflexions().getKey();
+		}
+		
+		return res;
+	}
 	
 }
