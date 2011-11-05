@@ -564,7 +564,7 @@ public class FenetreOnglet extends JFrame{
        );
 
        pack();
-		ControllerFenetreOnglet cfo = new ControllerFenetreOnglet(this);
+		new ControllerFenetreOnglet(this);
 		
 	}
 

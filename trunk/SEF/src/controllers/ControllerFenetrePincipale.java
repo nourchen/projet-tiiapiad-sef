@@ -2,6 +2,7 @@ package controllers;
 
 import ihm.FenetreOnglet;
 import ihm.FenetrePrincipale;
+import ihm.FenetreSauver;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -185,8 +186,10 @@ public class ControllerFenetrePincipale implements ActionListener {
 		
 		if(arg0.getSource()==sauver){
 			System.out.println("click sur sauvegarder");
-			fc.setFileFilter(new Filtre());
-			int returnVal = fc.showSaveDialog(fp);
+		//	fc.setFileFilter(new Filtre());
+		//	int returnVal = fc.showSaveDialog(fp);
+			FenetreSauver fs = new FenetreSauver(mesSEF);
+			/*
 			if(returnVal == JFileChooser.APPROVE_OPTION) {
 				System.out.println("Fichier a ecrire : " +
 			             fc.getSelectedFile().getName());
@@ -205,7 +208,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 					e.printStackTrace();
 				}
 				
-			}	
+			}*/	
 			
 			
 		}
