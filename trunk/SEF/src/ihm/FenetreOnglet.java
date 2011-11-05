@@ -71,7 +71,7 @@ public class FenetreOnglet extends JFrame{
 	private JComboBox sefChoixUni2 = new JComboBox();
 	private JComboBox choixTconorme = new JComboBox();
 	
-	//Extention
+	//Extension
 //	private JComboBox choixFontion = new JComboBox();
 	private JComboBox ChoixFoncSef = new JComboBox();
 	
@@ -564,7 +564,7 @@ public class FenetreOnglet extends JFrame{
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Extention", jPanel4);
+        jTabbedPane1.addTab("Extension", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
