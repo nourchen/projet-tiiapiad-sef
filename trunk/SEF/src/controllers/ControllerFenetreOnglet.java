@@ -85,13 +85,14 @@ public class ControllerFenetreOnglet implements ActionListener {
 			SEF test = fo.getMesSEF().get(index);
 		//	fo.getDonnees().setText("Borne inf"+test.getBorneInf()+" borne sup"+test.getBorneSup());
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
-			mesSefs.addSeries(test.getInflexions());
+			//mesSefs.addSeries(test.getInflexions());
 			mesSefs.addSeries(SefComplement.getComplement(test).getInflexions());
 			FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
 			//La string passée en param du constructeur est le titre de la fenetre
 			frame.pack();//? Que fait cette commande?
 			RefineryUtilities.centerFrameOnScreen(frame);
-			frame.setVisible(true);		
+			frame.setVisible(true);
+			
 		}		
 		if(arg0.getSource()==traceInter){
 			System.out.println("Inter");
@@ -102,33 +103,36 @@ public class ControllerFenetreOnglet implements ActionListener {
 			SEF sefi2 = fo.getMesSEF().get(indexSEF2);
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
 			
-			
 			int recup = fo.getChoixTnorme().getSelectedIndex();
 			Norme norme[] = Norme.values();
 				SEF iinterSef;
 				try {
-					iinterSef = SefManager.getResultOperation(sefi1, sefi2, norme[recup],OperationEnsembliste.INTERSECTION);
-					iinterSef.printInflexions();
-					mesSefs.addSeries(iinterSef.getInflexions());
-					FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
-					//La string passée en param du constructeur est le titre de la fenetre
-					frame.pack();//? Que fait cette commande?
-					RefineryUtilities.centerFrameOnScreen(frame);
-					frame.setVisible(true);
-				} catch (UnknownNormeException e) {
-					System.out.println("La norme n'est pas connue!");
+						iinterSef = SefManager.getResultOperation(sefi1, sefi2, norme[recup],OperationEnsembliste.INTERSECTION);
+						iinterSef.printInflexions();
+						mesSefs.addSeries(iinterSef.getInflexions());
+						FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
+						//La string passée en param du constructeur est le titre de la fenetre
+						frame.pack();//? Que fait cette commande?
+						RefineryUtilities.centerFrameOnScreen(frame);
+						frame.setVisible(true);
+						fo.getMesSEF().add(iinterSef);
+						rajouter(iinterSef);
+				}
 					
+				 catch (UnknownNormeException e) {
+					System.out.println("La norme n'est pas connue!");
 					e.printStackTrace();
 				} catch (UnknownOperationException e) {
 					System.out.println("L'operation n'est pas connue!");
-					
 					e.printStackTrace();
+
 				} catch (NormalizationException e) {
 					System.out.println("La normalisation n'a pas fonctionné!");
 					e.printStackTrace();
 
+
 				}
-			}
+	}
 		
 		if(arg0.getSource()==traceUni){
 			System.out.println("Uni");
@@ -143,15 +147,17 @@ public class ControllerFenetreOnglet implements ActionListener {
 			//Zadeh
 			int recupuni = fo.getChoixTconorme().getSelectedIndex();
 			Norme normeuni[] = Norme.values();
-				SEF iinterSef;
+				SEF uniSef;
 				try {
-					iinterSef = SefManager.getResultOperation(sefi1, sefi2, normeuni[recupuni],OperationEnsembliste.UNION);
+					uniSef = SefManager.getResultOperation(sefi1, sefi2, normeuni[recupuni],OperationEnsembliste.UNION);
 					//iinterSef.printInflexions();
-					mesSefs.addSeries(iinterSef.getInflexions());
+					mesSefs.addSeries(uniSef.getInflexions());
 					FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
 					//La string passée en param du constructeur est le titre de la fenetre
 					frame.pack();//? Que fait cette commande?
 					RefineryUtilities.centerFrameOnScreen(frame);
+					fo.getMesSEF().add(uniSef);
+					rajouter(uniSef);
 					frame.setVisible(true);
 				} catch (UnknownNormeException e) {
 					System.out.println("La norme n'est pas connue!");
@@ -161,9 +167,11 @@ public class ControllerFenetreOnglet implements ActionListener {
 					System.out.println("L'operation n'est pas connue!");
 					
 					e.printStackTrace();
+
 				} catch (NormalizationException e) {
 					e.printStackTrace();
 					System.out.println("La normalisation n'a pas fonctionné!");
+
 
 				}
 			}			
@@ -199,6 +207,8 @@ public class ControllerFenetreOnglet implements ActionListener {
 							frame.pack();//? Que fait cette commande?
 							RefineryUtilities.centerFrameOnScreen(frame);
 							frame.setVisible(true);
+							fo.getMesSEF().add(toto);
+							rajouter(toto);
 						} catch (UnknownFunctionException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -317,6 +327,16 @@ public class ControllerFenetreOnglet implements ActionListener {
 		}
 		
 		
+	}
+	
+	public void rajouter(SEF sef){
+		int index = fo.getMesSEF().size();
+		fo.getSefChoixinter1().addItem("SEF "+index);
+		fo.getSefChoixinter2().addItem("SEF "+index);
+		fo.getSefChoixUni1().addItem("SEF "+index);
+		fo.getSefChoixUni2().addItem("SEF "+index);
+		fo.getSefComp().addItem("SEF "+index);
+		fo.getChoixFoncSef().addItem("SEF "+index);
 	}
 	
 	
