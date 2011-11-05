@@ -1,21 +1,34 @@
 package manipFile;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.ListCellRenderer;
+import javax.swing.ListSelectionModel;
 
 import manipSef.SEF;
 
-public class Sauver {
+public class Sauver extends JFrame {
 
 	// Avant de sauver : 
 	// 1)verif que c'est une fonction (pas de y avec deux abscisses) pas de y > 1
 	// 2)ordonner selon les x
+	private JList couleursJList;
+	private JLabel label;
+	private JButton button;
+	//----- constantes
 	
 	public Sauver () {
-		
 	}
 	
 	public void infoFichier(String chemin, ArrayList<SEF> mesSEF) throws IOException{
@@ -56,6 +69,6 @@ public class Sauver {
 		ecrit.close();
 		System.out.println("test sauvegarde fini");
 	}
-	   	 	
+	
 	
 }
