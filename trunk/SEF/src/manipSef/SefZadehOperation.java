@@ -14,12 +14,24 @@ public class SefZadehOperation {
 
 
 	public static SEF getZadehResult(SEF sef1, SEF sef2,OperationEnsembliste operation)
-			throws UnknownOperationException{
+			throws UnknownOperationException, NormalizationException{
+		
 		XYSeries ptsSef1,ptsSef2;
-		ptsSef1 = sef1.getInflexions();
-		ptsSef2 = sef2.getInflexions();
 		sef1.printInflexions();
 		sef2.printInflexions();
+		try {
+			ptsSef1 = sef1.getInflexions().createCopy(0,sef1.getInflexions().getItemCount()-1);
+			ptsSef1.setKey(sef1.getInflexions().getKey());
+			ptsSef2 = sef2.getInflexions().createCopy(0,sef2.getInflexions().getItemCount()-1);
+			ptsSef2.setKey(sef2.getInflexions().getKey());
+
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			System.out.println("Il y a eu un souci dans la copie de la liste de points du sef "
+					+sef1.getInflexions().getKey());
+			throw new NormalizationException();
+		}
+		
 		try {
 			SefDiscretizer.normalizeSerie(ptsSef1, sef1.getBorneInf(), sef1.getBorneSup(),
 					ptsSef2,sef2.getBorneInf(), sef2.getBorneSup());
