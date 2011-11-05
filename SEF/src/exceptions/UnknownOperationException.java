@@ -10,7 +10,7 @@ package exceptions;
 public class UnknownOperationException extends Exception {
 
 	/**
-	 * 
+	 * identifiant serie
 	 */
 	private static final long serialVersionUID = -8199095207730464713L;
 
