@@ -155,7 +155,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 			       System.out.println("Fichier a ouvrir : " +
 			             fc.getSelectedFile().getAbsolutePath());
 			       fichierouvert = fc.getSelectedFile().getAbsolutePath();
-			       Charger ch = new Charger(mesSEF,this);
+			       Charger ch = new Charger(mesSEF,this,fp);
 			       ch.chargerfichier(fichierouvert);
 			       // recupere les points avec getmesSEF
 

@@ -90,11 +90,8 @@ public class ControllerFenetreOnglet implements ActionListener {
 			//La string passée en param du constructeur est le titre de la fenetre
 			frame.pack();//? Que fait cette commande?
 			RefineryUtilities.centerFrameOnScreen(frame);
-			frame.setVisible(true);
-			
-			
-		}
-		
+			frame.setVisible(true);		
+		}		
 		if(arg0.getSource()==traceInter){
 			System.out.println("Inter");
 			int indexSEF1 = fo.getSefChoixinter1().getSelectedIndex();
@@ -127,8 +124,6 @@ public class ControllerFenetreOnglet implements ActionListener {
 					e.printStackTrace();
 				}
 			}
-			
-		
 		
 		if(arg0.getSource()==traceUni){
 			System.out.println("Uni");
@@ -163,8 +158,7 @@ public class ControllerFenetreOnglet implements ActionListener {
 					e.printStackTrace();
 				}
 			}			
-		
-		
+			
 		if(arg0.getSource()==traceExt){
 			if(!(fo.getJtfExtinf().getText().equals("")) && !(fo.getJtaExtsup().getText().equals(""))){
 				
@@ -199,10 +193,7 @@ public class ControllerFenetreOnglet implements ActionListener {
 						} catch (UnknownFunctionException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}
-					
-					
-					
+						}				
 				}
 			}
 		}

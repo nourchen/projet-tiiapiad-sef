@@ -24,10 +24,12 @@ public class Charger {
 	//TODO verifier le remplissage FenetrePrincipale fp
 	private ArrayList<SEF> mesSEF;// = new ArrayList<SEF> ();//A remplir au fur et a mesure de la lecture du fichier
 	private ControllerFenetrePincipale cfp;
+	private FenetrePrincipale fp;
 	
-	public Charger(ArrayList<SEF> mesSEF,ControllerFenetrePincipale cfp) {
+	public Charger(ArrayList<SEF> mesSEF,ControllerFenetrePincipale cfp,FenetrePrincipale fp) {
 		this.cfp = cfp;
 		this.mesSEF = cfp.getMesSEF();
+		this.fp = fp;
 	}
 
 	public void chargerfichier(String file) {
@@ -85,15 +87,19 @@ public class Charger {
 
 		XYSeries pts = new XYSeries("SEF "+(mesSEF.size()+1));
 		// la on peut reccuperer les bonnes valeurs : reste a les stocker proprement
+		String stocker ="";
 		for (int k = 0; k < temp.length ; k++){
 			int recup = temp[k].indexOf(",");
 			String valX = temp[k].substring(0, recup);
 			String valY = temp[k].substring(recup+1);
 			System.out.println("Valx  " +valX+ "  Val Y :" +valY);
+			stocker +=""+valX+" "+valY+"\n";
 			pts.add((Double.parseDouble(valX)) ,
 					Double.parseDouble(valY));    
 		}
-
+		stocker = stocker.substring(0, stocker.length() - 1);
+		fp.pointEntree(borneinf,bornesup,stocker);
+		
 		double binf;
 		double bsup;
 
