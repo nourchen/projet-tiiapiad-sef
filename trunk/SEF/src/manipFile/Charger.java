@@ -83,7 +83,7 @@ public class Charger {
 
 		temp = ptsInflexion.split(delimiterPoint);
 
-		XYSeries pts = new XYSeries("quel nom tu veux lui donner ici?");
+		XYSeries pts = new XYSeries("SEF "+(mesSEF.size()+1));
 		// la on peut reccuperer les bonnes valeurs : reste a les stocker proprement
 		for (int k = 0; k < temp.length ; k++){
 			int recup = temp[k].indexOf(",");

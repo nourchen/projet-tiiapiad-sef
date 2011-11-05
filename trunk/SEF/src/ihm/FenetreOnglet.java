@@ -68,7 +68,7 @@ public class FenetreOnglet extends JFrame{
 	private JComboBox choixTconorme = new JComboBox();
 	
 	//Extention
-	private JComboBox choixFontion = new JComboBox();
+//	private JComboBox choixFontion = new JComboBox();
 	private JComboBox ChoixFoncSef = new JComboBox();
 	
 	//Bouton pour valider la trace (je vais metre un bouton par panel laissant ainsi le choix)
@@ -87,15 +87,15 @@ public class FenetreOnglet extends JFrame{
 	//un textArea
 	private JTextArea jta;
 	/////////////////////////////////////////////////////////////
-    private javax.swing.JComboBox jComboBox6;
-    private javax.swing.JComboBox jComboBox8;
-    private javax.swing.JComboBox jComboBox9;
+    private javax.swing.JComboBox choixFontion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -114,15 +114,19 @@ public class FenetreOnglet extends JFrame{
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
-	
+    private javax.swing.JTextArea jtaComp;
+    private javax.swing.JTextArea jtaExt;
+    private javax.swing.JTextField jtaExtsup;
+    private javax.swing.JTextArea jtaInter1;
+    private javax.swing.JTextArea jtaInter2;
+    private javax.swing.JTextArea jtaUni1;
+    private javax.swing.JTextArea jtaUni2;
+    private javax.swing.JTextField jtfExtinf;
+
 	
 	public FenetreOnglet(ArrayList<SEF> mesSEF){
 	
@@ -150,69 +154,71 @@ public class FenetreOnglet extends JFrame{
 		choixTconorme.addItem("Lukasiewicz");
 		choixTconorme.addItem("probabiliste");
 		
-		// Code obtenu avec netbeans : (a nettoyer demain)
-		
-		//intit des variables :
-		jTabbedPane4 = new javax.swing.JTabbedPane();
+        jTabbedPane4 = new javax.swing.JTabbedPane();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-    //    sefComp = new javax.swing.JComboBox();
+     //   sefComp = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        traceComp = new javax.swing.JButton();
+     //   traceComp = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jtaComp = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-   //     traceInter = new javax.swing.JButton();
+    //    traceInter = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-   //     sefChoixinter1 = new javax.swing.JComboBox();
+    //    sefChoixinter1 = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jtaInter1 = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-   //     sefChoixinter2 = new javax.swing.JComboBox();
+        jtaInter2 = new javax.swing.JTextArea();
+    //    sefChoixinter2 = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox();
+     //   choixTnorme = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         traceUni = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-   //     sefChoixUni1 = new javax.swing.JComboBox();
+    //    sefChoixUni1 = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        jtaUni1 = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
-   //     sefChoixUni2 = new javax.swing.JComboBox();
+        jtaUni2 = new javax.swing.JTextArea();
+     //   sefChoixUni2 = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox();
+     //   choixTconorme = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox();
+        choixFontion = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
-   //     ChoixFoncSef = new javax.swing.JComboBox();
-   //     traceExt = new javax.swing.JButton();
-		
-		
-		
-		// code pour la fenetre
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+    //    ChoixFoncSef = new javax.swing.JComboBox();
+        traceExt = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jtaExt = new javax.swing.JTextArea();
+        jLabel15 = new javax.swing.JLabel();
+        jtfExtinf = new javax.swing.JTextField();
+        jtaExtsup = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+
+   //     ChoixFoncSef = new javax.swing.JComboBox();
+   //     traceExt = new javax.swing.JButton();		
+		// code pour la fenetre
 
         jLabel1.setText("Selectionner le SEF ");
 
         traceComp.setText("Tracer");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setEditable(false);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jtaComp.setColumns(20);
+        jtaComp.setEditable(false);
+        jtaComp.setRows(5);
+        jScrollPane1.setViewportView(jtaComp);
 
         jLabel2.setText("Information sur le SEF :");
 
@@ -261,17 +267,19 @@ public class FenetreOnglet extends JFrame{
 
         jLabel4.setText("information :");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jtaInter1.setColumns(20);
+        jtaInter1.setEditable(false);
+        jtaInter1.setRows(5);
+        jScrollPane2.setViewportView(jtaInter1);
 
         jLabel5.setText("SEF numero 2 :");
 
         jLabel6.setText("information :");
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        jtaInter2.setColumns(20);
+        jtaInter2.setEditable(false);
+        jtaInter2.setRows(5);
+        jScrollPane3.setViewportView(jtaInter2);
 
         jLabel13.setText("Choix T-Norme :");
 
@@ -349,22 +357,26 @@ public class FenetreOnglet extends JFrame{
         jTabbedPane1.addTab("Intersection", jPanel2);
 
         traceUni.setText("Tracer");
+      
 
         jLabel7.setText("SEF numero 1 :");
+    
 
         jLabel8.setText("information :");
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane4.setViewportView(jTextArea4);
+        jtaUni1.setColumns(20);
+        jtaUni1.setEditable(false);
+        jtaUni1.setRows(5);
+        jScrollPane4.setViewportView(jtaUni1);
 
         jLabel9.setText("SEF numero 2 :");
 
         jLabel10.setText("information :");
 
-        jTextArea5.setColumns(20);
-        jTextArea5.setRows(5);
-        jScrollPane5.setViewportView(jTextArea5);
+        jtaUni2.setColumns(20);
+        jtaUni2.setEditable(false);
+        jtaUni2.setRows(5);
+        jScrollPane5.setViewportView(jtaUni2);
 
         jLabel14.setText("Choix T-Conorme :");
 
@@ -466,31 +478,48 @@ public class FenetreOnglet extends JFrame{
         jLabel12.setText("Choisissez le SEF :");
 
         traceExt.setText("Tracer");
- 
+
+        jtaExt.setColumns(20);
+        jtaExt.setEditable(false);
+        jtaExt.setRows(5);
+        jScrollPane6.setViewportView(jtaExt);
+
+        jLabel15.setText("borne inf :");
+
+        jLabel16.setText("borne sup :");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(229, 229, 229)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(ChoixFoncSef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(265, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(267, Short.MAX_VALUE)
-                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(262, 262, 262))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(222, Short.MAX_VALUE)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(189, 189, 189))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(251, Short.MAX_VALUE)
-                .addComponent(traceExt)
-                .addGap(243, 243, 243))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(choixFontion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(262, 262, 262))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(18, 18, 18)
+                        .addComponent(jtfExtinf, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addComponent(ChoixFoncSef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jtaExtsup, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(traceExt)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(204, 204, 204))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(180, 180, 180))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(171, 171, 171))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -498,14 +527,21 @@ public class FenetreOnglet extends JFrame{
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(choixFontion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ChoixFoncSef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(jtfExtinf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtaExtsup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
                 .addGap(18, 18, 18)
-                .addComponent(ChoixFoncSef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(traceExt)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Extention", jPanel4);
@@ -521,7 +557,6 @@ public class FenetreOnglet extends JFrame{
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
         );
 
-		
 		//Fin du code générer
         
         pack();
@@ -604,6 +639,56 @@ public class FenetreOnglet extends JFrame{
 
 	public JComboBox getChoixTconorme() {
 		return choixTconorme;
+	}
+
+
+	public JComboBox getChoixFontion() {
+		return choixFontion;
+	}
+
+
+	public JComboBox getChoixFoncSef() {
+		return ChoixFoncSef;
+	}
+
+
+	public javax.swing.JTextArea getJtaComp() {
+		return jtaComp;
+	}
+
+
+	public javax.swing.JTextArea getJtaExt() {
+		return jtaExt;
+	}
+
+
+	public javax.swing.JTextField getJtaExtsup() {
+		return jtaExtsup;
+	}
+
+
+	public javax.swing.JTextArea getJtaInter1() {
+		return jtaInter1;
+	}
+
+
+	public javax.swing.JTextArea getJtaInter2() {
+		return jtaInter2;
+	}
+
+
+	public javax.swing.JTextArea getJtaUni1() {
+		return jtaUni1;
+	}
+
+
+	public javax.swing.JTextArea getJtaUni2() {
+		return jtaUni2;
+	}
+
+
+	public javax.swing.JTextField getJtfExtinf() {
+		return jtfExtinf;
 	}
 	
 	
