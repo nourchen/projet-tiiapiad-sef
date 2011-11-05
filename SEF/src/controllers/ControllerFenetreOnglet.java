@@ -211,6 +211,8 @@ public class ControllerFenetreOnglet implements ActionListener {
 						try {
 							Extension ext = new Extension(sefExt,borneInfEntree,borneSupEntree,fc[recup]);
 							SEF toto = ext.getExtendedSef();
+//							System.out.println("Les points du sef étendu que l'on demande à afficher:\n");
+//							toto.printInflexions();
 							mesSefs.addSeries(toto.getInflexions());
 							FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
 							//La string passée en param du constructeur est le titre de la fenetre
