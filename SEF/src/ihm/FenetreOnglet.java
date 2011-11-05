@@ -22,6 +22,10 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import principeExtension.FunctionChoice;
+
+import tools.Norme;
+
 import manipSef.SEF;
 
 import controllers.ControllerFenetreOnglet;
@@ -146,17 +150,29 @@ public class FenetreOnglet extends JFrame{
 			ChoixFoncSef.addItem("SEF "+(i+1));
 		}
 	
-		choixTnorme.addItem("Zadeh");
+	/*	choixTnorme.addItem("Zadeh");
 		choixTnorme.addItem("Lukasiewicz");
 		choixTnorme.addItem("probabiliste");
+	*/
+		//Test avec Norme[]
+		Norme testNorme[] = Norme.values();
+		for (int i=0 ; i < testNorme.length ; i++){
+			choixTnorme.addItem(testNorme[i]);
+			choixTconorme.addItem(testNorme[i]);
+		}
 		
+		FunctionChoice fc[] = FunctionChoice.values();
+		for (int j=0; j < fc.length ; j++){
+			choixFontion.addItem(fc[j]);
+		}
+		
+		/*
 		choixTconorme.addItem("Zadeh");
 		choixTconorme.addItem("Lukasiewicz");
-		choixTconorme.addItem("probabiliste");
-		
+		choixTconorme.addItem("probabiliste");		
 		choixFontion.addItem("Square");
 		choixFontion.addItem("Cos");
-		
+		*/
 		
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jTabbedPane5 = new javax.swing.JTabbedPane();

@@ -104,11 +104,12 @@ public class ControllerFenetreOnglet implements ActionListener {
 			SEF sefi2 = fo.getMesSEF().get(indexSEF2);
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
 			
-			//Zadeh
-			if ( fo.getChoixTnorme().getSelectedIndex() == 0){
+			
+			int recup = fo.getChoixTnorme().getSelectedIndex();
+			Norme norme[] = Norme.values();
 				SEF iinterSef;
 				try {
-					iinterSef = SefManager.getResultOperation(sefi1, sefi2, Norme.ZADEH,OperationEnsembliste.INTERSECTION);
+					iinterSef = SefManager.getResultOperation(sefi1, sefi2, norme[recup],OperationEnsembliste.INTERSECTION);
 					iinterSef.printInflexions();
 					mesSefs.addSeries(iinterSef.getInflexions());
 					FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
@@ -126,29 +127,8 @@ public class ControllerFenetreOnglet implements ActionListener {
 					e.printStackTrace();
 				}
 			}
-			//Luka
-			if ( fo.getChoixTnorme().getSelectedIndex() == 1){
-				SEF lukainterSef;
-				try {
-					lukainterSef = SefManager.getResultOperation(sefi1, sefi2, Norme.LUKASIEWICZ,OperationEnsembliste.INTERSECTION);
-					mesSefs.addSeries(lukainterSef.getInflexions());
-					FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
-					//La string passée en param du constructeur est le titre de la fenetre
-					frame.pack();//? Que fait cette commande?
-					RefineryUtilities.centerFrameOnScreen(frame);
-					frame.setVisible(true);
-				} catch (UnknownNormeException e) {
-					System.out.println("La norme n'est pas connue!");
-					
-					e.printStackTrace();
-				} catch (UnknownOperationException e) {
-					System.out.println("L'operation n'est pas connue!");
-					
-					e.printStackTrace();
-				}
-			}	
 			
-		}
+		
 		
 		if(arg0.getSource()==traceUni){
 			System.out.println("Uni");
@@ -161,10 +141,11 @@ public class ControllerFenetreOnglet implements ActionListener {
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
 			
 			//Zadeh
-			if ( fo.getChoixTnorme().getSelectedIndex() == 0){
+			int recup = fo.getChoixTnorme().getSelectedIndex();
+			Norme norme[] = Norme.values();
 				SEF iinterSef;
 				try {
-					iinterSef = SefManager.getResultOperation(sefi1, sefi2, Norme.ZADEH,OperationEnsembliste.UNION);
+					iinterSef = SefManager.getResultOperation(sefi1, sefi2, norme[recup],OperationEnsembliste.UNION);
 					iinterSef.printInflexions();
 					mesSefs.addSeries(iinterSef.getInflexions());
 					FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
@@ -181,32 +162,8 @@ public class ControllerFenetreOnglet implements ActionListener {
 					
 					e.printStackTrace();
 				}
-			}
-			//Luka
-			if ( fo.getChoixTnorme().getSelectedIndex() == 1){
-				SEF lukainterSef;
-				try {
-					lukainterSef = SefManager.getResultOperation(sefi1, sefi2, Norme.LUKASIEWICZ,OperationEnsembliste.UNION);
-					mesSefs.addSeries(lukainterSef.getInflexions());
-					FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
-					//La string passée en param du constructeur est le titre de la fenetre
-					frame.pack();//? Que fait cette commande?
-					RefineryUtilities.centerFrameOnScreen(frame);
-					frame.setVisible(true);
-				} catch (UnknownNormeException e) {
-					System.out.println("La norme n'est pas connue!");
-					
-					e.printStackTrace();
-				} catch (UnknownOperationException e) {
-					System.out.println("L'operation n'est pas connue!");
-					
-					e.printStackTrace();
-				}
-			}	
-			
-			
-			
-		}
+			}			
+		
 		
 		if(arg0.getSource()==traceExt){
 			if(!(fo.getJtfExtinf().getText().equals("")) && !(fo.getJtaExtsup().getText().equals(""))){
@@ -228,10 +185,10 @@ public class ControllerFenetreOnglet implements ActionListener {
 					System.out.println("Ext");
 					
 					XYSeriesCollection mesSefs= new XYSeriesCollection();
-					if(fo.getChoixFontion().getSelectedIndex() == 0){
-						System.out.println("Square");
+					int recup = fo.getChoixFontion().getSelectedIndex();
+					FunctionChoice fc[] = FunctionChoice.values();
 						try {
-							Extension ext = new Extension(sefExt,borneInfEntree,borneSupEntree,FunctionChoice.SQUARE);
+							Extension ext = new Extension(sefExt,borneInfEntree,borneSupEntree,fc[recup]);
 							SEF toto = ext.getExtendedSef();
 							mesSefs.addSeries(toto.getInflexions());
 							FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
@@ -243,32 +200,7 @@ public class ControllerFenetreOnglet implements ActionListener {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-					}
 					
-					if(fo.getChoixFontion().getSelectedIndex() == 1){
-						System.out.println("Cos");
-						
-					//	XYSeriesCollection mesSefs= new XYSeriesCollection();
-						if(fo.getChoixFontion().getSelectedIndex() == 0){
-							System.out.println("Square");
-							try {
-								Extension ext = new Extension(sefExt,borneInfEntree,borneSupEntree,FunctionChoice.COS);
-								SEF toto = ext.getExtendedSef();
-								mesSefs.addSeries(toto.getInflexions());
-								FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
-								//La string passée en param du constructeur est le titre de la fenetre
-								frame.pack();//? Que fait cette commande?
-								RefineryUtilities.centerFrameOnScreen(frame);
-								frame.setVisible(true);
-							} catch (UnknownFunctionException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-						
-						
-						
-					}
 					
 					
 				}
