@@ -28,7 +28,7 @@ public class Extension {
 		}
 		this.inf=Xinf;
 		this.sup=Xsup;
-		this.sefDiscretized = SefDiscretizer.discretizeSef(sef, Xinf, Xsup, 10000);
+		this.sefDiscretized = SefDiscretizer.discretizeSef(sef, Xinf, Xsup, 1000);
 	}
 
 
