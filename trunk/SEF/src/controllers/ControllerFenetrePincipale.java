@@ -115,6 +115,10 @@ public class ControllerFenetrePincipale implements ActionListener {
 				fp.getValider().setEnabled(false);
 				fp.getValider().repaint();
 				
+				//reactiver les champs des bornes :
+				fp.getEntreBorneInf().setEnabled(true);
+				fp.getEntreBorneSup().setEnabled(true);
+				
 			} catch (IOException e) {
 				System.out.println("kaboom");
 				// TODO Auto-generated catch block
@@ -206,6 +210,12 @@ public class ControllerFenetrePincipale implements ActionListener {
 				} else {
 					fp.getSef_entrer().append("\n"+fp.getTfX().getText()+ " "+fp.getTfY().getText());		
 				}
+				// on vide les champs X , Y
+				fp.getTfX().setText("");
+				fp.getTfY().setText("");
+				// déactive la modification des bornes :
+				fp.getEntreBorneInf().setEnabled(false);
+				fp.getEntreBorneSup().setEnabled(false);
 				fp.getValider().setEnabled(true);
 				fp.getValider().repaint();
 				}
