@@ -1,5 +1,5 @@
 package principeExtension;
 
 public enum FunctionChoice {
-	SQUARE,COS,ABS
+	SQUARE,COSINUS,ABS, EXPONENTIAL,SINUS
 }

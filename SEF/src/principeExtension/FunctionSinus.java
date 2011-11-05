@@ -2,25 +2,25 @@ package principeExtension;
 
 import java.util.ArrayList;
 
-public class FunctionCosinus implements IMapping {
+public class FunctionSinus implements IMapping {
 
 	private double xDomainInf;
 	private double xDomainSup;
 	
-	public FunctionCosinus(double borneInf,double borneSup) {
+	public FunctionSinus(double borneInf,double borneSup) {
 		this.xDomainInf=borneInf;
 		this.xDomainSup=borneSup;
 	}
 	
 	@Override
 	public double compute(double x) {
-		return Math.cos(x);
+		return Math.sin(x);
 	}
 
 	@Override
 	public ArrayList<Double> reverse(double x) {
 		double step = Math.PI * 2;
-		double mesurePrincipale = Math.acos(x);
+		double mesurePrincipale = Math.asin(x);
 		ArrayList<Double> antecedents = new ArrayList<Double>();
 		double antecedentCourant=mesurePrincipale;
 		while (antecedentCourant - step >= xDomainInf){
@@ -37,6 +37,7 @@ public class FunctionCosinus implements IMapping {
 	}
 
 	public String toString(){
-		return "cos (x)";
+		return "sin (x)";
 	}
+
 }
