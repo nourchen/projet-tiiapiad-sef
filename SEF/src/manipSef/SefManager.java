@@ -2,6 +2,7 @@ package manipSef;
 
 import tools.Norme;
 import tools.OperationEnsembliste;
+import exceptions.NormalizationException;
 import exceptions.UnknownNormeException;
 import exceptions.UnknownOperationException;
 
@@ -30,9 +31,10 @@ public class SefManager {
 	 * @param operation intersection ou union 
 	 * @return le sous ensemble flou résultat de l'opération (union ou intersection) effectuée
 	 * @throws UnknownNormeException si la norme passée n'est pas correcte
+	 * @throws NormalizationException 
 	 */
 	public static SEF getResultOperation(SEF sef1, SEF sef2,Norme norme,OperationEnsembliste operation)
-			throws UnknownNormeException, UnknownOperationException{
+			throws UnknownNormeException, UnknownOperationException, NormalizationException{
 
 		SEF result;
 
