@@ -1,7 +1,5 @@
 package principeExtension;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import org.jfree.data.xy.XYSeries;
@@ -19,7 +17,7 @@ public class Extension {
 
 	public Extension(SEF sef,double Xinf,double Xsup, FunctionChoice f) throws UnknownFunctionException {
 		switch (f) {
-		case COS:
+		case COSINUS:
 			this.func = new FunctionCosinus(Xinf,Xsup); 
 			break;
 		case SQUARE:
@@ -27,6 +25,12 @@ public class Extension {
 			break;
 		case ABS:
 			this.func = new FunctionAbs();
+			break;
+		case EXPONENTIAL:
+			this.func = new FunctionExp();
+			break;
+		case SINUS:
+			this.func = new FunctionSinus(Xinf, Xsup);
 			break;
 		default:
 			throw new UnknownFunctionException();
@@ -72,17 +76,17 @@ public class Extension {
 				double a,b;
 				int nb_dec =100;
 				int mult = (int) Math.log10(sefImageBorneSup-sefImageBorneInf);
-				System.out.println("mult: "+mult);
+//				System.out.println("mult: "+mult);
 				if ( mult!= 0  ){
 					nb_dec = nb_dec * (int) Math.pow(10, mult);
 				}
-				System.out.println("nb_dec "+nb_dec);
+//				System.out.println("nb_dec "+nb_dec);
 				for (int i=0;i < antecedents.size(); i++){
 					// Pour chaque antecedent, on cherche sa valeur d'appartenance associée
 					for(int indiceX =0; indiceX < sefDis.getItemCount(); indiceX++){
 						a = sefDis.getDataItem(indiceX).getXValue();
 						b = antecedents.get(i);
-						
+
 						a =((double) ((int) (a * nb_dec)))/nb_dec ;
 						b = ((double) ((int) (b * nb_dec)))/nb_dec ;
 						if (  a	== b ){
@@ -93,12 +97,12 @@ public class Extension {
 				}
 				// Ici on doit ajouter au sef image le point (y, sup)  (sup ici étant sup(fa(x)))
 				ptsSefImage.add(y, sup);
-//				System.out.println("x: "+ y +" y: "+sup);
+				//				System.out.println("x: "+ y +" y: "+sup);
 			}
 		}
 
 		SEF etendu = new SEF(inf, sup, ptsSefImage);
-		etendu.printInflexions();
+//		etendu.printInflexions();
 		return etendu;
 	}
 
