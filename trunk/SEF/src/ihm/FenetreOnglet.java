@@ -550,7 +550,7 @@ public class FenetreOnglet extends JFrame{
                .addGap(24, 24, 24))
        );
 
-       jTabbedPane1.addTab("Extention", jPanel4);
+       jTabbedPane1.addTab("Extension", jPanel4);
 
        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
        getContentPane().setLayout(layout);
