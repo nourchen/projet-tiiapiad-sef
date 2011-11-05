@@ -190,7 +190,7 @@ public class SefLukaOperation {
 
 			if (i == (ptsSef1.getItemCount() - 2)) {
 				ptDroitCompose = new XYDataItem(ptDroit1.getXValue(), aCompose*ptDroit1.getXValue()+bCompose);
-				System.out.println("coucou");
+				//System.out.println("coucou");
 				switch (operation) {
 				case INTERSECTION:
 					if(ptDroitCompose.getYValue() < 0){
