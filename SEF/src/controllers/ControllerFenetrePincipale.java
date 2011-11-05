@@ -55,7 +55,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 		
 		sauver = fp.getSauver();
 		sauver.addActionListener(this);
-		fc = new JFileChooser();
+		fc = new JFileChooser("./fichiersSef");
 		
 		mesSEF = new ArrayList<SEF> ();
 		
