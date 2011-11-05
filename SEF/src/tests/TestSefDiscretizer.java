@@ -13,6 +13,12 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.RefineryUtilities;
 
+/**
+ * Classe permettant de tester la classe SefDiscretizer
+ * dont les fonctions de normalisation et de discrétisation
+ * @author Sylvia Vieira
+ *
+ */
 public class TestSefDiscretizer {
 
 	/**

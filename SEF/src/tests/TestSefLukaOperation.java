@@ -11,6 +11,13 @@ import exceptions.NormalizationException;
 import exceptions.UnknownNormeException;
 import exceptions.UnknownOperationException;
 
+
+/**
+ * Classe permettant de tester l'intersection entre deux sous ensembles flous
+ * selon la T-norme de Lukasiewicz
+ * @author Sylvia Vieira
+ *
+ */
 public class TestSefLukaOperation {
 
 	/**

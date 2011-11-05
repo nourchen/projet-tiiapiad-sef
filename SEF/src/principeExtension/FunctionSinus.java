@@ -1,12 +1,29 @@
 package principeExtension;
 
 import java.util.ArrayList;
-
+/**
+* Classe représentant la fonction sinus
+* @author Sylvia Vieira
+*
+*/
 public class FunctionSinus implements IMapping {
-
+	/**
+	 * borne inférieure de l'intervalle 
+	 * sur lequel on considère la fonction
+	 * (sorte de domaine)
+	 */
 	private double xDomainInf;
+	/**
+	 * borne supérieure de l'intervalle 
+	 * sur lequel on considère la fonction
+	 * (sorte de domaine)
+	 */
 	private double xDomainSup;
-	
+	/**
+	 * Constructeur de la classe FunctionSinus
+	 * @param borneInf la borne inférieure du domaine
+	 * @param borneSup la borne supérieure du domaine
+	 */
 	public FunctionSinus(double borneInf,double borneSup) {
 		this.xDomainInf=borneInf;
 		this.xDomainSup=borneSup;

@@ -10,7 +10,12 @@ import manipSef.SefComplement;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.RefineryUtilities;
-
+/**
+ * Classe permettant de tester le complément d'un sous ensemble flou
+ * selon la T-norme de Zadeh
+ * @author Sylvia Vieira
+ *
+ */
 public class TestSefComplement {
 
 	public static void main(String[] args) {

@@ -7,14 +7,41 @@ import org.jfree.data.xy.XYSeries;
 import exceptions.UnknownFunctionException;
 import manipSef.SEF;
 import manipSef.SefDiscretizer;
-
+/**
+ * Classe permettant d'effectuer l'extension d'un sous ensemble flou
+ * par une fonction mathématique, ce qui donne alors un nouveau
+ * sous ensemble flou.
+ * @author Sylvia Vieira
+ *
+ */
 public class Extension {
 
+	/**
+	 * La fonction mathématique utilisée pour appliquer le principe d'extension
+	 */
 	private IMapping func;
+	/**
+	 * La borne inférieure du domaine sur lequel on va l'appliquer
+	 */
 	private double inf;
+	/**
+	 * La borne supérieure du domaine sur lequel on va l'appliquer
+	 */
 	private double sup;
+	/**
+	 * Le sous ensemble flou subissant l'extension
+	 */
 	private SEF sefDiscretized;
 
+	/**
+	 * Constructeur de la classe Extension
+	 * permet de créer un objet pour effectuer l'extension d'un sef
+	 * @param sef le sef a étendre
+	 * @param Xinf la borne inférieure
+	 * @param Xsup la borne supérieure
+	 * @param f la fonction à appliquer (un élément de enum FunctionChoice)
+	 * @throws UnknownFunctionException : si la fonction n'est pas présente dans le catalogue(enum)
+	 */
 	public Extension(SEF sef,double Xinf,double Xsup, FunctionChoice f) throws UnknownFunctionException {
 		switch (f) {
 		case COSINUS:
@@ -40,7 +67,11 @@ public class Extension {
 		this.sefDiscretized = SefDiscretizer.discretizeSef(sef, Xinf, Xsup, 1000);
 	}
 
-
+	/**
+	 * La fonction permettant de renvoyerle nouveau sous ensemble flou image par 
+	 * l'extension de la fonction mathématique
+	 * @return
+	 */
 	public SEF getExtendedSef(){
 		XYSeries ptsSefImage = new XYSeries(sefDiscretized.getInflexions().getKey()+ " étendu par la fonction "+func.toString());
 		XYSeries sefDis = this.sefDiscretized.getInflexions();
