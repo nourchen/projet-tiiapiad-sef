@@ -1,5 +1,7 @@
 package principeExtension;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import org.jfree.data.xy.XYSeries;
@@ -31,7 +33,7 @@ public class Extension {
 		}
 		this.inf=Xinf;
 		this.sup=Xsup;
-		this.sefDiscretized = SefDiscretizer.discretizeSef(sef, Xinf, Xsup, 10);
+		this.sefDiscretized = SefDiscretizer.discretizeSef(sef, Xinf, Xsup, 1000);
 	}
 
 
@@ -64,18 +66,21 @@ public class Extension {
 			ArrayList<Double> antecedents = func.reverse(y);
 			if(antecedents.isEmpty()){
 				ptsSefImage.add(y, 0);
+				//				System.out.println("x: "+ y +" y: 0");
 			}else{
 				double sup = sefDis.getMinY();
-
+				double a,b;
 				for (int i=0;i < antecedents.size(); i++){
 					// Pour chaque antecedent, on cherche sa valeur d'appartenance associée
-
 					for(int indiceX =0; indiceX < sefDis.getItemCount(); indiceX++){
-						if (sefDis.getDataItem(indiceX).getXValue() == antecedents.get(i) ){
+						a = sefDis.getDataItem(indiceX).getXValue();
+						b = antecedents.get(i); 
+						a =((double) ((int) (a * 10000)))/10000 ;
+						b = ((double) ((int) (b * 10000)))/10000 ;
+						if (  a	== b ){
 							sup = Math.max(sup, sefDis.getDataItem(indiceX).getYValue());
 							break;
 						}
-
 					}
 				}
 				// Ici on doit ajouter au sef image le point (y, sup)  (sup ici étant sup(fa(x)))
@@ -84,8 +89,9 @@ public class Extension {
 			}
 		}
 
-
-		return new SEF(inf, sup, ptsSefImage);
+		SEF etendu = new SEF(inf, sup, ptsSefImage);
+		etendu.printInflexions();
+		return etendu;
 	}
 
 }
