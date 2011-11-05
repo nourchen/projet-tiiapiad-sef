@@ -1,26 +1,17 @@
 package ihm;
 
-import java.awt.BorderLayout;
-import java.awt.Checkbox;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ComboBoxEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel; //peut etre besoin rapidement
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
+
 
 import principeExtension.FunctionChoice;
 
@@ -35,29 +26,7 @@ import controllers.ControllerFenetreOnglet;
 // Pas fini, encore des bugs a traiter.
 public class FenetreOnglet extends JFrame{
 	
-	private static final String txtNorme = "Choisissez la Tnorme";
-	private static final String txtCNorme = "Choisissez la T-conorme";
-	private static final String txtFonction = "Choisissez la fonction";
-	
-	private static final String txtChoix0 = "Selectionnez le SEF";
-	private static final String txtChoix1 = "Selectionnez le SEF n°1";
-	private static final String txtChoix2 = "Selectionnez le SEF n°2";
-	
 	private static final String tracer = "Tracer";
-	private static final String borneInf = "Borne inf";	
-	private static final String borneSup = "Borne Sup";
-	
-	private JTabbedPane onglets = new JTabbedPane();
-	private JLabel warning = 
-		new JLabel("Attention ! cochez plusieurs cases ouvrira " +
-				"plusieurs fenetres de dessins");
-	
-	private Box boxCompGauche = Box.createVerticalBox();
-	private Box boxCompDroite = Box.createVerticalBox();
-	private Box boxInter = Box.createVerticalBox();
-	private Box boxUni = Box.createVerticalBox();
-	private Box boxFonc = Box.createVerticalBox();
-	
 	
 	private JComboBox sefComp = new JComboBox();
 	
@@ -91,45 +60,43 @@ public class FenetreOnglet extends JFrame{
 	//un textArea
 	private JTextArea jta;
 	/////////////////////////////////////////////////////////////
-    private javax.swing.JComboBox choixFontion = new JComboBox ();
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTextArea jtaComp;
-    private javax.swing.JTextArea jtaExt;
-    private javax.swing.JTextField jtaExtsup;
-    private javax.swing.JTextArea jtaInter1;
-    private javax.swing.JTextArea jtaInter2;
-    private javax.swing.JTextArea jtaUni1;
-    private javax.swing.JTextArea jtaUni2;
-    private javax.swing.JTextField jtfExtinf;
+    private JComboBox choixFontion = new JComboBox ();
+    private JLabel jLabel1;
+    private JLabel jLabel10;
+    private JLabel jLabel11;
+    private JLabel jLabel12;
+    private JLabel jLabel13;
+    private JLabel jLabel14;
+    private JLabel jLabel15;
+    private JLabel jLabel16;
+    private JLabel jLabel2;
+    private JLabel jLabel3;
+    private JLabel jLabel4;
+    private JLabel jLabel5;
+    private JLabel jLabel6;
+    private JLabel jLabel7;
+    private JLabel jLabel8;
+    private JLabel jLabel9;
+    private JPanel jPanel1;
+    private JPanel jPanel2;
+    private JPanel jPanel3;
+    private JPanel jPanel4;
+    private JPanel jPanel5;
+    private JScrollPane jScrollPane1;
+    private JScrollPane jScrollPane2;
+    private JScrollPane jScrollPane3;
+    private JScrollPane jScrollPane4;
+    private JScrollPane jScrollPane5;
+    private JScrollPane jScrollPane6;
+    private JTabbedPane jTabbedPane1;
+    private JTextArea jtaComp;
+    private JTextArea jtaExt;
+    private JTextField jtaExtsup;
+    private JTextArea jtaInter1;
+    private JTextArea jtaInter2;
+    private JTextArea jtaUni1;
+    private JTextArea jtaUni2;
+    private JTextField jtfExtinf;
 
 	
 	public FenetreOnglet(ArrayList<SEF> mesSEF){
@@ -174,8 +141,6 @@ public class FenetreOnglet extends JFrame{
 		choixFontion.addItem("Cos");
 		*/
 		
-        jTabbedPane4 = new javax.swing.JTabbedPane();
-        jTabbedPane5 = new javax.swing.JTabbedPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
      //   sefComp = new javax.swing.JComboBox();

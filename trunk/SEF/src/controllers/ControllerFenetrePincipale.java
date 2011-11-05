@@ -81,12 +81,24 @@ public class ControllerFenetrePincipale implements ActionListener {
 			
 			BufferedReader br = new BufferedReader(new StringReader(fp.getSef_entrer().getText()));
 			try {
+
+				double binf;// = Double.parseDouble(fp.getEntreBorneInf().getText());
+				double bsup;// = Double.parseDouble(fp.getEntreBorneSup().getText());
+				String borneinf = fp.getEntreBorneInf().getText();
+				String bornesup = fp.getEntreBorneSup().getText();
 				
-				//String line2 = br.readLine();
-				//System.out.println("Recupe de la ligne :"+line2);
-				double binf = Double.parseDouble(fp.getEntreBorneInf().getText());
-				double bsup = Double.parseDouble(fp.getEntreBorneSup().getText());
-				//ça ça fait reste a recup' les points
+				if(borneinf.equals("-inf")){
+					binf = Double.MIN_VALUE;
+				} else {
+					binf = Double.parseDouble(borneinf);    
+				}
+
+				if(bornesup.equals("inf")) {
+					bsup = Double.MAX_VALUE;
+				} else {
+					bsup = Double.parseDouble(bornesup);
+				}
+								//ça ça fait reste a recup' les points
 				SEF temp = new SEF(binf,bsup,new XYSeries("SEF"+(mesSEF.size()+1)));
 				
 				String line;
@@ -178,7 +190,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 			if(returnVal == JFileChooser.APPROVE_OPTION) {
 				System.out.println("Fichier a ecrire : " +
 			             fc.getSelectedFile().getName());
-				String nom = fc.getSelectedFile().getName();
+				//String nom = fc.getSelectedFile().getName();
 				System.out.println("Fichier a ecrire : " +
 			             fc.getSelectedFile().getAbsolutePath());
 				String chemin = fc.getSelectedFile().getAbsolutePath();
