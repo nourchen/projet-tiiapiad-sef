@@ -199,7 +199,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 				
 				Sauver sv = new Sauver();
 				try {
-					sv.infoFichier(chemin,envoie);
+					sv.infoFichier(chemin,mesSEF);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

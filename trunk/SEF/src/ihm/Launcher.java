@@ -21,7 +21,7 @@ public class Launcher {
         demo.pack();//? Que fait cette commande?
         RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);
-*/
+		 */
 
 	}
 

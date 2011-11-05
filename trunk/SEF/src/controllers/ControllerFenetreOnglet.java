@@ -82,9 +82,9 @@ public class ControllerFenetreOnglet implements ActionListener {
 			int index = fo.getSefComp().getSelectedIndex();
 			
 			SEF test = fo.getMesSEF().get(index);
-		//	fo.getDonnees().setText("Borne inf"+test.getBorneInf()+" borne sup"+test.getBorneSup());
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
-			//mesSefs.addSeries(test.getInflexions());
+			mesSefs.addSeries(test.getInflexions());
+			System.out.println("Borne inf"+test.getBorneInf()+" borne sup"+test.getBorneSup());
 			SEF inverse = SefComplement.getComplement(test);
 			mesSefs.addSeries(inverse.getInflexions());
 			FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
