@@ -8,6 +8,7 @@ import org.jfree.data.xy.XYSeries;
 import tools.Norme;
 import tools.OperationEnsembliste;
 
+import exceptions.NormalizationException;
 import exceptions.UnknownNormeException;
 import exceptions.UnknownOperationException;
 
@@ -58,6 +59,8 @@ public class TestSefZadehOperation {
 		} catch (UnknownOperationException e) {
 			//  Auto-generated catch block
 			System.out.println("L'opération n'est pas connue!");
+		} catch (NormalizationException e) {
+			System.out.println("La normalisation n'a pas fonctionné!");
 		}
 		System.out.println(Norme.ZADEH);
 		

@@ -56,7 +56,7 @@ public class SefDiscretizer {
 		XYSeriesCollection myListOfSefs=new XYSeriesCollection();
 		//Tableau representant la liste des abscisses discretisees
 		double[]mesNvxX = xDiscretized(min,max,nbVal);
-		double pas=this.getPasX(min,max,nbVal);
+		double pas=SefDiscretizer.getPasX(min,max,nbVal);
 		//System.out.println(pas);
 		int noSef=1;
 		double a, b, xDroite, xGauche, xDiscret;

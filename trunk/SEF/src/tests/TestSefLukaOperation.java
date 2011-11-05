@@ -7,6 +7,7 @@ import org.jfree.data.xy.XYSeries;
 
 import tools.Norme;
 import tools.OperationEnsembliste;
+import exceptions.NormalizationException;
 import exceptions.UnknownNormeException;
 import exceptions.UnknownOperationException;
 
@@ -41,6 +42,8 @@ public class TestSefLukaOperation {
 		} catch (UnknownOperationException e) {
 			//  Auto-generated catch block
 			System.out.println("L'opération n'est pas connue!");
+		} catch (NormalizationException e) {
+			System.out.println("La normalisation ne s'est pas bien passée!");
 		}
 		
 	}
