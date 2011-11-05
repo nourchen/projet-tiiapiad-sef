@@ -1,6 +1,6 @@
 package ihm;
 
-import org.jfree.ui.RefineryUtilities;
+//import org.jfree.ui.RefineryUtilities;
 
 public class Launcher {
 

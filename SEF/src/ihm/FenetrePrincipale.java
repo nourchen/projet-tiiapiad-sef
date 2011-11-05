@@ -4,14 +4,6 @@ import javax.swing.*;
 
 import controllers.ControllerFenetrePincipale;
 
-
-import manipFile.Charger;
-import manipFile.Filtre;
-import manipFile.Sauver;
-
-
-
-
 /**
  * 
  * @author Frederic
@@ -32,11 +24,6 @@ public class FenetrePrincipale extends JFrame {
 	
 	private JButton generer = new JButton("Generer");
 	private JButton valider = new JButton("Valider");
-	
-	private JLabel ptsSEF = new JLabel("Entrez les Pts du sef :");
-	private JLabel borneinf = new JLabel("Borne Inf : ");
-	private JLabel bornesup = new JLabel("Borne Sup :");
-	private JLabel ptsEntrer = new JLabel("Point déjà entrés :");
 	
 	private JTextField entreBorneInf = new JTextField();
 	private JTextField entreBorneSup = new JTextField();
