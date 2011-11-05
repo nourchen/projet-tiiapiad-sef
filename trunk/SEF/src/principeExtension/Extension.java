@@ -70,13 +70,21 @@ public class Extension {
 			}else{
 				double sup = sefDis.getMinY();
 				double a,b;
+				int nb_dec =100;
+				int mult = (int) Math.log10(sefImageBorneSup-sefImageBorneInf);
+				System.out.println("mult: "+mult);
+				if ( mult!= 0  ){
+					nb_dec = nb_dec * (int) Math.pow(10, mult);
+				}
+				System.out.println("nb_dec "+nb_dec);
 				for (int i=0;i < antecedents.size(); i++){
 					// Pour chaque antecedent, on cherche sa valeur d'appartenance associée
 					for(int indiceX =0; indiceX < sefDis.getItemCount(); indiceX++){
 						a = sefDis.getDataItem(indiceX).getXValue();
-						b = antecedents.get(i); 
-						a =((double) ((int) (a * 10000)))/10000 ;
-						b = ((double) ((int) (b * 10000)))/10000 ;
+						b = antecedents.get(i);
+						
+						a =((double) ((int) (a * nb_dec)))/nb_dec ;
+						b = ((double) ((int) (b * nb_dec)))/nb_dec ;
 						if (  a	== b ){
 							sup = Math.max(sup, sefDis.getDataItem(indiceX).getYValue());
 							break;
@@ -85,7 +93,7 @@ public class Extension {
 				}
 				// Ici on doit ajouter au sef image le point (y, sup)  (sup ici étant sup(fa(x)))
 				ptsSefImage.add(y, sup);
-				System.out.println("x: "+ y +" y: "+sup);
+//				System.out.println("x: "+ y +" y: "+sup);
 			}
 		}
 
