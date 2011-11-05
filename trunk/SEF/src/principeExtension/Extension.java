@@ -23,12 +23,15 @@ public class Extension {
 		case SQUARE:
 			this.func = new FunctionSquare();
 			break;
+		case ABS:
+			this.func = new FunctionAbs();
+			break;
 		default:
 			throw new UnknownFunctionException();
 		}
 		this.inf=Xinf;
 		this.sup=Xsup;
-		this.sefDiscretized = SefDiscretizer.discretizeSef(sef, Xinf, Xsup, 1000);
+		this.sefDiscretized = SefDiscretizer.discretizeSef(sef, Xinf, Xsup, 10);
 	}
 
 
@@ -37,7 +40,7 @@ public class Extension {
 		XYSeries sefDis = this.sefDiscretized.getInflexions();
 		double sefImageBorneInf, sefImageBorneSup;
 		ArrayList<Double> listeImages = new ArrayList<Double>();
-		
+
 		//Tout d'abord on se crée une liste d'image (création du domaine "Y") 
 		//par mapping de compute sur l'ensemble des x discrétisés
 		sefImageBorneInf = func.compute(sefDis.getDataItem(0).getXValue());
@@ -48,34 +51,39 @@ public class Extension {
 			sefImageBorneInf = Math.min(sefImageBorneInf, y);
 			sefImageBorneSup = Math.max(sefImageBorneSup, y);
 		}
-		
+
 		/*
 		 * Maintenant pour chaque y de la liste d'images:
 		 * => on cherche à avoir l'ensemble de ses antécédents
 		 * 		=> Sur cet ensemble d'antécédents x on récupère les valeur d'appartenance
 		 * 			associée et on prend le max.
 		 */
-		
+
 		for(int indiceImage = 0; indiceImage<listeImages.size();indiceImage++){ // Pr chq y de la liste d'images
 			double y = listeImages.get(indiceImage);
 			ArrayList<Double> antecedents = func.reverse(y);
-			double sup = sefDis.getMinY();
-			
-			for (int i=0;i < antecedents.size(); i++){
-				// Pour chaque antecedent, on cherche sa valeur d'appartenance associée
-				
-				for(int indiceX =0; indiceX < sefDis.getItemCount(); indiceX++){
-					if (sefDis.getDataItem(indiceX).getXValue() == antecedents.get(i) ){
-						sup = Math.max(sup, sefDis.getDataItem(indiceX).getYValue());
-						break;
+			if(antecedents.isEmpty()){
+				ptsSefImage.add(y, 0);
+			}else{
+				double sup = sefDis.getMinY();
+
+				for (int i=0;i < antecedents.size(); i++){
+					// Pour chaque antecedent, on cherche sa valeur d'appartenance associée
+
+					for(int indiceX =0; indiceX < sefDis.getItemCount(); indiceX++){
+						if (sefDis.getDataItem(indiceX).getXValue() == antecedents.get(i) ){
+							sup = Math.max(sup, sefDis.getDataItem(indiceX).getYValue());
+							break;
+						}
+
 					}
-					
 				}
+				// Ici on doit ajouter au sef image le point (y, sup)  (sup ici étant sup(fa(x)))
+				ptsSefImage.add(y, sup);
+				System.out.println("x: "+ y +" y: "+sup);
 			}
-			// Ici on doit ajouter au sef image le point (y, sup)  (sup ici étant sup(fa(x)))
-			ptsSefImage.add(y, sup);
 		}
-		
+
 
 		return new SEF(inf, sup, ptsSefImage);
 	}
