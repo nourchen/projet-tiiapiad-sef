@@ -14,7 +14,19 @@ import exceptions.SegmentsConfondusException;
 public class MathSef {
 
 	
-	
+	/**
+	 * Cette méthode permet de vérifier la position relative de deux segments dont les extrémités
+	 * respectives ont les memes abscisses.
+	 * @param a1 coefficient directeur du premier segment
+	 * @param b1 ordonnée à l'origine du premier segment
+	 * @param a2 coefficient directeur du second segment
+	 * @param b2 ordonnée à l'origine du second segment
+	 * @param inf abscisse du point gauche (aussi bien celle du premier que du second segment)
+	 * @param sup abscisse du point droit
+	 * @return le point d'intersection s'il en existe un
+	 * @throws SegmentsConfondusException si les deux segments sont confondus (même couples (a,b) )
+	 * @throws SegmentAboveException s'il n'y a aucune intersection car l'un des segments est au dessus de l'autre
+	 */
 	public static XYDataItem segmentIntersection(double a1,double b1, double a2, double b2,double inf, double sup)
 			throws SegmentsConfondusException,SegmentAboveException{
 		if (a1==a2 && b1 ==b2){

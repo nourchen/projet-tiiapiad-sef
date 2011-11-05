@@ -1,7 +1,11 @@
 package principeExtension;
 
 import java.util.ArrayList;
-
+/**
+* Classe représentant la fonction exponentielle
+* @author Sylvia Vieira
+*
+*/
 public class FunctionExp implements IMapping {
 
 	@Override

@@ -1,7 +1,11 @@
 package principeExtension;
 
 import java.util.ArrayList;
-
+/**
+* Classe représentant la fonction carrée
+ * @author Sylvia Vieira
+ *
+ */
 public class FunctionSquare implements IMapping {
 
 	@Override

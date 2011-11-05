@@ -1,9 +1,14 @@
 package principeExtension;
 
 import java.util.ArrayList;
-
+/**
+ * Classe représentant la fonction valeur absolue
+ * @author Sylvia Vieira
+ *
+ */
 public class FunctionAbs implements IMapping {
 
+	
 	@Override
 	public double compute(double x) {
 

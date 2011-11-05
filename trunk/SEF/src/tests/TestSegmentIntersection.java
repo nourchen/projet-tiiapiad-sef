@@ -1,7 +1,9 @@
 package tests;
 
 
-
+/**
+ * Classe de Test de l'intersection entre deux segments
+ */
 import org.jfree.data.xy.XYDataItem;
 
 import tools.MathSef;
