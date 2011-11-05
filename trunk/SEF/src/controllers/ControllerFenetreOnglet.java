@@ -22,6 +22,7 @@ import org.jfree.ui.RefineryUtilities;
 import principeExtension.Extension;
 import principeExtension.FunctionChoice;
 
+import exceptions.NormalizationException;
 import exceptions.UnknownFunctionException;
 import exceptions.UnknownNormeException;
 import exceptions.UnknownOperationException;
@@ -122,6 +123,10 @@ public class ControllerFenetreOnglet implements ActionListener {
 					System.out.println("L'operation n'est pas connue!");
 					
 					e.printStackTrace();
+				} catch (NormalizationException e) {
+					System.out.println("La normalisation n'a pas fonctionné!");
+					e.printStackTrace();
+
 				}
 			}
 		
@@ -156,6 +161,10 @@ public class ControllerFenetreOnglet implements ActionListener {
 					System.out.println("L'operation n'est pas connue!");
 					
 					e.printStackTrace();
+				} catch (NormalizationException e) {
+					e.printStackTrace();
+					System.out.println("La normalisation n'a pas fonctionné!");
+
 				}
 			}			
 			
