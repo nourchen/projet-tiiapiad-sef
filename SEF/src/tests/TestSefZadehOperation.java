@@ -59,8 +59,7 @@ public class TestSefZadehOperation {
 			//  Auto-generated catch block
 			System.out.println("L'opération n'est pas connue!");
 		}
-		
-		
+		System.out.println(Norme.ZADEH);
 		
 		
 	}
