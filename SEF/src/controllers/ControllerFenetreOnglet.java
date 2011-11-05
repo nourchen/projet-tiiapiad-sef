@@ -80,15 +80,17 @@ public class ControllerFenetreOnglet implements ActionListener {
 			System.out.println("comp");
 			System.out.println(""+fo.getSefComp().getSelectedIndex());
 			int index = fo.getSefComp().getSelectedIndex();
-			// pour test rapide OK 
-			//mais pourquoi la fermeture de la XY ferme tout ?			
+			
 			SEF test = fo.getMesSEF().get(index);
 		//	fo.getDonnees().setText("Borne inf"+test.getBorneInf()+" borne sup"+test.getBorneSup());
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
 			//mesSefs.addSeries(test.getInflexions());
-			mesSefs.addSeries(SefComplement.getComplement(test).getInflexions());
+			SEF inverse = SefComplement.getComplement(test);
+			mesSefs.addSeries(inverse.getInflexions());
 			FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
 			//La string passée en param du constructeur est le titre de la fenetre
+			fo.getMesSEF().add(inverse);
+			rajouter(inverse);
 			frame.pack();//? Que fait cette commande?
 			RefineryUtilities.centerFrameOnScreen(frame);
 			frame.setVisible(true);
@@ -122,16 +124,22 @@ public class ControllerFenetreOnglet implements ActionListener {
 				 catch (UnknownNormeException e) {
 					System.out.println("La norme n'est pas connue!");
 					e.printStackTrace();
+					return;
 				} catch (UnknownOperationException e) {
 					System.out.println("L'operation n'est pas connue!");
 					e.printStackTrace();
+					return;
 
 				} catch (NormalizationException e) {
 					System.out.println("La normalisation n'a pas fonctionné!");
 					e.printStackTrace();
-
-
+					return;
+				} catch(NullPointerException e) {
+					System.out.println("Les points du SEF calculés sont vide");
+					return;
 				}
+				
+				
 	}
 		
 		if(arg0.getSource()==traceUni){
@@ -161,18 +169,20 @@ public class ControllerFenetreOnglet implements ActionListener {
 					frame.setVisible(true);
 				} catch (UnknownNormeException e) {
 					System.out.println("La norme n'est pas connue!");
-					
 					e.printStackTrace();
+					return;
 				} catch (UnknownOperationException e) {
 					System.out.println("L'operation n'est pas connue!");
-					
 					e.printStackTrace();
+					return;
 
 				} catch (NormalizationException e) {
 					e.printStackTrace();
 					System.out.println("La normalisation n'a pas fonctionné!");
-
-
+					return;
+				} catch(NullPointerException e) {
+			System.out.println("Les points du SEF calculés sont vide");
+			return;
 				}
 			}			
 			
