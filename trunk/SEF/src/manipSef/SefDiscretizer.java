@@ -9,28 +9,52 @@ import org.jfree.data.xy.XYSeriesCollection;
 import exceptions.NormalizationException;
 
 /**
- * Classe permettant de discrétiser un sef ou plusieurs
- * sur un certain intervalle
+ * Classe permettant de modifier un ou plusieurs sous ensemble flou
+ * pour faciliter par la suite les opérations (ensemblistes, principe d'extension)
+ * demandées.
+ * 
+ * On peut dans cette classe:
+ * 
+ * => Discrétiser un sous ensemble flou sur un certain intervalle
  * 
  * 
- * => Normaliser les sef 
- * (faire en sorte que les listes de points des deux sef ait la meme taille, pour faciliter l'opération)
+ * => Normaliser un couple de deux sous ensemble flou 
+ * (c'est à dire : faire en sorte que les listes de points 
+ * des deux sous ensemble flou aient la meme taille mais surtout les memes
+ * abscisses deux à deux
  * 
  * @author Sylvia Vieira
  *
  */
 public class SefDiscretizer {
 
-	
+	/**
+	 * Constructeur par défaut
+	 */
 	public SefDiscretizer(){
 	}
-	
+	/**
+	 * Méthode privée pour avoir le pas de discrétisation
+	 * en fonction de la taille de l'intervalle et du nombre de valeurs souhaitées
+	 * @param minX : borne inférieure de l'intervalle à discrétiser
+	 * @param maxX : borne supérieure de l'intervalle à discrétiser
+	 * @param nbValDiscretes : nombre de valeurs discrètes voulues
+	 * @return renvoit le pas approprié pour ce jeu de valeurs
+	 */
 	private static double getPasX(double minX,double maxX, int nbValDiscretes){
 		//System.out.println(maxX-minX);
 		//System.out.println(nbValDiscretes - 1);
 		return (double)(maxX -minX)/(nbValDiscretes-1);
 	}
-	
+	/**
+	 * Pour avoir une liste (en fait un tableau) d'abscisses
+	 * le tableau représentant un intervalle d'abscisses discrétisé
+	 * @param minX : borne inférieure de l'intervalle à discrétiser
+	 * @param maxX : borne supérieure de l'intervalle à discrétiser
+	 * @param nbValDiscretes : nombre de valeurs discrètes voulues
+	 * @return : un tableau contenant l'ensemble des valeurs
+	 * discrètes des abscisses, sur l'intervalle [minX ; maxX]
+	 */
 	private static double[] xDiscretized(double minX,double maxX,int nbValDiscretes){
 		double[] liste = new double[nbValDiscretes];
 		double pas=getPasX(minX,maxX,nbValDiscretes);
@@ -100,6 +124,14 @@ public class SefDiscretizer {
 		return myListOfSefs;
 	}
 	
+	/**
+	 * 
+	 * @param toDiscretize
+	 * @param min
+	 * @param max
+	 * @param nbVal
+	 * @return
+	 */
 	public static SEF discretizeSef(SEF toDiscretize, double min, double max, int nbVal){
 		final XYSeries listeDiscretisee = new XYSeries(toDiscretize.getInflexions().getKey()+" discretisé");
 		double a, b, xDroite, xGauche, xDiscret;
