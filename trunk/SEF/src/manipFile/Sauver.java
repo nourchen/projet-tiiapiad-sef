@@ -15,7 +15,7 @@ public class Sauver {
 	
 	public void infoFichier(String chemin, ArrayList<SEF> mesSEF) throws IOException{
 		chemin = chemin+".SEF";
-		System.out.println("test sauvegarde");		
+	//	System.out.println("test sauvegarde");		
 		DataOutputStream ecrit = new DataOutputStream(new FileOutputStream(chemin));
 
 	//	-10,10#1,0;2,1;3,0
@@ -32,7 +32,7 @@ public class Sauver {
 		}
 		ecrit.writeBytes(contenu);
 		ecrit.close();
-		System.out.println("test sauvegarde fini");
+	//	System.out.println("test sauvegarde fini");
 	}
 	
 	
