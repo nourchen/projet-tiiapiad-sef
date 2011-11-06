@@ -12,7 +12,7 @@ import exceptions.UnknownOperationException;
  *  => Le complément
  *  => L'intersection, avec l'une des trois T-normes laissés au choix de l'utilisateur:
  *       Norme de Zadeh, LUKASIEWICZ, ou probabiliste
- *  => L'union, avec l'une des trois T-conormes (les memes que les T-normes)
+ *  => L'union, avec l'une des trois T-conormes (les memes intitulés que pour les T-normes)
  *  
  * @author Sylvia Vieira
  *

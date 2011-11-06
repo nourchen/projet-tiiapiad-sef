@@ -9,10 +9,32 @@ import exceptions.SegmentsConfondusException;
 import exceptions.UnknownOperationException;
 import tools.MathSef;
 import tools.OperationEnsembliste;
-
+/**
+ * Classe permettant d'effectuer une opération (Union/Intersection)
+ * entre deux sous ensembles flous
+ * selon la T-(co)norme de Lukasiewicz
+ * @author Sylvia Vieira
+ *
+ */
 public class SefLukaOperation {
 
-
+	/**
+	 * La méthode renvoyant le sous ensemble flou
+	 * résultant de l'opération demandée (union ou intersection)
+	 * entre deux sous ensembles flous
+	 * par la T-(co)norme de Lukasiewicz
+	 * 
+	 * Cette opération est effectuée SANS discrétisation
+	 * 
+	 * @param sef1 premier sous ensemble flou
+	 * @param sef2 second sous ensemble flou
+	 * @param operation l'opération que l'on veut effectuer: Intersection ou Union
+	 * @return : le sous ensemble flou résultant de l'opération demandée
+	 * @throws UnknownOperationException : si l'opération demandée
+	 * n'est pas connue 
+	 * @throws NormalizationException : si un problème s'est produit lors de la normalisation
+	 * des deux ou de l'un des deux sous ensembles flous passées en paramètres
+	 */
 	public static SEF getLukaResult(SEF sef1, SEF sef2, OperationEnsembliste operation)
 			throws UnknownOperationException, NormalizationException{		
 
