@@ -103,14 +103,11 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 	public void actionPerformed(ActionEvent arg0) {
 		
 		if(arg0.getSource()==traceComp){
-			System.out.println("comp");
-			System.out.println(""+fo.getSefComp().getSelectedIndex());
 			int index = fo.getSefComp().getSelectedIndex();
 			
 			SEF test = fo.getMesSEF().get(index);
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
 			mesSefs.addSeries(test.getInflexions());
-			System.out.println("Borne inf"+test.getBorneInf()+" borne sup"+test.getBorneSup());
 			SEF inverse = SefComplement.getComplement(test);
 			mesSefs.addSeries(inverse.getInflexions());
 			FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
@@ -123,7 +120,6 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 		}
 		
 		if(arg0.getSource()==traceInter){
-			System.out.println("Inter");
 			int indexSEF1 = fo.getSefChoixinter1().getSelectedIndex();
 			int indexSEF2 = fo.getSefChoixinter2().getSelectedIndex();
 			
@@ -137,11 +133,10 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 				SEF iinterSef;
 				try {
 						iinterSef = SefManager.getResultOperation(sefi1, sefi2, norme[recup],OperationEnsembliste.INTERSECTION);
-						//iinterSef.printInflexions();
 						mesSefs.addSeries(iinterSef.getInflexions());
 						FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
 						//La string passée en param du constructeur est le titre de la fenetre
-						frame.pack();//? Que fait cette commande?
+						frame.pack();
 						RefineryUtilities.centerFrameOnScreen(frame);
 						frame.setVisible(true);
 						//Rajout dans mesSEF / Combobox / Jlist
@@ -170,9 +165,7 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 				
 	}
 		
-		if(arg0.getSource()==traceUni){
-			System.out.println("Uni");
-			
+		if(arg0.getSource()==traceUni){	
 			int indexSEF1 = fo.getSefChoixUni1().getSelectedIndex();
 			int indexSEF2 = fo.getSefChoixUni2().getSelectedIndex();
 			
@@ -256,17 +249,15 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 		}
 		
 		if(arg0.getSource()==tracerAffSEF){
-			System.out.println("click tracer SEF Sans");
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
 			// boucle qui remplit la XYSeries avec les SEF choisi
 			for (int i = 0; i < sefchoisi.size();i++){
-				System.out.println("choisi au clic "+sefchoisi.get(i));
 				int choisi = sefchoisi.get(i);
 				mesSefs.addSeries(fo.getMesSEF().get(choisi).getInflexions());
 			}
 			FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
 			//La string passée en param du constructeur est le titre de la fenetre
-			frame.pack();//? Que fait cette commande?
+			frame.pack();
 			RefineryUtilities.centerFrameOnScreen(frame);
 			frame.setVisible(true);
 		}
@@ -274,42 +265,36 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 		//Gere la gestion si modif de la JCombobox et mise a jour dans les JTextArea correspondant
 		if(arg0.getSource()==sefComp){
 			fo.getJtaComp().setText("");
-			//System.out.println("Quand ?");
 			int index = fo.getSefComp().getSelectedIndex();
 			remplirJtextArea(fo.getJtaComp(),index);
 		}
 		
 		if(arg0.getSource()==sefChoixinter1){
 			fo.getJtaInter1().setText("");
-			System.out.println("Quand ?");
 			int index = fo.getSefChoixinter1().getSelectedIndex();
 			remplirJtextArea(fo.getJtaInter1(),index);
 		}
 		
 		if(arg0.getSource()==sefChoixinter2){
 			fo.getJtaInter2().setText("");
-			System.out.println("Quand ?");
 			int index = fo.getSefChoixinter2().getSelectedIndex();
 			remplirJtextArea(fo.getJtaInter2(),index);
 		}
 		
 		if(arg0.getSource()== sefChoixuni1){
 			fo.getJtaUni1().setText("");
-			System.out.println("Quand ?");
 			int index = fo.getSefChoixUni1().getSelectedIndex();
 			remplirJtextArea(fo.getJtaUni1(),index);
 		}
 		
 		if(arg0.getSource()== sefChoixuni2){
 			fo.getJtaUni2().setText("");
-			System.out.println("Quand ?");
 			int index = fo.getSefChoixUni2().getSelectedIndex();
 			remplirJtextArea(fo.getJtaUni2(),index);		
 		}
 		
 		if(arg0.getSource()== sefExt){
 			fo.getJtaExt().setText("");
-			System.out.println("Quand ?");
 			int index = fo.getChoixFoncSef().getSelectedIndex();
 			remplirJtextArea(fo.getJtaExt(),index);
 		}
@@ -320,7 +305,6 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("on est la");
 		sefchoisi.clear();
 		ListSelectionModel lsm = (ListSelectionModel)arg0.getSource();
 		int minIndex = lsm.getMinSelectionIndex();
@@ -340,32 +324,28 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 	 * @param sef
 	 */
 	public void rajouter(SEF sef){
+		// rajout dansles combobox
 		fo.getSefChoixinter1().addItem(sef.getInflexions().getKey());
 		fo.getSefChoixinter2().addItem(sef.getInflexions().getKey());
 		fo.getSefChoixUni1().addItem(sef.getInflexions().getKey());
 		fo.getSefChoixUni2().addItem(sef.getInflexions().getKey());
 		fo.getSefComp().addItem(sef.getInflexions().getKey());
 		fo.getChoixFoncSef().addItem(sef.getInflexions().getKey());
-		System.out.println("taille "+fo.getTotal().length);
+		
+		//construction du nouveau tableau
 		int nouvelletaille = fo.getTotal().length+1;
 		String[] rajout = new String[nouvelletaille];
-		System.out.println("taille "+rajout.length);
 		
-		//rajout = fo.getTotal();
 		
 		for(int i = 0 ; i < rajout.length-1;i++ ){
 		rajout[i] = fo.getTotal()[i];
-		System.out.println("i "+i+" "+fo.getTotal()[i]);
 		}
 		
 		rajout[nouvelletaille-1] = (String) sef.getInflexions().getKey();
-		//System.out.println("rajout apres " +rajout[2]);
-		
+		// remplacement de la JList
 		fo.setTotal(rajout);
 		fo.getjListAffSEF().setListData(rajout);
-		//fo.setjListAffSEF(nouv);
 		fo.getjListAffSEF().repaint();
-	//	fo.repaint();
 	}
 
 	/**

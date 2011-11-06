@@ -82,9 +82,6 @@ public class ControllerFenetrePincipale implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		
 		if(arg0.getSource()==valider){
-			System.out.println("click sur valider");
-			System.out.println(fp.getEntreBorneInf().getText());
-			System.out.println(fp.getEntreBorneSup().getText());
 			
 			BufferedReader br = new BufferedReader(new StringReader(fp.getSef_entrer().getText()));
 			try {
@@ -161,12 +158,10 @@ public class ControllerFenetrePincipale implements ActionListener {
 		}
 		
 		if(arg0.getSource()==generer){
-			System.out.println("click sur generer");
 			FenetreOnglet fo = new FenetreOnglet(mesSEF);
 		}
 		
 		if(arg0.getSource()==charger){
-			System.out.println("click sur charger");
 			fc.setFileFilter(new Filtre());
 			 int returnVal = fc.showOpenDialog(fp);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
@@ -182,12 +177,10 @@ public class ControllerFenetrePincipale implements ActionListener {
 		}
 		
 		if(arg0.getSource()==sauver){
-			System.out.println("click sur sauvegarder");
 			FenetreSauver fs = new FenetreSauver(mesSEF);	
 		}
 		
 		if (arg0.getSource()==ajouterpts){
-			System.out.println(" "+!verifieChampEntrer());
 			try {
 			if (!verifieChampEntrer()){
 				double tfy = Double.parseDouble(fp.getTfY().getText());
