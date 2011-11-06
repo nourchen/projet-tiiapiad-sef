@@ -4,8 +4,9 @@ import org.jfree.data.xy.XYSeries;
 
 
 /**
- * Classe permettant de modeliser un sous ensemble flou, défini comme une fonction linéaires par morceaux
- * Le sous ensemble flou est donc caractérisé par des bornes inferieures et superieures
+ * Classe permettant de modeliser un sous ensemble flou, 
+ * défini comme une fonction linéaire par morceaux.
+ * Le sous ensemble flou est donc caractérisé par des bornes inferieure et superieure
  * ainsi que par une liste de points d'inflexions.
  * @author Sylvia Vieira
  *
@@ -25,61 +26,47 @@ public class SEF {
 	 */
 	private XYSeries inflexions;
 
-	/*
-	 * a actualiser a la volee lors du remplissage des points dans le sef
-	 * servira ensuite pour savoir quels sont les min et max (vraies bornes finalement) d'entre tous les sef rentrés
+	/**
+	 * Constructeur de la classe SEF, permet de construire un
+	 * nouveau sous ensemble flou
+	 * @param inf : la borne inférieure du sous ensemble flou
+	 * @param sup : la borne supérieure du sous ensemble flou
+	 * @param listePoints : la liste des points d'inflexions caractérisant
+	 * le sous ensemble flou (qui est linéaire par morceaux)
 	 */
-	private double minX;
-	private double maxX;
-
 	public SEF(double inf,double sup, XYSeries listePoints){
 		borneInf = inf;
 		borneSup = sup;
 		inflexions=listePoints;
 	}
 
-	public SEF(double inf, double sup){//preferable, mieux vaut ajouter les points au fur et a mesure de la lecture du fichier
-		borneInf = inf;
-		borneSup = sup;
-	}
-
+	/**
+	 * getter sur le champ borneInf
+	 * @return la borne inférieure du sous ensemble flou
+	 */
 	public double getBorneInf() {
 		return borneInf;
 	}
-
-	public void setBorneInf(double inf) {
-		borneInf = inf;
-	}
-
+	/**
+	 * getter sur le champ borneSup
+	 * @return la borne supérieure du sous ensemble flou
+	 */
 	public double getBorneSup() {
 		return borneSup;
 	}
-
-	public void setBorneSup(double sup) {
-		borneSup = sup;
-	}
-
-	/*
-	 * avantage des XYSeries=>il me semble qu'ils ordonnent automatiquement les points par les x...
+	/**
+	 * getter sur le champ inflexions
+	 * @return la liste des points d'inflexion du sous ensemble flou
 	 */
-
-	public void ajouterPointsInflexions(double x, double y){
-		//Modification des min et max a la volee
-		if(inflexions.isEmpty()){
-
-			this.minX=x;
-			this.maxX=x;
-		}else{
-			minX=Math.min(minX, x);
-			maxX=Math.min(maxX, x);
-		}
-		inflexions.add(x,y);
-	}
-
 	public XYSeries getInflexions() {
 		return inflexions;
 	}	
 
+	/**
+	 * Méthode permettant d'afficher la liste des points 
+	 * d'inflexions caractérisant le SEF
+	 * -cette méthode peut s'avérer utile, notamment au debug-
+	 */
 	public void printInflexions(){
 		System.out.println("Liste des points dans le sef \""+inflexions.getKey()+"\": \n");
 		for (int i = 0; i < inflexions.getItemCount(); i++) {

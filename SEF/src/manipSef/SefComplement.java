@@ -10,10 +10,20 @@ import org.jfree.data.xy.XYSeries;
  */
 public final class SefComplement {
 
-		
+	/**
+	 * Constructeur vide
+	 * Il est présent par défaut, mais il figure ici explicitement
+	 * au cas où l'on ajouterait plus tard un constructeur,
+	 * qui ferait disparaitre le constructeur vide
+	 */
 	public SefComplement(){
 	}
-	
+	/**
+	 * Méthode permettant d'effectuer l'opération ensembliste 
+	 * du complémentaire sur un sous ensemble flou donné
+	 * @param sef1 : le sous ensemble flou à complémenter
+	 * @return le sous ensemble flou complémentaire de sef1
+	 */
 	public static SEF getComplement(SEF sef1){
 		XYSeries listPts= sef1.getInflexions();
 		//System.out.println("Description du sef: "+listPts.getKey());

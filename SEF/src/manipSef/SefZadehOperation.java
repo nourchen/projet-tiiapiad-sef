@@ -17,8 +17,8 @@ public class SefZadehOperation {
 			throws UnknownOperationException, NormalizationException{
 		
 		XYSeries ptsSef1,ptsSef2;
-		sef1.printInflexions();
-		sef2.printInflexions();
+//		sef1.printInflexions();
+//		sef2.printInflexions();
 		try {
 			ptsSef1 = sef1.getInflexions().createCopy(0,sef1.getInflexions().getItemCount()-1);
 			ptsSef1.setKey(sef1.getInflexions().getKey());
