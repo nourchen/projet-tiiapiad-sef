@@ -7,14 +7,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
 
 import manipSef.SEF;
 
-public class Sauver extends JFrame {
+public class Sauver {
 
 	// Avant de sauver : 
 	// 1)verif que c'est une fonction (pas de y avec deux abscisses) pas de y > 1

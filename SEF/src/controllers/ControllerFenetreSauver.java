@@ -18,6 +18,11 @@ import manipFile.Filtre;
 import manipFile.Sauver;
 import manipSef.SEF;
 
+/**
+ * Classe permetttant de gérer tout les evenements de click dans la fenetre Sauver
+ * @author Frederic
+ *
+ */
 public class ControllerFenetreSauver implements ActionListener, ListSelectionListener {
 
 	private JButton sauver;
@@ -30,6 +35,12 @@ public class ControllerFenetreSauver implements ActionListener, ListSelectionLis
 	private ArrayList<SEF> mesSEF;
 	private JFileChooser fc;
 	
+	/**
+	 * Constructeur faisant le lien entre le controlleur et la fenetre sauver fs et
+	 * remplit la fenetre avec le contenu ACTUEL de l'arraylist de SEF
+	 * @param fs
+	 * @param mesSEF
+	 */
 	public ControllerFenetreSauver(FenetreSauver fs,ArrayList<SEF> mesSEF){
 		this.fs = fs;
 		this.sauver = fs.getSauver();
@@ -46,7 +57,6 @@ public class ControllerFenetreSauver implements ActionListener, ListSelectionLis
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		if(arg0.getSource() == sauver){
 			System.out.println("click sur Sauver");
 			System.out.println( "Votre sélection:" );
@@ -79,10 +89,12 @@ public class ControllerFenetreSauver implements ActionListener, ListSelectionLis
 		
 	}
 
+	// Ecouteur sur les click dans la JList
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
 		// TODO Auto-generated method stub
 		System.out.println("on est la");
+		//On vide la liste a chaque fois sinon on conserve les SEF déselectionnées
 		sefchoisi.clear();
 		ListSelectionModel lsm = (ListSelectionModel)arg0.getSource();
 		int minIndex = lsm.getMinSelectionIndex();

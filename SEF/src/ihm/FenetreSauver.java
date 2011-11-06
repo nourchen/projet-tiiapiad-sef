@@ -13,6 +13,12 @@ import controllers.ControllerFenetreSauver;
 
 import manipSef.SEF;
 
+/**
+ * Classe gérant le contenu de la fenetre Sauver
+ * @author Frederic
+ *
+ */
+
 public class FenetreSauver extends JFrame {
 
 	private JList jlist;
@@ -22,35 +28,32 @@ public class FenetreSauver extends JFrame {
 	
 	private ArrayList<SEF> mesSEF;
 	
-	
+	/**
+	 * Construteur de la FentreOnglet. Utilise mesSEF pour remplir le contenu des JList
+	 * @param mesSEF
+	 */
 	public FenetreSauver(ArrayList<SEF> mesSEF){
 		setTitle("Sauvegarder...");
 		setSize(300,200);
-	
-		total = recupNom(mesSEF);
-		
+		//Construction de la Jlist
+		total = recupNom(mesSEF);	
 		jlist = new JList(total);
-		// nb de lignes visbles
-		//jlist.setVisibleRowCount( 5 );
-		// autorise la selection multiple
-		jlist.setSelectionMode( ListSelectionModel.MULTIPLE_INTERVAL_SELECTION );
-		// ajoute une scrollBar
 		JScrollPane spList = new JScrollPane( jlist );
-		// ajoute le composant dans la fenêtre
 		add( spList, BorderLayout.CENTER );
-		
-		
-		
 //		label = new JLabel( " Sélection: [Ctrl]+[click] ou [Shift]+[click] " );
 //		add( label, BorderLayout.NORTH );
-		
 		sauver = new JButton( "Sauver les SEF séléctionnés" );
 		add(sauver, BorderLayout.SOUTH );
 		setVisible(true);
 	//	pack();
 		new ControllerFenetreSauver(this,mesSEF);
 	}
-	
+	/**
+	 * Cette fonction permet de recuperer les noms des SEF pour les
+	 * tocker dans un tableau (utile pour le contenu des JList)
+	 * @param mesSEF contient les SEF chargé dans le programme
+	 * @return un tableau de String avec le nom des SEF
+	 */
 	public String[] recupNom(ArrayList<SEF> mesSEF){
 		String[] res = new String[mesSEF.size()];
 		for(int i =0; i<mesSEF.size();i++){

@@ -2,6 +2,11 @@ package manipFile;
 
 import java.io.File;
 
+/**
+ * Classe necessaire pour la gestion des Extension des fichier sauvegarder / charger 
+ * @author Frederic
+ *
+ */
 public class Utils {
     public final static String sef = "SEF";
 

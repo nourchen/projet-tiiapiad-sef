@@ -24,7 +24,11 @@ import controllers.ControllerFenetreOnglet;
 
 
 
-// Pas fini, encore des bugs a traiter.
+/**
+ * Classe gérant le contenu de la fenetre Onglet
+ * @author Frederic
+ *
+ */
 public class FenetreOnglet extends JFrame{
 	
 	private static final String tracer = "Tracer";
@@ -104,7 +108,11 @@ public class FenetreOnglet extends JFrame{
     private JPanel jPanel6 = new JPanel();;
     private String[] total;
 
-	
+	/**
+	 * Construteur de la FentreOnglet. Utilise mesSEF pour remplir le contenu des combobox
+	 * et de JList
+	 * @param mesSEF
+	 */
 	public FenetreOnglet(ArrayList<SEF> mesSEF){
 	
 		setTitle("Choisir les courbes a generer");
@@ -126,30 +134,19 @@ public class FenetreOnglet extends JFrame{
 		total = recupNom(mesSEF);
 		jListAffSEF = new JList(total);
 		
-		
-	/*	choixTnorme.addItem("Zadeh");
-		choixTnorme.addItem("Lukasiewicz");
-		choixTnorme.addItem("probabiliste");
-	*/
-		//Test avec Norme[]
+
+		//On remplit direct avec les enum les normes
 		Norme testNorme[] = Norme.values();
 		for (int i=0 ; i < testNorme.length ; i++){
 			choixTnorme.addItem(testNorme[i]);
 			choixTconorme.addItem(testNorme[i]);
 		}
 		
+		//on remplit direct avec les enum le choix des fonctions
 		FunctionChoice fc[] = FunctionChoice.values();
 		for (int j=0; j < fc.length ; j++){
 			choixFontion.addItem(fc[j]);
 		}
-		
-		/*
-		choixTconorme.addItem("Zadeh");
-		choixTconorme.addItem("Lukasiewicz");
-		choixTconorme.addItem("probabiliste");		
-		choixFontion.addItem("Square");
-		choixFontion.addItem("Cos");
-		*/
 		
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -209,8 +206,7 @@ public class FenetreOnglet extends JFrame{
        jScrollPane7 = new javax.swing.JScrollPane();
       // jListAffSEF = new javax.swing.JList();
        
-   //     ChoixFoncSef = new javax.swing.JComboBox();
-   //     traceExt = new javax.swing.JButton();		
+	
 		// code pour la fenetre
 
        jLabel1.setText("Selectionner le SEF ");
@@ -781,6 +777,12 @@ public class FenetreOnglet extends JFrame{
 	}
 
 
+	/**
+	 * Cette fonction permet de recuperer les noms des SEF pour les
+	 * stocker dans un tableau (utile pour le contenu des JList)
+	 * @param mesSEF contient les SEF chargé dans le programme
+	 * @return un tableau de String avec le nom des SEF
+	 */
 	public String[] recupNom(ArrayList<SEF> mesSEF){
 		String[] res = new String[mesSEF.size()];
 		for(int i =0; i<mesSEF.size();i++){

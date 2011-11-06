@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -21,7 +22,11 @@ import manipFile.Charger;
 import manipFile.Filtre;
 import manipFile.Sauver;
 import manipSef.SEF;
-
+/**
+ * Classe permetttant de gérer tout les evenements de click dans la fenetre principale
+ * @author Frederic
+ *
+ */
 public class ControllerFenetrePincipale implements ActionListener {
 
 	private FenetrePrincipale fp;
@@ -40,6 +45,11 @@ public class ControllerFenetrePincipale implements ActionListener {
 	//besoin de ce compteur pour la gestion des points
 	private int cpt;
 	
+	
+	/**
+	 * Constructeur faisant le lien entre le controlleur et la fenetre principale fp
+	 * @param fp
+	 */
 	public ControllerFenetrePincipale(FenetrePrincipale fp){
 		this.fp = fp;
 		generer = fp.getGenerer();
@@ -75,39 +85,35 @@ public class ControllerFenetrePincipale implements ActionListener {
 			System.out.println("click sur valider");
 			System.out.println(fp.getEntreBorneInf().getText());
 			System.out.println(fp.getEntreBorneSup().getText());
-			fp.pointEntree(fp.getEntreBorneInf().getText(), 
-					fp.getEntreBorneSup().getText(),fp.getSef_entrer().getText());
-			// cree un SEF avec nouveau parser
-			//////////////////////////////////
 			
 			BufferedReader br = new BufferedReader(new StringReader(fp.getSef_entrer().getText()));
 			try {
 
-				double binf;// = Double.parseDouble(fp.getEntreBorneInf().getText());
-				double bsup;// = Double.parseDouble(fp.getEntreBorneSup().getText());
+				double binf;
+				double bsup;
 				String borneinf = fp.getEntreBorneInf().getText();
 				String bornesup = fp.getEntreBorneSup().getText();
 				
-				if(borneinf.equals("-inf")){
+				//Ici le seul infini toléré c'est -inf
+				if(borneinf.equals("-inf")||borneinf.equals("inf")||borneinf.equals("+inf")){
 					binf = Double.MIN_VALUE;
 				} else {
 					binf = Double.parseDouble(borneinf);    
 				}
-
-				if(bornesup.equals("inf")) {
+				// ici le seul infini tolété c'est +inf
+				if(bornesup.equals("inf") || bornesup.equals("+inf") || bornesup.equals("-inf")) {
 					bsup = Double.MAX_VALUE;
 				} else {
 					bsup = Double.parseDouble(bornesup);
 				}
-								//ça ça fait reste a recup' les points
+				
+				// création du sef :
 				SEF temp = new SEF(binf,bsup,new XYSeries("SEF"+(mesSEF.size()+1)));
 				
 				String line;
+				//Boucle qui permet de remplir les points du sef (hors borne)
 				while((line = br.readLine()) != null) {
 				String[] tempo = line.split(" ");
-			//	System.out.println("Recupe de la ligne :"+line);
-			//	System.out.println("Recupe de la ligne :"+tempo[0]);
-			//	System.out.println("Recupe de la ligne :"+tempo[1]);
 				temp.getInflexions().add(Double.parseDouble(tempo[0]),Double.parseDouble(tempo[1]));
 				
 				}
@@ -136,30 +142,26 @@ public class ControllerFenetrePincipale implements ActionListener {
 				System.out.println("kaboom");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return;
+			}  catch (NumberFormatException e){
+			//si l'utilisateur entre autrechose que des nombre on réinitialise
+				fp.getEntreBorneInf().setEnabled(true);
+				fp.getEntreBorneSup().setEnabled(true);
+				fp.getSef_entrer().setText("");
+				fp.getEntreBorneInf().setText("");
+				fp.getEntreBorneSup().setText("");
+				cpt = 0;
+			return;
 			}
+			fp.pointEntree(fp.getEntreBorneInf().getText(), 
+					fp.getEntreBorneSup().getText(),fp.getSef_entrer().getText());
+			
 			
 			
 		}
 		
 		if(arg0.getSource()==generer){
 			System.out.println("click sur generer");
-			
-			//test de remplissage de combobox
-			SEF sef1 = new SEF(-30, 60, new XYSeries("sef1"));
-			sef1.getInflexions().add(-1.5,0);
-			sef1.getInflexions().add(1.25,1);
-			sef1.getInflexions().add(4.2,0.75);
-			sef1.getInflexions().add(5,0);
-			
-			SEF sef2 = new SEF(-40, 70, new XYSeries("sef2"));
-			sef2.getInflexions().add(-1.5,0);
-			sef2.getInflexions().add(1.25,1);
-			sef2.getInflexions().add(4.2,0.75);			
-			
-			//SEF essai = new SEF(binf,bsup, pts);
-		//	mesSEF.add(sef1);
-		//	mesSEF.add(sef2);
-			
 			FenetreOnglet fo = new FenetreOnglet(mesSEF);
 		}
 		
@@ -168,14 +170,9 @@ public class ControllerFenetrePincipale implements ActionListener {
 			fc.setFileFilter(new Filtre());
 			 int returnVal = fc.showOpenDialog(fp);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
-			    // Juste un affichage pour verifier
-			       System.out.println("Fichier a ouvrir : " +
-			             fc.getSelectedFile().getAbsolutePath());
 			       fichierouvert = fc.getSelectedFile().getAbsolutePath();
 			       Charger ch = new Charger(mesSEF,this,fp);
 			       ch.chargerfichier(fichierouvert);
-			       // recupere les points avec getmesSEF
-
 			     }
 			    if(mesSEF!=null){
 					fp.getGenerer().setEnabled(true);
@@ -186,41 +183,18 @@ public class ControllerFenetrePincipale implements ActionListener {
 		
 		if(arg0.getSource()==sauver){
 			System.out.println("click sur sauvegarder");
-		//	fc.setFileFilter(new Filtre());
-		//	int returnVal = fc.showSaveDialog(fp);
-			FenetreSauver fs = new FenetreSauver(mesSEF);
-			/*
-			if(returnVal == JFileChooser.APPROVE_OPTION) {
-				System.out.println("Fichier a ecrire : " +
-			             fc.getSelectedFile().getName());
-				//String nom = fc.getSelectedFile().getName();
-				System.out.println("Fichier a ecrire : " +
-			             fc.getSelectedFile().getAbsolutePath());
-				String chemin = fc.getSelectedFile().getAbsolutePath();
-				//pas plutot sef_stocker ?
-				String envoie = fp.getSef_stocker().getText();
-				
-				Sauver sv = new Sauver();
-				try {
-					sv.infoFichier(chemin,mesSEF);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}*/	
-			
-			
+			FenetreSauver fs = new FenetreSauver(mesSEF);	
 		}
 		
 		if (arg0.getSource()==ajouterpts){
 			System.out.println(" "+!verifieChampEntrer());
+			try {
 			if (!verifieChampEntrer()){
 				double tfy = Double.parseDouble(fp.getTfY().getText());
 				if (tfy <= 1){
 				System.out.println("ajouter pts");			
 				if (cpt == 0){
-					cpt++;//doit trouver autre chose
+					cpt++;
 					fp.getSef_entrer().append(""+fp.getTfX().getText()+ " "+fp.getTfY().getText());
 				} else {
 					fp.getSef_entrer().append("\n"+fp.getTfX().getText()+ " "+fp.getTfY().getText());		
@@ -237,12 +211,19 @@ public class ControllerFenetrePincipale implements ActionListener {
 			}else {
 				
 			}
+			}  catch (NumberFormatException e){
+				//si l'utilisateur entre autrechose que des nombre on arrete mais on bloque rien
+				return;
+			}
 		}
 		
 	
 		
 	}
-	
+	/**
+	 * Fonction qui verifie que les champs de saisi ont été rempli
+	 * @return true si l'un des champs est vide false sinon
+	 */
 	public boolean verifieChampEntrer(){
 		return ( 
 				   (fp.getEntreBorneInf().getText().equals("")) 
