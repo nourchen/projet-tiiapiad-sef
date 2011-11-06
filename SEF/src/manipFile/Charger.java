@@ -35,27 +35,25 @@ public class Charger {
 		boolean ok = true;
 
 		try{
-			// Création du flux bufférisé sur un FileReader, immédiatement suivi par un
-			// try/finally, ce qui permet de ne fermer le flux QUE s'il le reader
-			// est correctement instancié (évite les NullPointerException)
 			BufferedReader buff = new BufferedReader(new FileReader(file));
 
 			try {
 				String line;
 				// Lecture du fichier ligne par ligne. Cette boucle se termine
 				// quand la méthode retourne la valeur null.
+				// ok permet de recup si le parser plante ou pas
 				while ((line = buff.readLine()) != null && ok) {
-					System.out.println(line);
+					//System.out.println(line);
 					ok = parserLigne(line);
-					//faites ici votre traitement
 				}
 			} finally {
-				// dans tous les cas, on ferme nos flux
+				// dans tous les cas, on ferme les flux
 				buff.close();
 			}
 		} catch (IOException ioe) {
 			// erreur de fermeture des flux
 			System.out.println("Erreur --" + ioe.toString());
+			return;
 		}
 	}
 
@@ -66,16 +64,16 @@ public class Charger {
 		try {
 		String recupbornes = f.substring(0, bornes);
 		String ptsInflexion = f.substring(bornes+1);
-		System.out.println("Bornes :"+recupbornes+"  \t "+ptsInflexion);
+	//	System.out.println("Bornes :"+recupbornes+"  \t "+ptsInflexion);
 
 		int separation = f.indexOf(",");
 		String borneinf = recupbornes.substring(0, separation);
 		String bornesup = recupbornes.substring(separation+1);
-		System.out.println("Borne inf :"+borneinf);
-		System.out.println("Borne sup :"+bornesup+"\n");
+	//	System.out.println("Borne inf :"+borneinf);
+	//	System.out.println("Borne sup :"+bornesup+"\n");
 		
 		
-		System.out.println("Nb points détectés :");
+		//System.out.println("Nb points détectés :");
 
 		String[] temp;
 

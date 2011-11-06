@@ -186,7 +186,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 			if (!verifieChampEntrer()){
 				double tfy = Double.parseDouble(fp.getTfY().getText());
 				if (tfy <= 1){
-				System.out.println("ajouter pts");			
+				//System.out.println("ajouter pts");			
 				if (cpt == 0){
 					cpt++;
 					fp.getSef_entrer().append(""+fp.getTfX().getText()+ " "+fp.getTfY().getText());
