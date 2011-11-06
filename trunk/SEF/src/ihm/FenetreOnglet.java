@@ -31,6 +31,11 @@ import controllers.ControllerFenetreOnglet;
  */
 public class FenetreOnglet extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7677159696405629218L;
+
 	private static final String tracer = "Tracer";
 	
 	private JComboBox sefComp = new JComboBox();

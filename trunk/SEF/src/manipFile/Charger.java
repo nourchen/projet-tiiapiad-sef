@@ -20,8 +20,7 @@ import manipSef.SEF;
 
 public class Charger {
 
-	//private static String test = "-inf,2011#-1.5,0;1.25,1;4.2,0.75;5,0";
-	//TODO verifier le remplissage FenetrePrincipale fp
+	
 	private ArrayList<SEF> mesSEF;//A remplir au fur et a mesure de la lecture du fichier
 	private ControllerFenetrePincipale cfp;
 	private FenetrePrincipale fp;
@@ -134,6 +133,15 @@ public class Charger {
 		this.mesSEF = mesSEF;
 	}
 
+	public ControllerFenetrePincipale getCfp() {
+		return cfp;
+	}
+
+	public void setCfp(ControllerFenetrePincipale cfp) {
+		this.cfp = cfp;
+	}
+
+	
 
 }
 

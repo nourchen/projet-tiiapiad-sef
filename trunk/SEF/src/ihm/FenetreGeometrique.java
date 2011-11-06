@@ -62,4 +62,14 @@ public class FenetreGeometrique extends JFrame {
 		setContentPane(chartPanel);
 
 	}
+
+	public XYSeriesCollection getSefsCollec() {
+		return sefsCollec;
+	}
+
+	public void setSefsCollec(XYSeriesCollection sefsCollec) {
+		this.sefsCollec = sefsCollec;
+	}
+	
+	
 }

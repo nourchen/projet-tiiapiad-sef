@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -62,7 +61,7 @@ public class ControllerFenetreSauver implements ActionListener, ListSelectionLis
 			System.out.println( "Votre sélection:" );
 			System.out.println("taille messef "+mesSEF.size());
 		//	System.out.println(""+((JList)couleurJList).getSelectedIndices().length);
-			int txt = ((JList)jlist).getSelectedIndices().length;
+		//	int txt = ((JList)jlist).getSelectedIndices().length;
 			for (int i = 0; i < sefchoisi.size();i++){
 				System.out.println("choisi au clic "+sefchoisi.get(i));
 			sefpris.add(mesSEF.get(sefchoisi.get(i)));			
@@ -78,7 +77,6 @@ public class ControllerFenetreSauver implements ActionListener, ListSelectionLis
 			try {
 				sv.infoFichier(chemin,sefpris);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				System.out.println("Erreur fichier");
 				e.printStackTrace();
 				return;
@@ -92,8 +90,6 @@ public class ControllerFenetreSauver implements ActionListener, ListSelectionLis
 	// Ecouteur sur les click dans la JList
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
-		// TODO Auto-generated method stub
-		System.out.println("on est la");
 		//On vide la liste a chaque fois sinon on conserve les SEF déselectionnées
 		sefchoisi.clear();
 		ListSelectionModel lsm = (ListSelectionModel)arg0.getSource();
@@ -107,4 +103,23 @@ public class ControllerFenetreSauver implements ActionListener, ListSelectionLis
 		
 	}
 	}
+
+	public String[] getTotal() {
+		return total;
+	}
+
+	public void setTotal(String[] total) {
+		this.total = total;
+	}
+
+	public Object getJlist() {
+		return jlist;
+	}
+
+	public void setJlist(Object jlist) {
+		this.jlist = jlist;
+	}
+	
+	
+	
 }
