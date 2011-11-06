@@ -115,6 +115,7 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 			int indexSEF1 = fo.getSefChoixinter1().getSelectedIndex();
 			int indexSEF2 = fo.getSefChoixinter2().getSelectedIndex();
 			
+			
 			SEF sefi1 = fo.getMesSEF().get(indexSEF1);
 			SEF sefi2 = fo.getMesSEF().get(indexSEF2);
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
@@ -159,13 +160,15 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 		if(arg0.getSource()==traceUni){
 			System.out.println("Uni");
 			
-			int indexSEF1 = fo.getSefChoixinter1().getSelectedIndex();
-			int indexSEF2 = fo.getSefChoixinter2().getSelectedIndex();
+			int indexSEF1 = fo.getSefChoixUni1().getSelectedIndex();
+			int indexSEF2 = fo.getSefChoixUni2().getSelectedIndex();
 			
 			SEF sefi1 = fo.getMesSEF().get(indexSEF1);
 			SEF sefi2 = fo.getMesSEF().get(indexSEF2);
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
 			
+			System.out.println("index 1 : "+indexSEF1);
+			System.out.println("index 2 : "+indexSEF2);
 			//Zadeh
 			int recupuni = fo.getChoixTconorme().getSelectedIndex();
 			Norme normeuni[] = Norme.values();
