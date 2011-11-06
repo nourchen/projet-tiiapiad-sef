@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
+
 
 import controllers.ControllerFenetreSauver;
 
@@ -21,6 +21,10 @@ import manipSef.SEF;
 
 public class FenetreSauver extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3964985490582034705L;
 	private JList jlist;
 	private JButton sauver;
 	private String[] total;

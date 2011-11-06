@@ -13,6 +13,11 @@ import controllers.ControllerFenetrePincipale;
 
 public class FenetrePrincipale extends JFrame {
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 440272440718590375L;
 	private JMenuBar menubar = new JMenuBar();
 	private JMenu fichier = new JMenu("Fichier");
 	
@@ -35,7 +40,7 @@ public class FenetrePrincipale extends JFrame {
     private JLabel jLabel5;
     private JLabel jLabel6;
     private JScrollPane jScrollPane1;
-    private JScrollPane jScrollPane2;
+//    private JScrollPane jScrollPane2;
     private JScrollPane jScrollPane3;
     
     private JTextField tfX;
@@ -49,7 +54,7 @@ public class FenetrePrincipale extends JFrame {
 	public FenetrePrincipale() {
 		
 		
-        jScrollPane2 = new JScrollPane();
+       // jScrollPane2 = new JScrollPane();
         jScrollPane1 = new JScrollPane();
         jLabel1 = new JLabel();
         jLabel2 = new JLabel();
@@ -200,7 +205,7 @@ public class FenetrePrincipale extends JFrame {
         setVisible(true);
         pack();
       //ActionListener
-		ControllerFenetrePincipale cfp = new ControllerFenetrePincipale(this);
+		new ControllerFenetrePincipale(this);
 		
 	}
 	/**

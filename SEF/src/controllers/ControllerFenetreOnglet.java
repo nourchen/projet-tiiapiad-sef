@@ -10,7 +10,6 @@ import ihm.FenetreOnglet;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -20,7 +19,6 @@ import manipSef.SEF;
 import manipSef.SefComplement;
 import manipSef.SefManager;
 
-import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.RefineryUtilities;
 
@@ -56,7 +54,7 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 	private JComboBox sefChoixuni2;
 	private JComboBox sefExt;
 	private ArrayList<Integer> sefchoisi = new ArrayList<Integer> ();
-	private ArrayList<SEF> sefpris = new ArrayList<SEF> ();
+//	private ArrayList<SEF> sefpris = new ArrayList<SEF> ();
 	private ListSelectionModel listSelectionModel;
 	
 	/**
@@ -240,7 +238,6 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 							fo.getMesSEF().add(toto);
 							rajouter(toto);
 						} catch (UnknownFunctionException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 							return;
 						}				
@@ -304,7 +301,6 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 	
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
-		// TODO Auto-generated method stub
 		sefchoisi.clear();
 		ListSelectionModel lsm = (ListSelectionModel)arg0.getSource();
 		int minIndex = lsm.getMinSelectionIndex();

@@ -1,7 +1,5 @@
 package manipFile;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,11 +9,6 @@ import java.util.ArrayList;
 import manipSef.SEF;
 
 public class Sauver {
-
-	// Avant de sauver : 
-	// 1)verif que c'est une fonction (pas de y avec deux abscisses) pas de y > 1
-	// 2)ordonner selon les x
-	//----- constantes
 	
 	public Sauver () {
 	}

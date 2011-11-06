@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
-import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -20,7 +19,6 @@ import org.jfree.data.xy.XYSeries;
 
 import manipFile.Charger;
 import manipFile.Filtre;
-import manipFile.Sauver;
 import manipSef.SEF;
 /**
  * Classe permetttant de gérer tout les evenements de click dans la fenetre principale
@@ -115,6 +113,10 @@ public class ControllerFenetrePincipale implements ActionListener {
 				
 				}
 				
+				fp.pointEntree(fp.getEntreBorneInf().getText(), 
+						fp.getEntreBorneSup().getText(),fp.getSef_entrer().getText());
+				
+				
 				mesSEF.add(temp);
 				//reinitialise les champs
 				fp.getSef_entrer().setText("");
@@ -150,15 +152,14 @@ public class ControllerFenetrePincipale implements ActionListener {
 				cpt = 0;
 			return;
 			}
-			fp.pointEntree(fp.getEntreBorneInf().getText(), 
-					fp.getEntreBorneSup().getText(),fp.getSef_entrer().getText());
+			
 			
 			
 			
 		}
 		
 		if(arg0.getSource()==generer){
-			FenetreOnglet fo = new FenetreOnglet(mesSEF);
+			 new FenetreOnglet(mesSEF);
 		}
 		
 		if(arg0.getSource()==charger){
@@ -177,7 +178,7 @@ public class ControllerFenetrePincipale implements ActionListener {
 		}
 		
 		if(arg0.getSource()==sauver){
-			FenetreSauver fs = new FenetreSauver(mesSEF);	
+			 new FenetreSauver(mesSEF);	
 		}
 		
 		if (arg0.getSource()==ajouterpts){
