@@ -21,7 +21,7 @@ public class TestNormalize {
 		SEF sef1 = new SEF(-30, 60, new XYSeries("sef1"));
 		SEF sef2 = new SEF(-30, 60, new XYSeries("sef2"));
 		SEF sef3 = new SEF(-30, 60, new XYSeries("sef3"));
-		SEF sef4 = new SEF(-30, 1, new XYSeries("sef4"));
+		SEF sef4 = new SEF(-30, 60, new XYSeries("sef4"));
 
 		sef1.getInflexions().add(-1.5,0);
 		sef1.getInflexions().add(1.25,1);
