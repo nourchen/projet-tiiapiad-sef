@@ -102,32 +102,28 @@ public class Charger {
 		double binf;
 		double bsup;
 
-		if(borneinf.equals("-inf")){
+		if(borneinf.equals("-inf")||borneinf.equals("inf")||borneinf.equals("+inf")){
 			binf = Double.MIN_VALUE;
 		} else {
 			binf = Double.parseDouble(borneinf);    
 		}
 
-		if(bornesup.equals("inf")) {
+		if(bornesup.equals("inf")|| bornesup.equals("+inf") || bornesup.equals("-inf")) {
 			bsup = Double.MAX_VALUE;
 		} else {
 			bsup = Double.parseDouble(bornesup);
 		}
-
 		SEF essai = new SEF(binf,bsup, pts);
 		mesSEF.add(essai);
 		// on peut continuer a lire la ligne suivante si elle existe
 		return true;
 		} catch (Exception e){
-			// On vide les points valides (vu que le format est incorrect) le clear est peut etre
-			// violent a verifier
-			//TODO verifier le clear
-		//	mesSEF.clear();
 			// Affichage du message d'erreur
 			JOptionPane.showMessageDialog(null,"Erreur ! Format du fichier incorrect !","ERREUR",JOptionPane.ERROR_MESSAGE);
 			// On quitte la boucle si y a une erreur (on arrete la lecture)
 			return false;
 		}
+		
 	}
 
 	public ArrayList<SEF> getMesSEF() {
