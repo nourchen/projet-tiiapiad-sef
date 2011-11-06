@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
@@ -17,7 +16,6 @@ import manipSef.SEF;
 public class FenetreSauver extends JFrame {
 
 	private JList jlist;
-	private JLabel label;
 	private JButton sauver;
 	private String[] total;
 	
@@ -28,7 +26,6 @@ public class FenetreSauver extends JFrame {
 	public FenetreSauver(ArrayList<SEF> mesSEF){
 		setTitle("Sauvegarder...");
 		setSize(300,200);
-		Object tab[] = mesSEF.toArray();
 	
 		total = recupNom(mesSEF);
 		
