@@ -365,7 +365,6 @@ public class FenetreOnglet extends JFrame{
 
        jLabel7.setText("SEF numero 1 :");
 
-
        jLabel8.setText("information :");
 
        jtaUni1.setColumns(20);
@@ -479,7 +478,6 @@ public class FenetreOnglet extends JFrame{
 
        jLabel12.setText("Choisissez le sous ensemble flou :");
 
-
        traceExt.setText("Tracer");
 
        jtaExt.setColumns(20);
@@ -572,6 +570,7 @@ public class FenetreOnglet extends JFrame{
 
        tracerAffSAF.setText("Tracer");
 
+
        jScrollPane7.setViewportView(jListAffSEF);
 
        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -579,14 +578,14 @@ public class FenetreOnglet extends JFrame{
        jPanel6Layout.setHorizontalGroup(
            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
            .addGroup(jPanel6Layout.createSequentialGroup()
-               .addContainerGap(228, Short.MAX_VALUE)
+               .addContainerGap(152, Short.MAX_VALUE)
                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                        .addComponent(tracerAffSAF)
                        .addGap(254, 254, 254))
                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                       .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addGap(227, 227, 227))))
+                       .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                       .addGap(144, 144, 144))))
        );
        jPanel6Layout.setVerticalGroup(
            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -610,7 +609,6 @@ public class FenetreOnglet extends JFrame{
            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
            .addComponent(jTabbedPane1)
        );
-
 
        pack();
        ControllerFenetreOnglet cfo = new ControllerFenetreOnglet(this);
