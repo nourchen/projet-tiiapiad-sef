@@ -125,11 +125,12 @@ public class SefDiscretizer {
 	}
 	
 	/**
-	 * 
-	 * @param toDiscretize
-	 * @param min
-	 * @param max
-	 * @param nbVal
+	 * Méthode permettant de discrétiser un sous ensemble flou
+	 * sur un intervalle donné
+	 * @param toDiscretize : le sous ensemble flou à discrétiser
+	 * @param min : la borne inférieure de l'intervalle de valeurs discrétisées
+	 * @param max : la borne supérieure de l'intervalle de valeurs discrétisées
+	 * @param nbVal : le nombre de valeurs discrètes demandées
 	 * @return
 	 */
 	public static SEF discretizeSef(SEF toDiscretize, double min, double max, int nbVal){

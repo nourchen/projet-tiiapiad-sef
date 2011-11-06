@@ -3,12 +3,35 @@ package manipSef;
 import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
 
+import exceptions.NormalizationException;
 import exceptions.UnknownOperationException;
 import tools.OperationEnsembliste;
-
+/**
+ * Classe permettant d'effectuer une opération (Union/Intersection)
+ * entre deux sous ensembles flous
+ * selon la T-(co)norme probabiliste
+ * @author Sylvia Vieira
+ *
+ */
 public class SefProbaOperation {
 
-
+	/**
+	 * La méthode renvoyant le sous ensemble flou
+	 * résultant de l'opération demandée (union ou intersection)
+	 * entre deux sous ensembles flous
+	 * par la T-(co)norme probabiliste
+	 * 
+	 * Cette opération a necessité de procéder à une discrétisation.
+	 * 
+	 * @param sef1 premier sous ensemble flou
+	 * @param sef2 second sous ensemble flou
+	 * @param operation l'opération que l'on veut effectuer: Intersection ou Union
+	 * @return : le sous ensemble flou résultant de l'opération demandée
+	 * @throws UnknownOperationException : si l'opération demandée
+	 * n'est pas connue 
+	 * @throws NormalizationException : si un problème s'est produit lors de la normalisation
+	 * des deux ou de l'un des deux sous ensembles flous passées en paramètres
+	 */
 	public static SEF getProbaResult(SEF sef1, SEF sef2,OperationEnsembliste operation) throws UnknownOperationException{
 
 		double inf,sup;
