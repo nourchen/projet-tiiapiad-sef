@@ -47,12 +47,12 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 	private JButton traceUni;
 	private JButton traceExt;
 	private JButton tracerAffSEF;
-	private JComboBox sefComp;
-	private JComboBox sefChoixinter1;
-	private JComboBox sefChoixinter2;
-	private JComboBox sefChoixuni1;
-	private JComboBox sefChoixuni2;
-	private JComboBox sefExt;
+	private JComboBox<String> sefComp;
+	private JComboBox<String> sefChoixinter1;
+	private JComboBox<String> sefChoixinter2;
+	private JComboBox<String> sefChoixuni1;
+	private JComboBox<String> sefChoixuni2;
+	private JComboBox<String> sefExt;
 	private ArrayList<Integer> sefchoisi = new ArrayList<Integer> ();
 //	private ArrayList<SEF> sefpris = new ArrayList<SEF> ();
 	private ListSelectionModel listSelectionModel;
@@ -321,12 +321,12 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 	 */
 	public void rajouter(SEF sef){
 		// rajout dansles combobox
-		fo.getSefChoixinter1().addItem(sef.getInflexions().getKey());
-		fo.getSefChoixinter2().addItem(sef.getInflexions().getKey());
-		fo.getSefChoixUni1().addItem(sef.getInflexions().getKey());
-		fo.getSefChoixUni2().addItem(sef.getInflexions().getKey());
-		fo.getSefComp().addItem(sef.getInflexions().getKey());
-		fo.getChoixFoncSef().addItem(sef.getInflexions().getKey());
+		fo.getSefChoixinter1().addItem((String)sef.getInflexions().getKey());
+		fo.getSefChoixinter2().addItem((String)sef.getInflexions().getKey());
+		fo.getSefChoixUni1().addItem((String)sef.getInflexions().getKey());
+		fo.getSefChoixUni2().addItem((String)sef.getInflexions().getKey());
+		fo.getSefComp().addItem((String)sef.getInflexions().getKey());
+		fo.getChoixFoncSef().addItem((String)sef.getInflexions().getKey());
 		
 		//construction du nouveau tableau
 		int nouvelletaille = fo.getTotal().length+1;
