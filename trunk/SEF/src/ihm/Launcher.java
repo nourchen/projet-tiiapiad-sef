@@ -1,6 +1,6 @@
 package ihm;
 
-//import org.jfree.ui.RefineryUtilities;
+
 
 public class Launcher {
 
@@ -10,6 +10,7 @@ public class Launcher {
 
 	public static void main(String[] args) {
 		FenetrePrincipale fp = new FenetrePrincipale();
+
 	}
 
 }
