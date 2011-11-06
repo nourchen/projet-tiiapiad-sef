@@ -4,7 +4,12 @@ import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
 
-
+/**
+ * Classe permettant de filter les fichier en entrée sur le type SEF.
+ * On peut aussi charger les fichiers avec une autre extention. 
+ * @author Frederic
+ *
+ */
 public class Filtre extends FileFilter {
 
 	/**

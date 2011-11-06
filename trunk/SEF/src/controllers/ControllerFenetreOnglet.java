@@ -35,6 +35,11 @@ import exceptions.UnknownOperationException;
 import tools.Norme;
 import tools.OperationEnsembliste;
 
+	/**
+	 * Classe permetttant de gérer tout les evenements de click dans la fenetre onglet.
+	 * @author Frederic
+	 *
+	 */
 public class ControllerFenetreOnglet implements ActionListener,ListSelectionListener {
 
 	private FenetreOnglet fo;
@@ -54,14 +59,19 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 	private ArrayList<SEF> sefpris = new ArrayList<SEF> ();
 	private ListSelectionModel listSelectionModel;
 	
+	/**
+	 * Constructeur faisant le lien entre le controlleur et la fenetre onglet fo
+	 * @param fo
+	 */
 	public ControllerFenetreOnglet(FenetreOnglet fo){
 		this.fo = fo;
+		//JButton
 		traceComp = fo.getTraceComp();
 		traceInter = fo.getTraceInter();
 		traceUni = fo.getTraceUni();
 		traceExt = fo.getTraceExt();
 		tracerAffSEF = fo.getTracerAffSEF();
-		
+		//JCombobox
 		sefComp = fo.getSefComp();
 		sefChoixinter1 = fo.getSefChoixinter1();
 		sefChoixinter2 = fo.getSefChoixinter2();
@@ -69,13 +79,13 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 		sefChoixuni2 = fo.getSefChoixUni2();
 		sefExt = fo.getChoixFoncSef();
 		
-		
+		//Ecouteur d'action bouton
 		traceComp.addActionListener(this);
 		traceInter.addActionListener(this);
 		traceUni.addActionListener(this);
 		traceExt.addActionListener(this);
 		tracerAffSEF.addActionListener(this);
-		
+		//Ecouteur d'action liste déroulante
 		sefComp.addActionListener(this);
 		sefChoixinter1.addActionListener(this);
 		sefChoixinter2.addActionListener(this);
@@ -83,6 +93,7 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 		sefChoixuni2.addActionListener(this);
 		sefExt.addActionListener(this);
 		
+		//Ecouteur sur la JList
 		listSelectionModel = fo.getjListAffSEF().getSelectionModel();
 		listSelectionModel.addListSelectionListener(this);
 		
@@ -90,6 +101,7 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
 		if(arg0.getSource()==traceComp){
 			System.out.println("comp");
 			System.out.println(""+fo.getSefComp().getSelectedIndex());
@@ -102,14 +114,14 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 			SEF inverse = SefComplement.getComplement(test);
 			mesSefs.addSeries(inverse.getInflexions());
 			FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
-			//La string passée en param du constructeur est le titre de la fenetre
 			fo.getMesSEF().add(inverse);
 			rajouter(inverse);
-			frame.pack();//? Que fait cette commande?
+			frame.pack();
 			RefineryUtilities.centerFrameOnScreen(frame);
 			frame.setVisible(true);
 			
-		}		
+		}
+		
 		if(arg0.getSource()==traceInter){
 			System.out.println("Inter");
 			int indexSEF1 = fo.getSefChoixinter1().getSelectedIndex();
@@ -132,6 +144,7 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 						frame.pack();//? Que fait cette commande?
 						RefineryUtilities.centerFrameOnScreen(frame);
 						frame.setVisible(true);
+						//Rajout dans mesSEF / Combobox / Jlist
 						fo.getMesSEF().add(iinterSef);
 						rajouter(iinterSef);
 				}
@@ -167,21 +180,18 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 			SEF sefi2 = fo.getMesSEF().get(indexSEF2);
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
 			
-			System.out.println("index 1 : "+indexSEF1);
-			System.out.println("index 2 : "+indexSEF2);
-			//Zadeh
 			int recupuni = fo.getChoixTconorme().getSelectedIndex();
 			Norme normeuni[] = Norme.values();
 				SEF uniSef;
 				try {
 					uniSef = SefManager.getResultOperation(sefi1, sefi2, normeuni[recupuni],OperationEnsembliste.UNION);
-					//iinterSef.printInflexions();
 					mesSefs.addSeries(uniSef.getInflexions());
 					FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
-					//La string passée en param du constructeur est le titre de la fenetre
-					frame.pack();//? Que fait cette commande?
+					frame.pack();
 					RefineryUtilities.centerFrameOnScreen(frame);
+					//rajout dans mes sef
 					fo.getMesSEF().add(uniSef);
+					//rajout dans les combobox et JList
 					rajouter(uniSef);
 					frame.setVisible(true);
 				} catch (UnknownNormeException e) {
@@ -228,19 +238,18 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 						try {
 							Extension ext = new Extension(sefExt,borneInfEntree,borneSupEntree,fc[recup]);
 							SEF toto = ext.getExtendedSef();
-//							System.out.println("Les points du sef étendu que l'on demande à afficher:\n");
-//							toto.printInflexions();
 							mesSefs.addSeries(toto.getInflexions());
 							FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
-							//La string passée en param du constructeur est le titre de la fenetre
-							frame.pack();//? Que fait cette commande?
+							frame.pack();
 							RefineryUtilities.centerFrameOnScreen(frame);
 							frame.setVisible(true);
+							//Rajout dans mesSEF / Combobox / Jlist
 							fo.getMesSEF().add(toto);
 							rajouter(toto);
 						} catch (UnknownFunctionException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+							return;
 						}				
 				}
 			}
@@ -249,6 +258,7 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 		if(arg0.getSource()==tracerAffSEF){
 			System.out.println("click tracer SEF Sans");
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
+			// boucle qui remplit la XYSeries avec les SEF choisi
 			for (int i = 0; i < sefchoisi.size();i++){
 				System.out.println("choisi au clic "+sefchoisi.get(i));
 				int choisi = sefchoisi.get(i);
@@ -261,7 +271,7 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 			frame.setVisible(true);
 		}
 			
-		//Gere la gestion si modif de la JCombobox
+		//Gere la gestion si modif de la JCombobox et mise a jour dans les JTextArea correspondant
 		if(arg0.getSource()==sefComp){
 			fo.getJtaComp().setText("");
 			//System.out.println("Quand ?");
@@ -326,7 +336,7 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 	
 	
 	/**
-	 * Cette fonction permet de rajouter le SEF sef au combobox et ou JList
+	 * Cette fonction permet de rajouter le SEF sef au combobox et au JList
 	 * @param sef
 	 */
 	public void rajouter(SEF sef){
@@ -358,6 +368,12 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 	//	fo.repaint();
 	}
 
+	/**
+	 * cette fonction permet de remplir le JTextArea jta avec les éléments du SEF contenu dans 
+	 * l'indice index
+	 * @param jta
+	 * @param index
+	 */
 	public void remplirJtextArea(JTextArea jta, int index){
 		jta.setText("");
 		SEF test = fo.getMesSEF().get(index);

@@ -5,7 +5,7 @@ import javax.swing.*;
 import controllers.ControllerFenetrePincipale;
 
 /**
- * 
+ * Classe gérant le contenu de la fenetre Principale
  * @author Frederic
  *
  */
@@ -43,7 +43,9 @@ public class FenetrePrincipale extends JFrame {
     private JButton ajouterpts;
 //	private BorderLayout fond = new BorderLayout();
 	
-	
+	/**
+	 * Constructeur gérant le contenu de la fenetre Principale
+	 */
 	public FenetrePrincipale() {
 		
 		
@@ -201,10 +203,14 @@ public class FenetrePrincipale extends JFrame {
 		ControllerFenetrePincipale cfp = new ControllerFenetrePincipale(this);
 		
 	}
-	
+	/**
+	 * Fonction gérant l'affichage dans le JTextArea de gauche.
+	 * @param borneinf est la borne inf du sef
+	 * @param borneSup est la borne sup du sef
+	 * @param point est une énumeration des points sous forme d'un String
+	 */
 	public void pointEntree(String borneinf, String borneSup, String point) {
 		// Bon y a moyen de tout mettre dans le meme append mais je prefere comme ca :
-		point = point.replaceAll("\n", ";\n");
 		sef_stocker.append("SEF :");
 		sef_stocker.append("\n==========");
 		sef_stocker.append("\nborne inf : "+borneinf);
