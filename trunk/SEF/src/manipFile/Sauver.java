@@ -11,10 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.ListCellRenderer;
-import javax.swing.ListSelectionModel;
 
 import manipSef.SEF;
 
@@ -23,9 +19,6 @@ public class Sauver extends JFrame {
 	// Avant de sauver : 
 	// 1)verif que c'est une fonction (pas de y avec deux abscisses) pas de y > 1
 	// 2)ordonner selon les x
-	private JList couleursJList;
-	private JLabel label;
-	private JButton button;
 	//----- constantes
 	
 	public Sauver () {
@@ -35,24 +28,7 @@ public class Sauver extends JFrame {
 		chemin = chemin+".SEF";
 		System.out.println("test sauvegarde");		
 		DataOutputStream ecrit = new DataOutputStream(new FileOutputStream(chemin));
-	/*
-		//on supprime les retours a la ligne :
-		contenu = contenu.replace("\n", "");
-		// on supprime la "décoration" ( les = )
-		contenu = contenu.replace("=", "");
-		//on supprime le premier SEF :
-		contenu = contenu.replaceFirst("SEF :", "");
-		// on supprime les autres :
-		contenu = contenu.replace("SEF :", "\n");
-		// on supprime les "borne inf"
-		contenu = contenu.replace("borne inf : ", "");
-		// on supprime les "borne sup"
-		contenu = contenu.replace("borne sup : ", ",");
-		// on supprime les "point(s)"
-		contenu = contenu.replace("point(s) :", "#");
-		// on remplace les " " par des ","
-		contenu = contenu.replace(" ",",");
-		*/
+
 	//	-10,10#1,0;2,1;3,0
 		String contenu = "";
 		for (int i = 0 ; i < mesSEF.size();i++){
