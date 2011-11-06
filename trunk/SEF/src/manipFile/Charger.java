@@ -15,9 +15,11 @@ import javax.swing.JOptionPane;
 
 import manipSef.SEF;
 
-
-// lancer une exception sur parser
-
+/**
+ * Classe qui gere le chargement des fichiers contenant les SEF
+ * @author Frederic
+ *
+ */
 public class Charger {
 
 	
@@ -25,12 +27,23 @@ public class Charger {
 	private ControllerFenetrePincipale cfp;
 	private FenetrePrincipale fp;
 	
+	/**
+	 * Constructeur qui gere la connexion entre les différents elements
+	 * et permet d'ecrire aussi dans le panneau de gauche et remplit l'arraylist de SEF
+	 * @param mesSEF la liste de SEF existant déjà
+	 * @param cfp le controler de la fenetre principale
+	 * @param fp la fenetre prinicipale
+	 */
 	public Charger(ArrayList<SEF> mesSEF,ControllerFenetrePincipale cfp,FenetrePrincipale fp) {
 		this.cfp = cfp;
 		this.mesSEF = cfp.getMesSEF();
 		this.fp = fp;
 	}
-
+	
+	/**
+	 * charge et lit ligne a ligne un fichier
+	 * @param file chemin du fichier
+	 */
 	public void chargerfichier(String file) {
 		boolean ok = true;
 
@@ -56,7 +69,13 @@ public class Charger {
 			return;
 		}
 	}
-
+	
+	/**
+	 * fonction qui test et remplit les SEF a partir d'un fichier
+	 * @param f la chaine a tester
+	 * @return true si l'opération a réussi, false sinon
+	 * @throws IOException
+	 */
 	public boolean parserLigne(String f) throws IOException {
 
 		int bornes = f.indexOf("#");
