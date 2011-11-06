@@ -235,7 +235,7 @@ public class FenetreOnglet extends JFrame{
            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                .addContainerGap(265, Short.MAX_VALUE)
                .addComponent(traceComp)
-               .addGap(263, 263, 263))
+               .addGap(327, 327, 327))
            .addGroup(jPanel1Layout.createSequentialGroup()
                .addGap(223, 223, 223)
                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -498,7 +498,7 @@ public class FenetreOnglet extends JFrame{
        jPanel4Layout.setHorizontalGroup(
            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
            .addGroup(jPanel4Layout.createSequentialGroup()
-               .addGap(40, 40, 40)
+               .addGap(104, 104, 104)
                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                    .addGroup(jPanel4Layout.createSequentialGroup()
                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -570,31 +570,38 @@ public class FenetreOnglet extends JFrame{
 
        tracerAffSAF.setText("Tracer");
 
-
        jScrollPane7.setViewportView(jListAffSEF);
+
+       jLabel19.setText("Choisissez les SEF à afficher (ctrl + click pour choisir plusieurs SEF) :");
 
        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
        jPanel6.setLayout(jPanel6Layout);
        jPanel6Layout.setHorizontalGroup(
            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
            .addGroup(jPanel6Layout.createSequentialGroup()
-               .addContainerGap(152, Short.MAX_VALUE)
                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                   .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                       .addComponent(tracerAffSAF)
-                       .addGap(254, 254, 254))
-                   .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                       .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addGap(144, 144, 144))))
+                   .addGroup(jPanel6Layout.createSequentialGroup()
+                       .addGap(252, 252, 252)
+                       .addComponent(tracerAffSAF))
+                   .addGroup(jPanel6Layout.createSequentialGroup()
+                       .addGap(139, 139, 139)
+                       .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
+               .addContainerGap(143, Short.MAX_VALUE))
+           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+               .addContainerGap(99, Short.MAX_VALUE)
+               .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addGap(44, 44, 44))
        );
        jPanel6Layout.setVerticalGroup(
            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-           .addGroup(jPanel6Layout.createSequentialGroup()
-               .addGap(33, 33, 33)
+           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+               .addContainerGap()
+               .addComponent(jLabel19)
+               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addGap(36, 36, 36)
+               .addGap(37, 37, 37)
                .addComponent(tracerAffSAF)
-               .addContainerGap(63, Short.MAX_VALUE))
+               .addGap(37, 37, 37))
        );
 
        jTabbedPane1.addTab("Affichage SEF", jPanel6);
