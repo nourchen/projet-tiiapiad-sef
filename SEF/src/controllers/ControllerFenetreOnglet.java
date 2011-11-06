@@ -221,7 +221,7 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 				
 				if( (borneInfEntree >= borneInfSEF) && (borneInfEntree <= pluspetitX) 
 						&& (borneSupEntree >= plusgrandX) && (borneSupEntree <= borneSupSEF)){
-					System.out.println("Ext");
+				//	System.out.println("Ext");
 					
 					XYSeriesCollection mesSefs= new XYSeriesCollection();
 					int recup = fo.getChoixFontion().getSelectedIndex();
