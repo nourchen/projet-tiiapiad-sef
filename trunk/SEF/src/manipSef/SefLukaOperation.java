@@ -70,8 +70,8 @@ public class SefLukaOperation {
 		try {
 			SefDiscretizer.normalizeSerie(ptsSef1, sef1.getBorneInf(), sef1.getBorneSup(),
 					ptsSef2,sef2.getBorneInf(), sef2.getBorneSup());
-			sef1.printInflexions();
-			sef2.printInflexions();
+//			sef1.printInflexions();
+//			sef2.printInflexions();
 		} catch (NormalizationException e1) {
 			// Auto-generated catch block
 			e1.printStackTrace();
