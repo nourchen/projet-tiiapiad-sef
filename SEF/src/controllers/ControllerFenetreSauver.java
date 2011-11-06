@@ -23,7 +23,7 @@ public class ControllerFenetreSauver implements ActionListener, ListSelectionLis
 	private JButton sauver;
 	private FenetreSauver fs;
 	private String[] total;
-	private Object couleurJList;
+	private Object jlist;
 	private ListSelectionModel listSelectionModel;
 	private ArrayList<Integer> sefchoisi = new ArrayList<Integer> ();
 	private ArrayList<SEF> sefpris;
@@ -34,10 +34,10 @@ public class ControllerFenetreSauver implements ActionListener, ListSelectionLis
 		this.fs = fs;
 		this.sauver = fs.getSauver();
 		this.total = fs.getTotal();
-		this.couleurJList = fs.getCouleursJList();
+		this.jlist = fs.getjlist();
 		this.mesSEF = mesSEF;
 		sauver.addActionListener(this);
-		listSelectionModel = fs.getCouleursJList().getSelectionModel();
+		listSelectionModel = fs.getjlist().getSelectionModel();
 		listSelectionModel.addListSelectionListener(this);
 		sefpris = new ArrayList<SEF> ();
 		fc = new JFileChooser("./fichiersSef");
@@ -52,7 +52,7 @@ public class ControllerFenetreSauver implements ActionListener, ListSelectionLis
 			System.out.println( "Votre sélection:" );
 			System.out.println("taille messef "+mesSEF.size());
 		//	System.out.println(""+((JList)couleurJList).getSelectedIndices().length);
-			int txt = ((JList)couleurJList).getSelectedIndices().length;
+			int txt = ((JList)jlist).getSelectedIndices().length;
 			for (int i = 0; i < sefchoisi.size();i++){
 				System.out.println("choisi au clic "+sefchoisi.get(i));
 			sefpris.add(mesSEF.get(sefchoisi.get(i)));			

@@ -16,7 +16,7 @@ import manipSef.SEF;
 
 public class FenetreSauver extends JFrame {
 
-	private JList couleursJList;
+	private JList jlist;
 	private JLabel label;
 	private JButton sauver;
 	private String[] total;
@@ -24,40 +24,33 @@ public class FenetreSauver extends JFrame {
 	
 	private ArrayList<SEF> mesSEF;
 	
-	private final static String[] TAB_COULEURS = 
-	{ "blanc", "jaune", "rouge", "vert", "bleu", "orange", "noir", 
-	  "bleu clair", "rouge clair", "vert clair" };
-	
 	
 	public FenetreSauver(ArrayList<SEF> mesSEF){
-		
+		setTitle("Sauvegarder...");
+		setSize(300,200);
 		Object tab[] = mesSEF.toArray();
-		mesSEF.get(0).getInflexions().getDescription();
-		String[] tab2 = {"SEF1",(String) mesSEF.get(0).getInflexions().getKey()};
-		System.out.println("yakoi "+mesSEF.size());
+	
 		total = recupNom(mesSEF);
 		
-		couleursJList = new JList(total);
+		jlist = new JList(total);
 		// nb de lignes visbles
-		couleursJList.setVisibleRowCount( 5 );
+		//jlist.setVisibleRowCount( 5 );
 		// autorise la selection multiple
-		couleursJList.setSelectionMode( ListSelectionModel.MULTIPLE_INTERVAL_SELECTION );
+		jlist.setSelectionMode( ListSelectionModel.MULTIPLE_INTERVAL_SELECTION );
 		// ajoute une scrollBar
-		JScrollPane spList = new JScrollPane( couleursJList );
+		JScrollPane spList = new JScrollPane( jlist );
 		// ajoute le composant dans la fenêtre
 		add( spList, BorderLayout.CENTER );
 		
-		//--- définition du libellé
 		
-		label = new JLabel( " Sélection: [Ctrl]+[click] ou [Shift]+[click] " );
-		add( label, BorderLayout.NORTH );
 		
-		//--- définition bouton
+//		label = new JLabel( " Sélection: [Ctrl]+[click] ou [Shift]+[click] " );
+//		add( label, BorderLayout.NORTH );
+		
 		sauver = new JButton( "Sauver les SEF séléctionnés" );
-//		button.addActionListener(new SelectionAction() );
 		add(sauver, BorderLayout.SOUTH );
 		setVisible(true);
-		pack();
+	//	pack();
 		new ControllerFenetreSauver(this,mesSEF);
 	}
 	
@@ -70,8 +63,8 @@ public class FenetreSauver extends JFrame {
 		return res;
 	}
 
-	public JList getCouleursJList() {
-		return couleursJList;
+	public JList getjlist() {
+		return jlist;
 	}
 
 	public JButton getSauver() {
