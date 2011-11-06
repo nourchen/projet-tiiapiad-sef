@@ -25,7 +25,7 @@ public class FenetreSauver extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 3964985490582034705L;
-	private JList jlist;
+	private JList<String> jlist;
 	private JButton sauver;
 	private String[] total;
 	
@@ -41,7 +41,7 @@ public class FenetreSauver extends JFrame {
 		setSize(300,200);
 		//Construction de la Jlist
 		total = recupNom(mesSEF);	
-		jlist = new JList(total);
+		jlist = new JList<String>(total);
 		JScrollPane spList = new JScrollPane( jlist );
 		add( spList, BorderLayout.CENTER );
 //		label = new JLabel( " Sélection: [Ctrl]+[click] ou [Shift]+[click] " );
@@ -67,7 +67,7 @@ public class FenetreSauver extends JFrame {
 		return res;
 	}
 
-	public JList getjlist() {
+	public JList<String> getjlist() {
 		return jlist;
 	}
 

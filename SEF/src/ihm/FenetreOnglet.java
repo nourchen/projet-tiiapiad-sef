@@ -38,21 +38,21 @@ public class FenetreOnglet extends JFrame{
 
 	private static final String tracer = "Tracer";
 	
-	private JComboBox sefComp = new JComboBox();
+	private JComboBox<String> sefComp = new JComboBox<String>();
 	
 	//Intersection
-	private JComboBox sefChoixinter1 = new JComboBox();
-	private JComboBox sefChoixinter2 = new JComboBox();
-	private JComboBox choixTnorme = new JComboBox();
+	private JComboBox<String> sefChoixinter1 = new JComboBox<String>();
+	private JComboBox<String> sefChoixinter2 = new JComboBox<String>();
+	private JComboBox<String> choixTnorme = new JComboBox<String>();
 
 	//Union
-	private JComboBox sefChoixUni1 = new JComboBox();
-	private JComboBox sefChoixUni2 = new JComboBox();
-	private JComboBox choixTconorme = new JComboBox();
+	private JComboBox<String> sefChoixUni1 = new JComboBox<String>();
+	private JComboBox<String> sefChoixUni2 = new JComboBox<String>();
+	private JComboBox<String> choixTconorme = new JComboBox<String>();
 	
 	//Extension
 //	private JComboBox choixFontion = new JComboBox();
-	private JComboBox ChoixFoncSef = new JComboBox();
+	private JComboBox<String> ChoixFoncSef = new JComboBox<String>();
 	
 	//Bouton pour valider la trace (je vais metre un bouton par panel laissant ainsi le choix)
 	private JButton traceComp = new JButton(tracer);
@@ -70,7 +70,7 @@ public class FenetreOnglet extends JFrame{
 	//un textArea
 	private JTextArea jta;
 	/////////////////////////////////////////////////////////////
-    private JComboBox choixFontion = new JComboBox ();
+    private JComboBox<String> choixFontion = new JComboBox<String> ();
     private JLabel jLabel1;
     private JLabel jLabel10;
     private JLabel jLabel11;
@@ -109,7 +109,7 @@ public class FenetreOnglet extends JFrame{
     private JTextField jtfExtinf;
     private javax.swing.JButton tracerAffSAF;
     private JScrollPane jScrollPane7;
-    private JList jListAffSEF;
+    private JList<String> jListAffSEF;
     private JPanel jPanel6 = new JPanel();;
     private String[] total;
 
@@ -125,90 +125,90 @@ public class FenetreOnglet extends JFrame{
 		setVisible(true);
 		// remplissage des combobox:
 		for (int i = 0; i < mesSEF.size(); i++){
-			sefComp.addItem(mesSEF.get(i).getInflexions().getKey());
+			sefComp.addItem((String)mesSEF.get(i).getInflexions().getKey());
 			
-			sefChoixinter1.addItem(mesSEF.get(i).getInflexions().getKey());
-			sefChoixinter2.addItem(mesSEF.get(i).getInflexions().getKey());
+			sefChoixinter1.addItem((String)mesSEF.get(i).getInflexions().getKey());
+			sefChoixinter2.addItem((String)mesSEF.get(i).getInflexions().getKey());
 			
-			sefChoixUni1.addItem(mesSEF.get(i).getInflexions().getKey());
-			sefChoixUni2.addItem(mesSEF.get(i).getInflexions().getKey());
+			sefChoixUni1.addItem((String)mesSEF.get(i).getInflexions().getKey());
+			sefChoixUni2.addItem((String)mesSEF.get(i).getInflexions().getKey());
 			
-			ChoixFoncSef.addItem(mesSEF.get(i).getInflexions().getKey());
+			ChoixFoncSef.addItem((String)mesSEF.get(i).getInflexions().getKey());
 		}
 		
 		total = recupNom(mesSEF);
-		jListAffSEF = new JList(total);
+		jListAffSEF = new JList<String>(total);
 		
 
 		//On remplit direct avec les enum les normes
 		Norme testNorme[] = Norme.values();
 		for (int i=0 ; i < testNorme.length ; i++){
-			choixTnorme.addItem(testNorme[i]);
-			choixTconorme.addItem(testNorme[i]);
+			choixTnorme.addItem(""+testNorme[i]);
+			choixTconorme.addItem(""+testNorme[i]);
 		}
 		
 		//on remplit direct avec les enum le choix des fonctions
 		FunctionChoice fc[] = FunctionChoice.values();
 		for (int j=0; j < fc.length ; j++){
-			choixFontion.addItem(fc[j]);
+			choixFontion.addItem(""+fc[j]);
 		}
 		
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jTabbedPane1 = new JTabbedPane();
+        jPanel1 = new JPanel();
      //   sefComp = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel1 = new JLabel();
      //   traceComp = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtaComp = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new JScrollPane();
+        jtaComp = new JTextArea();
+        jLabel2 = new JLabel();
+        jPanel2 = new JPanel();
     //    traceInter = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel3 = new JLabel();
     //    sefChoixinter1 = new javax.swing.JComboBox();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtaInter1 = new javax.swing.JTextArea();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jtaInter2 = new javax.swing.JTextArea();
+        jLabel4 = new JLabel();
+        jScrollPane2 = new JScrollPane();
+        jtaInter1 = new JTextArea();
+        jLabel5 = new JLabel();
+        jLabel6 = new JLabel();
+        jScrollPane3 = new JScrollPane();
+        jtaInter2 = new JTextArea();
     //    sefChoixinter2 = new javax.swing.JComboBox();
-        jLabel13 = new javax.swing.JLabel();
+        jLabel13 = new JLabel();
      //   choixTnorme = new javax.swing.JComboBox();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        traceUni = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        jPanel3 = new JPanel();
+        jPanel5 = new JPanel();
+        traceUni = new JButton();
+        jLabel7 = new JLabel();
     //    sefChoixUni1 = new javax.swing.JComboBox();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jtaUni1 = new javax.swing.JTextArea();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jtaUni2 = new javax.swing.JTextArea();
+        jLabel8 = new JLabel();
+        jScrollPane4 = new JScrollPane();
+        jtaUni1 = new JTextArea();
+        jLabel9 = new JLabel();
+        jLabel10 = new JLabel();
+        jScrollPane5 = new JScrollPane();
+        jtaUni2 = new JTextArea();
      //   sefChoixUni2 = new javax.swing.JComboBox();
-        jLabel14 = new javax.swing.JLabel();
+        jLabel14 = new JLabel();
      //   choixTconorme = new javax.swing.JComboBox();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        jPanel4 = new JPanel();
+        jLabel11 = new JLabel();
     //    choixFontion = new javax.swing.JComboBox();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel12 = new JLabel();
 
     //    ChoixFoncSef = new javax.swing.JComboBox();
-        traceExt = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jtaExt = new javax.swing.JTextArea();
-        jLabel15 = new javax.swing.JLabel();
-        jtfExtinf = new javax.swing.JTextField();
-        jtaExtsup = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
+        traceExt = new JButton();
+        jScrollPane6 = new JScrollPane();
+        jtaExt = new JTextArea();
+        jLabel15 = new JLabel();
+        jtfExtinf = new JTextField();
+        jtaExtsup = new JTextField();
+        jLabel16 = new JLabel();
 
        JLabel jLabel17 = new JLabel();
        JLabel jLabel18 = new JLabel();
        JLabel jLabel19 = new JLabel();
-       tracerAffSAF = new javax.swing.JButton();
-       jScrollPane7 = new javax.swing.JScrollPane();
+       tracerAffSAF = new JButton();
+       jScrollPane7 = new JScrollPane();
       // jListAffSEF = new javax.swing.JList();
        
 	
@@ -649,27 +649,27 @@ public class FenetreOnglet extends JFrame{
 	}
 
 
-	public JComboBox getSefComp() {
+	public JComboBox<String> getSefComp() {
 		return sefComp;
 	}
 
 
-	public JComboBox getSefChoixinter1() {
+	public JComboBox<String> getSefChoixinter1() {
 		return sefChoixinter1;
 	}
 
 
-	public JComboBox getSefChoixinter2() {
+	public JComboBox<String> getSefChoixinter2() {
 		return sefChoixinter2;
 	}
 
 
-	public JComboBox getSefChoixUni1() {
+	public JComboBox<String> getSefChoixUni1() {
 		return sefChoixUni1;
 	}
 
 
-	public JComboBox getSefChoixUni2() {
+	public JComboBox<String> getSefChoixUni2() {
 		return sefChoixUni2;
 	}
 
@@ -696,21 +696,21 @@ public class FenetreOnglet extends JFrame{
 		this.jta = jta;
 	}
 
-	public JComboBox getChoixTnorme() {
+	public JComboBox<String> getChoixTnorme() {
 		return choixTnorme;
 	}
 
-	public JComboBox getChoixTconorme() {
+	public JComboBox<String> getChoixTconorme() {
 		return choixTconorme;
 	}
 
 
-	public JComboBox getChoixFontion() {
+	public JComboBox<String> getChoixFontion() {
 		return choixFontion;
 	}
 
 
-	public JComboBox getChoixFoncSef() {
+	public JComboBox<String> getChoixFoncSef() {
 		return ChoixFoncSef;
 	}
 
@@ -756,7 +756,7 @@ public class FenetreOnglet extends JFrame{
 	
 	
 	
-	public JList getjListAffSEF() {
+	public JList<String> getjListAffSEF() {
 		return jListAffSEF;
 	}
 
@@ -772,7 +772,7 @@ public class FenetreOnglet extends JFrame{
 	}
 
 
-	public void setjListAffSEF(JList jListAffSEF) {
+	public void setjListAffSEF(JList<String> jListAffSEF) {
 		this.jListAffSEF = jListAffSEF;
 	}
 
