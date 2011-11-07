@@ -122,13 +122,13 @@ public class Charger {
 		double bsup;
 
 		if(borneinf.equals("-inf")||borneinf.equals("inf")||borneinf.equals("+inf")){
-			binf = Double.MIN_VALUE;
+			binf = Double.NEGATIVE_INFINITY;
 		} else {
 			binf = Double.parseDouble(borneinf);    
 		}
 
 		if(bornesup.equals("inf")|| bornesup.equals("+inf") || bornesup.equals("-inf")) {
-			bsup = Double.MAX_VALUE;
+			bsup = Double.POSITIVE_INFINITY;
 		} else {
 			bsup = Double.parseDouble(bornesup);
 		}
