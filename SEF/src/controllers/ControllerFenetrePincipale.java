@@ -166,8 +166,14 @@ public class ControllerFenetrePincipale implements ActionListener {
 			fc.setFileFilter(new Filtre());
 			 int returnVal = fc.showOpenDialog(fp);
 			    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			    	String file = fc.getSelectedFile().getName();
+			    	file = file.replace(".SEF", "");
+			    	if (file.length()> 7) {
+			    		file = file.substring(0, 6);
+			    	}
+			    //	System.out.println("fichier nom " +file);
 			       fichierouvert = fc.getSelectedFile().getAbsolutePath();
-			       Charger ch = new Charger(mesSEF,this,fp);
+			       Charger ch = new Charger(mesSEF,this,fp,file);
 			       ch.chargerfichier(fichierouvert);
 			     }
 			    if(mesSEF!=null){
