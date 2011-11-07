@@ -206,9 +206,31 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 			
 		if(arg0.getSource()==traceExt){
 			if(!(fo.getJtfExtinf().getText().equals("")) && !(fo.getJtaExtsup().getText().equals(""))){
+			//	System.out.println("hein?");
+			try {
+				double borneInfEntree;
+				double borneSupEntree;
 				
-				double borneInfEntree = Double.parseDouble(fo.getJtfExtinf().getText());
-				double borneSupEntree = Double.parseDouble(fo.getJtaExtsup().getText());
+				String borneinf = fo.getJtfExtinf().getText();
+				String bornesup = fo.getJtaExtsup().getText();
+			//	System.out.println("y a quoi "+fo.getJtfExtinf().getText());
+				//Ici le seul infini toléré c'est -inf
+				if(borneinf.equals("-inf")|| borneinf.equals("inf")|| borneinf.equals("+inf")){
+					borneInfEntree = Double.NEGATIVE_INFINITY;
+				} else {
+					borneInfEntree = Double.parseDouble(fo.getJtfExtinf().getText());    
+				}
+				// ici le seul infini tolété c'est +inf
+				if(bornesup.equals("inf") || bornesup.equals("+inf") || bornesup.equals("-inf")) {
+					borneSupEntree = Double.POSITIVE_INFINITY;
+				} else {
+					borneSupEntree = Double.parseDouble(fo.getJtaExtsup().getText());
+				}
+				
+			//	System.out.println("borne inf "+borneInfEntree+ " borne sup " +borneSupEntree);
+				
+				 // = Double.parseDouble(fo.getJtfExtinf().getText());
+				//double borneSupEntree; //= Double.parseDouble(fo.getJtaExtsup().getText());
 				int indexchoisi = fo.getChoixFoncSef().getSelectedIndex();
 				
 				SEF sefExt = fo.getMesSEF().get(indexchoisi);
@@ -218,7 +240,7 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 				
 				double borneSupSEF = fo.getMesSEF().get(indexchoisi).getBorneSup();
 				double plusgrandX = fo.getMesSEF().get(indexchoisi).getInflexions().getMaxX();
-				
+								
 				if( (borneInfEntree >= borneInfSEF) && (borneInfEntree <= pluspetitX) 
 						&& (borneSupEntree >= plusgrandX) && (borneSupEntree <= borneSupSEF)){
 				//	System.out.println("Ext");
@@ -240,10 +262,18 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 						} catch (UnknownFunctionException e) {
 							e.printStackTrace();
 							return;
-						}				
+						}		
 				}
+				
+				} catch (NumberFormatException e){
+				//System.out.println("coin");
+					 return;
+				 }
 			}
 		}
+			
+			 
+				
 		
 		if(arg0.getSource()==tracerAffSEF){
 			XYSeriesCollection mesSefs= new XYSeriesCollection();
