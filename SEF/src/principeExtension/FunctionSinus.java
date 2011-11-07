@@ -37,18 +37,24 @@ public class FunctionSinus implements IMapping {
 	@Override
 	public ArrayList<Double> reverse(double x) {
 		double step = Math.PI * 2;
-		double mesurePrincipale = Math.asin(x);
+		double mesurePrincipale = Math.asin(x); //dans l'intervalle [-pi/2;pi/2]
 		ArrayList<Double> antecedents = new ArrayList<Double>();
 		double antecedentCourant=mesurePrincipale;
+		double antecedentCourant2=Math.PI - mesurePrincipale;
 		while (antecedentCourant - step >= xDomainInf){
 			antecedentCourant-= step;
+			antecedentCourant2-= step;
 		}
 		// A ce niveau là antecedentCourant est le plus petit antecedent possible inclus dans l'intervalle
 		
 		//Pourquoi deux boucles? Pour avoir une liste d'antécédents ordonnées par x croissant!!
 		while (antecedentCourant<xDomainSup){
 			antecedents.add(antecedentCourant);
+			if(antecedentCourant2 >= xDomainInf && antecedentCourant2 < xDomainSup&&x!=1 && x!=-1){
+				antecedents.add(antecedentCourant2);
+			}
 			antecedentCourant+=step;
+			antecedentCourant2+=step;
 		}
 		return antecedents;
 	}

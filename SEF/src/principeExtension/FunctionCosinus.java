@@ -40,18 +40,24 @@ public class FunctionCosinus implements IMapping {
 	@Override
 	public ArrayList<Double> reverse(double x) {
 		double step = Math.PI * 2;
-		double mesurePrincipale = Math.acos(x);
+		double mesurePrincipale = Math.acos(x); //Valeur comprise entre 0 et Pi
 		ArrayList<Double> antecedents = new ArrayList<Double>();
 		double antecedentCourant=mesurePrincipale;
+		double antecedentCourant2= -1 * mesurePrincipale;
 		while (antecedentCourant - step >= xDomainInf){
-			antecedentCourant-= step;
+			antecedentCourant -= step;
+			antecedentCourant2 -= step;
 		}
 		// A ce niveau là antecedentCourant est le plus petit antecedent possible inclus dans l'intervalle
 		
 		//Pourquoi deux boucles? Pour avoir une liste d'antécédents ordonnées par x croissant!!
 		while (antecedentCourant<xDomainSup){
+			if(antecedentCourant2 >= xDomainInf && x!=1 && x!=-1){
+				antecedents.add(antecedentCourant2);
+			}
 			antecedents.add(antecedentCourant);
 			antecedentCourant+=step;
+			antecedentCourant2+=step;
 		}
 		return antecedents;
 	}
