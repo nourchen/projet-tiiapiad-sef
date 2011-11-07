@@ -91,13 +91,13 @@ public class ControllerFenetrePincipale implements ActionListener {
 				
 				//Ici le seul infini toléré c'est -inf
 				if(borneinf.equals("-inf")||borneinf.equals("inf")||borneinf.equals("+inf")){
-					binf = Double.MIN_VALUE;
+					binf = Double.NEGATIVE_INFINITY;
 				} else {
 					binf = Double.parseDouble(borneinf);    
 				}
 				// ici le seul infini tolété c'est +inf
 				if(bornesup.equals("inf") || bornesup.equals("+inf") || bornesup.equals("-inf")) {
-					bsup = Double.MAX_VALUE;
+					bsup = Double.POSITIVE_INFINITY;
 				} else {
 					bsup = Double.parseDouble(bornesup);
 				}
