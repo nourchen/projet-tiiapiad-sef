@@ -26,6 +26,7 @@ public class Charger {
 	private ArrayList<SEF> mesSEF;//A remplir au fur et a mesure de la lecture du fichier
 	private ControllerFenetrePincipale cfp;
 	private FenetrePrincipale fp;
+	private String nom;
 	
 	/**
 	 * Constructeur qui gere la connexion entre les différents elements
@@ -34,10 +35,11 @@ public class Charger {
 	 * @param cfp le controler de la fenetre principale
 	 * @param fp la fenetre prinicipale
 	 */
-	public Charger(ArrayList<SEF> mesSEF,ControllerFenetrePincipale cfp,FenetrePrincipale fp) {
+	public Charger(ArrayList<SEF> mesSEF,ControllerFenetrePincipale cfp,FenetrePrincipale fp,String nom) {
 		this.cfp = cfp;
 		this.mesSEF = cfp.getMesSEF();
 		this.fp = fp;
+		this.nom = nom;
 	}
 	
 	/**
@@ -101,7 +103,8 @@ public class Charger {
 
 		temp = ptsInflexion.split(delimiterPoint);
 
-		XYSeries pts = new XYSeries("SEF "+(mesSEF.size()+1));
+		//ici le nom
+		XYSeries pts = new XYSeries("SEF "+(mesSEF.size()+1)+" "+this.getNom());
 		// la on peut reccuperer les bonnes valeurs : reste a les stocker proprement
 		String stocker ="";
 		for (int k = 0; k < temp.length ; k++){
@@ -156,6 +159,14 @@ public class Charger {
 
 	public void setCfp(ControllerFenetrePincipale cfp) {
 		this.cfp = cfp;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	
