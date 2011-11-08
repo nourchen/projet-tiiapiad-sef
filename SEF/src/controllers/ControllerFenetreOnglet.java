@@ -269,7 +269,34 @@ public class ControllerFenetreOnglet implements ActionListener,ListSelectionList
 				//System.out.println("coin");
 					 return;
 				 }
+			} else {
+				int indexchoisi = fo.getChoixFoncSef().getSelectedIndex();				
+				SEF sefExt = fo.getMesSEF().get(indexchoisi);
+				
+				double pluspetitX = fo.getMesSEF().get(indexchoisi).getInflexions().getMinX();
+				double plusgrandX = fo.getMesSEF().get(indexchoisi).getInflexions().getMaxX();
+				
+				XYSeriesCollection mesSefs= new XYSeriesCollection();
+				int recup = fo.getChoixFontion().getSelectedIndex();
+				FunctionChoice fc[] = FunctionChoice.values();
+					try {
+						Extension ext = new Extension(sefExt,pluspetitX,plusgrandX,fc[recup]);
+						SEF toto = ext.getExtendedSef();
+						mesSefs.addSeries(toto.getInflexions());
+						FenetreGeometrique frame = new FenetreGeometrique("Manipulation des Sous Ensembles Flous", mesSefs);
+						frame.pack();
+						RefineryUtilities.centerFrameOnScreen(frame);
+						frame.setVisible(true);
+						//Rajout dans mesSEF / Combobox / Jlist
+						fo.getMesSEF().add(toto);
+						rajouter(toto);
+					} catch (UnknownFunctionException e) {
+						e.printStackTrace();
+						return;
+					}
+				
 			}
+				
 		}
 			
 			 
